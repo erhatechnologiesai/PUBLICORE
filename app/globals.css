@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --text-primary: #0B1A2C;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --brand-navy: #0B1A2C;
+  --brand-teal: #177994;
+  --brand-cyan: #06B6D4;
+  --border-subtle: #E2E8F0;
+}
+
+/* Light & HD Look Background using White & #177994 */
+.bg-platform-hd,
+body {
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(23, 121, 148, 0.12) 0%, transparent 55%),
+    radial-gradient(circle at 95% 15%, rgba(23, 121, 148, 0.13) 0%, transparent 40%),
+    radial-gradient(circle at 5% 55%, rgba(23, 121, 148, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 95%, rgba(23, 121, 148, 0.14) 0%, transparent 50%),
+    radial-gradient(rgba(23, 121, 148, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, #FFFFFF 0%, #F5FAFC 25%, #EBF4F7 65%, rgba(23, 121, 148, 0.16) 100%);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 32px 32px, 100% 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat, no-repeat;
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Ensure all platform page wrappers seamlessly inherit the HD gradient */
+.bg-\[\#F5F9FB\] {
+  background-color: transparent !important;
+}
+
+/* Custom scrollbars for clean academic look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Academic Card styling */
+.card-academic {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-academic-hover:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 10px 25px -3px rgba(15, 30, 60, 0.08), 0 4px 6px -4px rgba(15, 30, 60, 0.03);
+  transform: translateY(-1px);
+}
+
+/* Article Typography for academic reading */
+.article-prose {
+  color: #1E293B;
+  line-height: 1.8;
+  font-size: 1.0625rem;
+}
+
+.article-prose p {
+  margin-bottom: 1.35rem;
+}
+
+.article-prose h2 {
+  color: #0B1A2C;
+  font-weight: 700;
+  font-size: 1.625rem;
+  margin-top: 2.25rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.article-prose h3 {
+  color: #0F172A;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.65rem;
+}
+
+/* Formula blocks */
+.math-block {
+  background: #F8FAFC;
+  border-left: 3px solid #0891B2;
+  padding: 1rem 1.5rem;
+  margin: 1.25rem 0;
+  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
+  font-size: 0.95rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  overflow-x: auto;
+}
+
+/* Reader modes */
+.reader-dark {
+  background-color: #0F172A !important;
+  color: #E2E8F0 !important;
+}
+.reader-dark .card-academic {
+  background-color: #1E293B !important;
+  border-color: #334155 !important;
+  color: #E2E8F0 !important;
+}
+.reader-dark .article-prose {
+  color: #CBD5E1 !important;
+}
+.reader-dark .article-prose h2,
+.reader-dark .article-prose h3 {
+  color: #F8FAFC !important;
+  border-color: #334155 !important;
+}
+.reader-dark .math-block {
+  background: #1E293B !important;
+  color: #93C5FD !important;
+  border-color: #06B6D4 !important;
+}
+
+.reader-sepia {
+  background-color: #FBF0D9 !important;
+  color: #2D251E !important;
+}
+.reader-sepia .card-academic {
+  background-color: #F4E8D0 !important;
+  border-color: #E5D5BA !important;
+  color: #2D251E !important;
+}
+.reader-sepia .article-prose {
+  color: #382E25 !important;
+}
