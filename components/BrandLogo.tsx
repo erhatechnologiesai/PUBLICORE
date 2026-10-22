@@ -92,7 +92,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
               isLight ? "text-slate-400" : "text-slate-500"
             }`}
           >
-            <span className="hidden xs:inline">Academic </span>Research Ecosystem
+            Academic Research Ecosystem
           </span>
         </div>
       )}

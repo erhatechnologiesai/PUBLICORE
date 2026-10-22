@@ -400,16 +400,16 @@ export const Navbar: React.FC = () => {
               </div>
             ) : (
               /* Two Buttons: Create Account & Sign In */
-              <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="flex items-center gap-2 sm:gap-2.5">
                 <Link
                   href="/login?mode=register"
-                  className="hidden xs:inline-flex items-center justify-center px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-[11px] sm:text-xs font-bold text-slate-700 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-all shadow-2xs whitespace-nowrap"
+                  className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs font-bold text-slate-700 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-all shadow-2xs whitespace-nowrap"
                 >
                   Create Account
                 </Link>
                 <Link
                   href="/login?mode=login"
-                  className="inline-flex items-center justify-center px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-[11px] sm:text-xs font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-xl transition-all shadow-xs whitespace-nowrap"
+                  className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-xl transition-all shadow-xs whitespace-nowrap"
                 >
                   Sign In
                 </Link>
