@@ -42,7 +42,6 @@ import {
   Check,
   Upload,
   Bookmark,
-  RefreshCw,
   X,
 } from "lucide-react";
 
@@ -63,11 +62,6 @@ export default function HomePage() {
   const [savedArticleIds, setSavedArticleIds] = useState<string[]>([]);
   const [copiedDoi, setCopiedDoi] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  // Hero Pre-Screening interactive demo state
-  const [screeningStatus, setScreeningStatus] = useState<"ready" | "running" | "verified">("ready");
-  const [scopeMatch, setScopeMatch] = useState("98.4%");
-  const [methodRigor, setMethodRigor] = useState("95.1%");
 
   useEffect(() => {
     try {
@@ -154,16 +148,6 @@ Archived by PUBLICORE Scholarly Infrastructure`;
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
     setToastMessage(`Downloaded publication file for ${art.title.slice(0, 35)}...`);
-  };
-
-  const handleRunScreeningDemo = () => {
-    setScreeningStatus("running");
-    setTimeout(() => {
-      setScopeMatch("99.8%");
-      setMethodRigor("98.9%");
-      setScreeningStatus("verified");
-      setToastMessage("AI Rigor screening complete: Statistical baselines & ethics COI verified!");
-    }, 1200);
   };
 
   const categories = [
@@ -264,149 +248,92 @@ Archived by PUBLICORE Scholarly Infrastructure`;
 
       <main className="flex-1">
         {/* =========================================================
-            HERO SECTION: CLEAN ACADEMIC PLATFORM (ORIGINAL DESIGN)
+            HERO SECTION: FULL NETWORK BACKGROUND & CENTERED HEADLINE
         ========================================================= */}
-        <section className="relative overflow-hidden bg-white/60 backdrop-blur-xs border-b border-slate-200/60 pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 lg:pb-20">
-          {/* Subtle architectural background accents in #177994 */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#177994]/15 blur-3xl pointer-events-none" />
-          <div className="absolute top-1/2 -left-40 w-96 h-96 rounded-full bg-[#177994]/10 blur-3xl pointer-events-none" />
+        <section className="relative overflow-hidden bg-[#07111E] border-b border-cyan-500/20 py-16 sm:py-20 md:py-28 lg:py-32">
+          {/* High-Resolution Futuristic Network Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
+            style={{ backgroundImage: "url('/images/hero-network-bg.jpg')" }}
+          />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              
-              {/* Left Column: Heading, Subheading & Action CTAs */}
-              <div className="lg:col-span-7 space-y-6 text-left">
-                {/* Fluid Headline */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-navy-950 tracking-tight leading-[1.12]">
-                  Advance Research
-                  <br />
-                  <span className="text-[#177994]">
-                    Accelerate Discovery
-                  </span>
-                </h1>
+          {/* Deep Navy & Cyan Multi-Layer Gradient Overlays for High-Contrast Text Legibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#07111E]/92 via-[#0B1A2C]/82 to-[#07111E]/95" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(23,121,148,0.22)_0%,transparent_75%)] pointer-events-none" />
 
-                {/* Subheading */}
-                <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal">
-                  An AI-native academic research and publishing platform built to help
-                  researchers submit, review, publish, discover, and measure knowledge
-                  faster — with human-controlled scientific integrity at every milestone.
-                </p>
+          {/* Architectural Ambient Glow */}
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[650px] sm:w-[900px] h-[350px] bg-cyan-400/15 blur-3xl rounded-full pointer-events-none" />
 
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
-                  <Link href="/submit" className="w-full sm:w-auto">
-                    <Button variant="teal" size="lg" className="w-full sm:w-auto shadow-sm font-semibold justify-center">
-                      Submit Research
-                      <ArrowRight className="w-4 h-4 ml-1.5" />
-                    </Button>
-                  </Link>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            {/* Centered Eyebrow Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-cyan-400/35 text-cyan-300 text-[11px] sm:text-xs font-semibold shadow-lg shadow-navy-950/40 mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-cyan-300 animate-pulse" />
+              <span>Next-Gen Scholarly Publishing & Research Intelligence</span>
+            </div>
 
-                  <Link href="/journals" className="w-full sm:w-auto">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="w-full sm:w-auto border-cyan-300 text-cyan-900 hover:bg-cyan-50 bg-white font-semibold justify-center shadow-xs"
-                    >
-                      <BookOpen className="w-4 h-4 mr-1.5 text-cyan-700" />
-                      Explore Journals
-                    </Button>
-                  </Link>
-                </div>
+            {/* Fluid Centered Headline (White & Gradient Cyan) */}
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.14] max-w-4xl mx-auto">
+              Advance Research
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-100 drop-shadow-sm">
+                Accelerate Discovery
+              </span>
+            </h1>
+
+            {/* Subheading in Clean White / Slate-200 */}
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto font-normal pt-5 pb-8 drop-shadow-xs">
+              An AI-native academic research and publishing platform built to help
+              researchers submit, review, publish, discover, and measure knowledge
+              faster — with human-controlled scientific integrity at every milestone.
+            </p>
+
+            {/* Centered Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 max-w-md sm:max-w-none mx-auto">
+              <Link href="/submit" className="w-full sm:w-auto">
+                <Button
+                  variant="teal"
+                  size="lg"
+                  className="w-full sm:w-auto shadow-xl shadow-cyan-900/40 font-bold justify-center bg-gradient-to-r from-cyan-600 via-[#177994] to-cyan-700 hover:from-cyan-500 hover:to-teal-600 text-white border-0 px-7 sm:px-8 py-3.5 text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  Submit Research
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+
+              <Link href="/journals" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto border-white/30 hover:border-cyan-300 text-white hover:text-cyan-200 bg-white/10 hover:bg-white/20 backdrop-blur-md font-bold justify-center shadow-lg px-7 sm:px-8 py-3.5 text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <BookOpen className="w-4 h-4 mr-2 text-cyan-300" />
+                  Explore Journals
+                </Button>
+              </Link>
+            </div>
+
+            {/* Dynamic Value Badges in Clean Frosted Pill Style */}
+            <div className="pt-10 sm:pt-14 flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs text-slate-300">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 shadow-xs">
+                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="font-semibold text-white">148,000+</span>
+                <span className="text-slate-300">Articles</span>
               </div>
-
-              {/* Right Column: Clean Elevated Manuscript Pre-Screening Card */}
-              <div className="lg:col-span-5">
-                <div className="relative mx-auto max-w-md lg:max-w-none">
-                  <div className="relative bg-white rounded-2xl border border-slate-200/90 shadow-xl p-6 space-y-5 text-left">
-                    
-                    {/* Header bar of sample research */}
-                    <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-2.5 h-2.5 rounded-full ${screeningStatus === "running" ? "bg-amber-500 animate-ping" : "bg-cyan-600 animate-pulse"}`} />
-                        <span className="text-[11px] font-bold text-navy-900 uppercase tracking-wider">
-                          Manuscript Pre-Screening
-                        </span>
-                      </div>
-                      <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md border transition-colors ${
-                        screeningStatus === "verified"
-                          ? "text-emerald-800 bg-emerald-50 border-emerald-200"
-                          : "text-cyan-800 bg-cyan-50 border-cyan-200"
-                      }`}>
-                        {screeningStatus === "verified" ? "Verified • 99% Rigor" : "Verified • 96% Rigor"}
-                      </span>
-                    </div>
-
-                    {/* Paper card snippet */}
-                    <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 space-y-2">
-                      <span className="text-[10px] font-mono text-cyan-800 font-bold uppercase tracking-wider">
-                        DOI: 10.1042/PUB.2026.04189
-                      </span>
-                      <h4 className="text-sm font-bold text-navy-950 leading-snug">
-                        Multimodal Latent Diffusion for Histopathology Synthesis
-                      </h4>
-                      <p className="text-[11px] text-slate-600 line-clamp-2 leading-relaxed">
-                        Hierarchical conditioning across paired clinical notes and spatial transcriptomic profiles elevates rare oncology diagnostic AUROC to 0.963.
-                      </p>
-                      <div className="flex items-center gap-3 text-[10px] text-slate-500 pt-1">
-                        <span>Cambridge & Stanford</span>
-                        <span>•</span>
-                        <span className="text-cyan-800 font-semibold">14,200 Validated Samples</span>
-                      </div>
-                    </div>
-
-                    {/* Telemetry Metrics */}
-                    <div className="grid grid-cols-3 gap-2.5 text-center">
-                      <div className="p-2.5 rounded-xl bg-cyan-50/70 border border-cyan-200/60 transition-all">
-                        <p className="text-[10px] font-semibold text-slate-500">Scope Match</p>
-                        <p className="text-base font-extrabold text-cyan-800">{scopeMatch}</p>
-                      </div>
-                      <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 transition-all">
-                        <p className="text-[10px] font-semibold text-slate-500">Method Rigor</p>
-                        <p className="text-base font-extrabold text-navy-950">{methodRigor}</p>
-                      </div>
-                      <div className="p-2.5 rounded-xl bg-cyan-50/70 border border-cyan-200/60 transition-all">
-                        <p className="text-[10px] font-semibold text-slate-500">Reviewers</p>
-                        <p className="text-base font-extrabold text-cyan-800">3 Matched</p>
-                      </div>
-                    </div>
-
-                    {/* Interactive Screening Trigger & Editorial Assistant Bar */}
-                    <div className="p-3.5 bg-slate-900 text-white rounded-xl flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
-                        <div className="min-w-0">
-                          <p className="text-xs font-semibold truncate">Editorial Screening Assistant</p>
-                          <p className="text-[10px] text-slate-400 truncate">Assists screening; humans decide</p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={handleRunScreeningDemo}
-                        disabled={screeningStatus === "running"}
-                        className="text-[11px] font-semibold text-cyan-300 hover:text-white flex items-center gap-1 transition-colors shrink-0 bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded-lg border border-slate-700"
-                      >
-                        {screeningStatus === "running" ? (
-                          <>
-                            <RefreshCw className="w-3 h-3 animate-spin" />
-                            Analyzing...
-                          </>
-                        ) : screeningStatus === "verified" ? (
-                          <>
-                            <Check className="w-3 h-3 text-emerald-400" />
-                            Verified
-                          </>
-                        ) : (
-                          <>
-                            Run Screening <ChevronRight className="w-3 h-3" />
-                          </>
-                        )}
-                      </button>
-                    </div>
-
-                  </div>
-                </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 shadow-xs">
+                <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="font-semibold text-white">COPE</span>
+                <span className="text-slate-300">Double-Blind</span>
               </div>
-
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 shadow-xs">
+                <Globe2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="font-semibold text-white">100%</span>
+                <span className="text-slate-300">Open Access</span>
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 shadow-xs">
+                <Clock className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="font-semibold text-white">21-Day</span>
+                <span className="text-slate-300">Turnaround</span>
+              </div>
             </div>
           </div>
         </section>
