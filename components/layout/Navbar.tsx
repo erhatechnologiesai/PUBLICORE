@@ -245,7 +245,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Center/Right: Signature Logo-Themed Responsive Navigation Pill */}
-          <nav className="hidden lg:flex items-center gap-2 xl:gap-4 2xl:gap-6 bg-gradient-to-r from-navy-950 via-[#0B1A2C] to-[#0891B2] text-white px-3.5 xl:px-6 py-1.5 xl:py-2 rounded-full shadow-lg shadow-navy-950/20 border border-cyan-400/25 text-[10.5px] xl:text-xs font-bold uppercase tracking-wider transition-all my-auto shrink-0">
+          <nav className="hidden lg:flex items-center gap-2.5 xl:gap-5 2xl:gap-7 bg-gradient-to-r from-navy-950 via-[#0B1A2C] to-[#0891B2] text-white px-4 xl:px-6 py-1.5 xl:py-2 rounded-full shadow-lg shadow-navy-950/20 border border-cyan-400/25 text-[10.5px] xl:text-xs font-bold uppercase tracking-wider transition-all my-auto shrink-0">
             <Link
               href="/about"
               className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
@@ -253,12 +253,6 @@ export const Navbar: React.FC = () => {
               }`}
             >
               About
-            </Link>
-            <Link
-              href="/#services"
-              className="px-1.5 py-0.5 rounded text-white/90 hover:text-cyan-200 transition-colors duration-150"
-            >
-              Services
             </Link>
             <Link
               href="/research"
@@ -285,8 +279,10 @@ export const Navbar: React.FC = () => {
               Communities
             </Link>
             <Link
-              href="/#contact"
-              className="px-1.5 py-0.5 rounded text-white/90 hover:text-cyan-200 transition-colors duration-150"
+              href="/contact"
+              className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
+                pathname === "/contact" ? "text-cyan-300 font-extrabold" : "text-white/90 hover:text-cyan-200"
+              }`}
             >
               Contact
             </Link>
@@ -525,13 +521,6 @@ export const Navbar: React.FC = () => {
                   About
                 </Link>
                 <Link
-                  href="/#services"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 text-xs font-bold text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50 rounded-xl transition-colors"
-                >
-                  Services
-                </Link>
-                <Link
                   href="/research"
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block px-3 py-2 text-xs font-bold rounded-xl transition-colors ${
@@ -565,9 +554,13 @@ export const Navbar: React.FC = () => {
                   Communities
                 </Link>
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 text-xs font-bold text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50 rounded-xl transition-colors"
+                  className={`block px-3 py-2 text-xs font-bold rounded-xl transition-colors ${
+                    pathname === "/contact"
+                      ? "bg-cyan-50 text-[#0891B2] font-extrabold"
+                      : "text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50"
+                  }`}
                 >
                   Contact
                 </Link>
