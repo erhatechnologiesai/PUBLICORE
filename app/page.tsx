@@ -458,78 +458,53 @@ Archived by PUBLICORE Scholarly Infrastructure`;
               </div>
 
               {/* Minimalist Controls Toolbar with Unified Dropdowns */}
-              <div className="flex flex-wrap items-center justify-between gap-2.5 pt-1 text-xs">
-                <div className="flex flex-wrap items-center gap-2">
-                  {/* Dynamic Open Access Toggle */}
-                  <button
-                    type="button"
-                    onClick={() => setOpenAccessOnly(!openAccessOnly)}
-                    className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs font-semibold transition-all shadow-2xs ${
-                      openAccessOnly
-                        ? "bg-emerald-50 text-emerald-800 border-emerald-300"
-                        : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
-                    }`}
+              <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1 text-xs">
+                {/* All Disciplines Dropdown */}
+                <div className="relative inline-flex items-center">
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="appearance-none bg-white border border-slate-200/90 hover:border-slate-300 rounded-xl pl-3.5 pr-8 py-2 text-xs font-semibold text-navy-950 focus:outline-none focus:border-[#177994] focus:ring-1 focus:ring-[#177994]/20 transition-all cursor-pointer shadow-2xs"
                   >
-                    <span className={`w-1.5 h-1.5 rounded-full ${openAccessOnly ? "bg-emerald-600 animate-pulse" : "bg-slate-400"}`} />
-                    Open Access
-                  </button>
-
-                  {/* All Disciplines Dropdown (Converted from row of pills) */}
-                  <div className="relative inline-flex items-center">
-                    <select
-                      value={selectedCategory}
-                      onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="appearance-none bg-white border border-slate-200/90 hover:border-slate-300 rounded-xl pl-3.5 pr-8 py-2 text-xs font-semibold text-navy-950 focus:outline-none focus:border-[#177994] focus:ring-1 focus:ring-[#177994]/20 transition-all cursor-pointer shadow-2xs"
-                    >
-                      <option value="All">All Disciplines</option>
-                      {categories.map((cat) => (
-                        <option key={cat.name} value={cat.name}>
-                          {cat.name}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown className="w-3.5 h-3.5 text-slate-500 pointer-events-none absolute right-2.5" />
-                  </div>
-
-                  {/* All Years Dropdown */}
-                  <div className="relative inline-flex items-center">
-                    <select
-                      value={selectedYear}
-                      onChange={(e) => setSelectedYear(e.target.value)}
-                      className="appearance-none bg-white border border-slate-200/90 hover:border-slate-300 rounded-xl pl-3.5 pr-8 py-2 text-xs font-semibold text-navy-950 focus:outline-none focus:border-[#177994] focus:ring-1 focus:ring-[#177994]/20 transition-all cursor-pointer shadow-2xs"
-                    >
-                      <option value="Any Year">All Years</option>
-                      <option value="2026">2026</option>
-                      <option value="2025">2025</option>
-                      <option value="2024">2024</option>
-                    </select>
-                    <ChevronDown className="w-3.5 h-3.5 text-slate-500 pointer-events-none absolute right-2.5" />
-                  </div>
-
-                  {/* All Types Dropdown */}
-                  <div className="relative inline-flex items-center">
-                    <select
-                      value={selectedArticleType}
-                      onChange={(e) => setSelectedArticleType(e.target.value)}
-                      className="appearance-none bg-white border border-slate-200/90 hover:border-slate-300 rounded-xl pl-3.5 pr-8 py-2 text-xs font-semibold text-navy-950 focus:outline-none focus:border-[#177994] focus:ring-1 focus:ring-[#177994]/20 transition-all cursor-pointer shadow-2xs"
-                    >
-                      <option value="All">All Types</option>
-                      <option value="Research Article">Research</option>
-                      <option value="Review Paper">Review</option>
-                      <option value="Methodology">Methodology</option>
-                    </select>
-                    <ChevronDown className="w-3.5 h-3.5 text-slate-500 pointer-events-none absolute right-2.5" />
-                  </div>
+                    <option value="All">All Disciplines</option>
+                    {categories.map((cat) => (
+                      <option key={cat.name} value={cat.name}>
+                        {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-500 pointer-events-none absolute right-2.5" />
                 </div>
 
-                {/* AI Semantic Mode Pill */}
-                <Link
-                  href="/search?mode=ai"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cyan-50/80 hover:bg-cyan-100 text-[#177994] font-semibold text-xs border border-cyan-200/70 transition-colors ml-auto shadow-2xs"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-[#177994]" />
-                  <span>AI Semantic Mode</span>
-                </Link>
+                {/* All Years Dropdown */}
+                <div className="relative inline-flex items-center">
+                  <select
+                    value={selectedYear}
+                    onChange={(e) => setSelectedYear(e.target.value)}
+                    className="appearance-none bg-white border border-slate-200/90 hover:border-slate-300 rounded-xl pl-3.5 pr-8 py-2 text-xs font-semibold text-navy-950 focus:outline-none focus:border-[#177994] focus:ring-1 focus:ring-[#177994]/20 transition-all cursor-pointer shadow-2xs"
+                  >
+                    <option value="Any Year">All Years</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                  </select>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-500 pointer-events-none absolute right-2.5" />
+                </div>
+
+                {/* All Types Dropdown */}
+                <div className="relative inline-flex items-center">
+                  <select
+                    value={selectedArticleType}
+                    onChange={(e) => setSelectedArticleType(e.target.value)}
+                    className="appearance-none bg-white border border-slate-200/90 hover:border-slate-300 rounded-xl pl-3.5 pr-8 py-2 text-xs font-semibold text-navy-950 focus:outline-none focus:border-[#177994] focus:ring-1 focus:ring-[#177994]/20 transition-all cursor-pointer shadow-2xs"
+                  >
+                    <option value="All">All Types</option>
+                    <option value="Research Article">Research</option>
+                    <option value="Review Paper">Review</option>
+                    <option value="Methodology">Methodology</option>
+                  </select>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-500 pointer-events-none absolute right-2.5" />
+                </div>
               </div>
             </form>
 
