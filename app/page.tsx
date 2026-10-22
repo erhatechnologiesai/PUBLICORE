@@ -250,38 +250,39 @@ Archived by PUBLICORE Scholarly Infrastructure`;
         {/* =========================================================
             HERO SECTION: FULL NETWORK BACKGROUND & CENTERED HEADLINE
         ========================================================= */}
-        <section className="relative overflow-hidden bg-[#07111E] border-b border-cyan-500/20 py-16 sm:py-20 md:py-28 lg:py-32">
-          {/* High-Resolution Futuristic Network Background Image */}
+        <section className="relative overflow-hidden bg-[#07111E] border-b border-cyan-500/20 py-20 sm:py-24 md:py-32 lg:py-36">
+          {/* High-Resolution Futuristic Digital Network Skyline Background Image */}
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[0.82] contrast-[1.10] scale-100 transition-transform duration-1000"
             style={{ backgroundImage: "url('/images/hero-network-bg.jpg')" }}
           />
 
-          {/* Deep Navy & Cyan Multi-Layer Gradient Overlays for High-Contrast Text Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#07111E]/92 via-[#0B1A2C]/82 to-[#07111E]/95" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(23,121,148,0.22)_0%,transparent_75%)] pointer-events-none" />
+          {/* Professional Multi-Layer Vignette & Contrast Gradients for Superior Visual Depth */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#07111E]/85 via-[#0B1A2C]/70 to-[#07111E]/92" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(7,17,30,0.72)_0%,rgba(7,17,30,0.35)_55%,transparent_90%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07111E] via-transparent to-[#07111E]/40 pointer-events-none" />
 
-          {/* Architectural Ambient Glow */}
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[650px] sm:w-[900px] h-[350px] bg-cyan-400/15 blur-3xl rounded-full pointer-events-none" />
+          {/* Subtle Cyber-Cyan Glow Accents matching network nodes */}
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] sm:w-[850px] h-[300px] bg-cyan-400/15 blur-3xl rounded-full pointer-events-none" />
 
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             {/* Centered Eyebrow Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-cyan-400/35 text-cyan-300 text-[11px] sm:text-xs font-semibold shadow-lg shadow-navy-950/40 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1A2C]/80 backdrop-blur-md border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-semibold shadow-xl shadow-black/40 mb-6 sm:mb-7">
               <Sparkles className="w-3.5 h-3.5 text-cyan-300 animate-pulse" />
               <span>Next-Gen Scholarly Publishing & Research Intelligence</span>
             </div>
 
-            {/* Fluid Centered Headline (White & Gradient Cyan) */}
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.14] max-w-4xl mx-auto">
+            {/* Fluid Centered Headline (White & Gradient Cyan) with Crisp Contrast Drop-Shadow */}
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.12] max-w-4xl mx-auto drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)]">
               Advance Research
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-100 drop-shadow-sm">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-200 to-cyan-100 drop-shadow-md">
                 Accelerate Discovery
               </span>
             </h1>
 
-            {/* Subheading in Clean White / Slate-200 */}
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto font-normal pt-5 pb-8 drop-shadow-xs">
+            {/* Subheading in Clean Crisp Slate-100 with High Readability */}
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-100/95 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto font-normal pt-5 pb-8 sm:pb-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
               An AI-native academic research and publishing platform built to help
               researchers submit, review, publish, discover, and measure knowledge
               faster — with human-controlled scientific integrity at every milestone.
@@ -293,7 +294,7 @@ Archived by PUBLICORE Scholarly Infrastructure`;
                 <Button
                   variant="teal"
                   size="lg"
-                  className="w-full sm:w-auto shadow-xl shadow-cyan-900/40 font-bold justify-center bg-gradient-to-r from-cyan-600 via-[#177994] to-cyan-700 hover:from-cyan-500 hover:to-teal-600 text-white border-0 px-7 sm:px-8 py-3.5 text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full sm:w-auto shadow-2xl shadow-cyan-950/60 font-bold justify-center bg-gradient-to-r from-cyan-600 via-[#177994] to-cyan-700 hover:from-cyan-500 hover:to-teal-600 text-white border border-cyan-400/30 px-7 sm:px-8 py-3.5 text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                   Submit Research
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -304,7 +305,7 @@ Archived by PUBLICORE Scholarly Infrastructure`;
                 <Button
                   variant="outline"
                   size="lg"
-                  className="w-full sm:w-auto border-white/30 hover:border-cyan-300 text-white hover:text-cyan-200 bg-white/10 hover:bg-white/20 backdrop-blur-md font-bold justify-center shadow-lg px-7 sm:px-8 py-3.5 text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full sm:w-auto border-white/40 hover:border-cyan-300 text-white hover:text-cyan-200 bg-[#0B1A2C]/60 hover:bg-[#0B1A2C]/80 backdrop-blur-md font-bold justify-center shadow-xl px-7 sm:px-8 py-3.5 text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <BookOpen className="w-4 h-4 mr-2 text-cyan-300" />
                   Explore Journals
@@ -313,23 +314,23 @@ Archived by PUBLICORE Scholarly Infrastructure`;
             </div>
 
             {/* Dynamic Value Badges in Clean Frosted Pill Style */}
-            <div className="pt-10 sm:pt-14 flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs text-slate-300">
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 shadow-xs">
+            <div className="pt-10 sm:pt-14 flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs text-slate-200">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B1A2C]/75 backdrop-blur-md border border-cyan-400/25 shadow-lg">
                 <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
                 <span className="font-semibold text-white">148,000+</span>
                 <span className="text-slate-300">Articles</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 shadow-xs">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B1A2C]/75 backdrop-blur-md border border-cyan-400/25 shadow-lg">
                 <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
                 <span className="font-semibold text-white">COPE</span>
                 <span className="text-slate-300">Double-Blind</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 shadow-xs">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B1A2C]/75 backdrop-blur-md border border-cyan-400/25 shadow-lg">
                 <Globe2 className="w-3.5 h-3.5 text-cyan-400" />
                 <span className="font-semibold text-white">100%</span>
                 <span className="text-slate-300">Open Access</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 shadow-xs">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B1A2C]/75 backdrop-blur-md border border-cyan-400/25 shadow-lg">
                 <Clock className="w-3.5 h-3.5 text-cyan-400" />
                 <span className="font-semibold text-white">21-Day</span>
                 <span className="text-slate-300">Turnaround</span>
