@@ -266,12 +266,6 @@ Archived by PUBLICORE Scholarly Infrastructure`;
           <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] sm:w-[850px] h-[300px] bg-cyan-400/15 blur-3xl rounded-full pointer-events-none" />
 
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            {/* Centered Eyebrow Pill */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1A2C]/80 backdrop-blur-md border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-semibold shadow-xl shadow-black/40 mb-6 sm:mb-7">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-300 animate-pulse" />
-              <span>Next-Gen Scholarly Publishing & Research Intelligence</span>
-            </div>
-
             {/* Fluid Centered Headline (White & Gradient Cyan) with Crisp Contrast Drop-Shadow */}
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.12] max-w-4xl mx-auto drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)]">
               Advance Research
