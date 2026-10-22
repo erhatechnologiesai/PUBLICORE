@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
@@ -35,7 +35,7 @@ export default function EditorialBoardPage() {
 
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-cyan-800 text-white font-bold flex items-center justify-center text-sm shrink-0">
-                  {j.chiefEditor.name.charAt(6)}
+                  {j.chiefEditor.name.replace(/^(Prof\.|Dr\.|Mr\.|Ms\.)\s*/i, "").charAt(0) || "E"}
                 </div>
                 <div>
                   <Badge variant="navy" size="sm" className="mb-0.5">Editor-in-Chief</Badge>

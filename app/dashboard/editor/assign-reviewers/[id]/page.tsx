@@ -98,10 +98,8 @@ export default function ReviewerAssignmentPage() {
   };
 
   const handleConfirmAssignments = async () => {
-    const invitedIds = candidates
-      .filter((c) => c.assignedStatus === "Invited")
-      .map((c) => c.reviewerId);
-    await editorService.assignReviewers(id, invitedIds);
+    const invitedCandidates = candidates.filter((c) => c.assignedStatus === "Invited");
+    await editorService.assignReviewers(id, invitedCandidates);
     alert("Review invitations successfully dispatched! Double-blind review period initiated.");
     router.push("/dashboard/editor");
   };

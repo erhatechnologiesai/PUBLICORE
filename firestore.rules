@@ -1,0 +1,79 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions for Role-Based Access Control (RBAC)
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function getUserRole() {
+      return request.auth.token.role;
+    }
+    
+    function isAuthor() {
+      return isAuthenticated() && getUserRole() == 'author';
+    }
+    
+    function isReviewer() {
+      return isAuthenticated() && (getUserRole() == 'reviewer' || getUserRole() == 'editor');
+    }
+    
+    function isEditor() {
+      return isAuthenticated() && (getUserRole() == 'editor' || getUserRole() == 'admin');
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && getUserRole() == 'admin';
+    }
+
+    // 1. Users Collection
+    match /users/{userId} {
+      // Anyone can view scholar profiles
+      allow read: if true;
+      // Only user themselves or Admin can update profile
+      allow write: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+    }
+
+    // 2. Journals Collection
+    match /journals/{journalId} {
+      allow read: if true;
+      allow write: if isEditor();
+    }
+
+    // 3. Manuscripts Collection
+    match /manuscripts/{manuscriptId} {
+      // Authors can view their own manuscripts; Editors and Admins can view all
+      allow read: if isAuthenticated() && (
+        resource.data.submittingUserId == request.auth.uid ||
+        isEditor() ||
+        (isReviewer() && resource.data.status in ['Under Review', 'Revision'])
+      );
+      
+      // Authors can create submissions
+      allow create: if isAuthenticated();
+      
+      // Only Editors, Production, or Admins can change manuscript status or decisions
+      allow update: if isEditor() || (
+        isAuthenticated() && resource.data.submittingUserId == request.auth.uid && resource.data.status == 'Revision'
+      );
+      
+      allow delete: if isAdmin();
+    }
+
+    // 4. Articles Collection (Published Open Access Repository)
+    match /articles/{articleId} {
+      // Unrestricted Open Access reading worldwide
+      allow read: if true;
+      // Only Production specialist or Admin can publish final articles
+      allow write: if isAuthenticated() && (getUserRole() == 'production' || isAdmin());
+    }
+
+    // 5. Audit Logs (Append-Only ISO 27001 Security Logs)
+    match /audit_logs/{logId} {
+      allow create: if true;
+      allow read: if isAdmin();
+      allow update, delete: if false; // Append-only immutable log
+    }
+  }
+}

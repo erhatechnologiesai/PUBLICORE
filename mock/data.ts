@@ -413,7 +413,7 @@ PathoLatent-X establishes a new foundation for multimodal generative modeling in
         citationNumber: 1,
         authors: "Rombach, R., Blattmann, A., Lorenz, D., Esser, P., & Ommer, B.",
         title: "High-Resolution Image Synthesis with Latent Diffusion Models",
-        journal: "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+        journal: "Conference on Computer Vision and Pattern Recognition (CVPR)",
         year: 2022,
         pages: "10684-10695",
         doi: "10.1109/CVPR52688.2022.01042",

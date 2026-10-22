@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import { FileText, Download, ShieldCheck, Sparkles, BookOpen } from "lucide-reac
 
 export default function ResourcesPage() {
   const resources = [
-    { title: "PUBLICORE LaTeX Manuscript Template (v3.2)", type: "ZIP / LaTeX", size: "1.4 MB", desc: "Official two-column template formatted with IEEE and Nature bibliography compatibility." },
+    { title: "PUBLICORE LaTeX Manuscript Template (v3.2)", type: "ZIP / LaTeX", size: "1.4 MB", desc: "Official two-column template formatted with standard scholarly and Nature bibliography compatibility." },
     { title: "MS Word Author Template (.dotx)", type: "DOCX", size: "480 KB", desc: "Structured macro-free Word template with pre-configured heading styles and equation fields." },
     { title: "AI Ethical Screening Disclosure Guidelines", type: "PDF Guide", size: "320 KB", desc: "Mandatory declarations when employing generative models during research workflows." },
     { title: "Open Science & Data Reproducibility Framework", type: "PDF Guide", size: "610 KB", desc: "Standards for depositing raw datasets into Zenodo, Figshare, or Dryad repositories." },

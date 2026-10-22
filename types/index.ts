@@ -105,6 +105,64 @@ export interface Manuscript {
     name: string;
     email: string;
   };
+  fundingDetails?: {
+    funderName: string;
+    grantNumber: string;
+    fundingStatement: string;
+  };
+  supplementaryFiles?: Array<{
+    name: string;
+    size: string;
+    type?: string;
+    url?: string;
+  }>;
+  rebuttalLetter?: string;
+  datasourceUrl?: string;
+  analysisFile?: {
+    name: string;
+    size: string;
+    type?: string;
+    url?: string;
+  };
+  affiliations?: Array<{
+    id: string;
+    name: string;
+    department: string;
+    city: string;
+    state?: string;
+    country: string;
+    rorId?: string;
+  }>;
+  authorDetails?: Array<{
+    authorName: string;
+    orcid: string;
+    roles: string[];
+    bio?: string;
+    competingInterest?: string;
+  }>;
+  matchedOrgs?: Array<{
+    name: string;
+    rorId: string;
+    status: string;
+  }>;
+  openAccessChoice?: {
+    model: "Gold" | "Subscription";
+    license: string;
+    apcAmount: number;
+    waiverApplied: boolean;
+  };
+  preprintDetails?: {
+    isPreprint: boolean;
+    preprintDoi?: string;
+    serverName?: string;
+  };
+  suggestedReviewers?: Array<{
+    name: string;
+    email: string;
+    institution: string;
+    type: "preferred" | "opposed";
+    reason?: string;
+  }>;
   reviewers?: ReviewerMatch[];
   reviewerComments?: Array<{
     id: string;
@@ -305,4 +363,38 @@ export interface AIChatMessage {
     excerpt: string;
   }[];
   suggestedQuestions?: string[];
+}
+
+export interface ApcInvoice {
+  id: string;
+  manuscriptId: string;
+  manuscriptTitle: string;
+  manuscriptCode: string;
+  journalName: string;
+  authorName: string;
+  authorEmail: string;
+  amount: number;
+  currency: 'USD' | 'EUR' | 'GBP' | 'PKR';
+  baseApc: number;
+  waiverPercentage: number;
+  waiverReason?: string;
+  status: 'Unpaid' | 'Paid' | 'Waived' | 'Pending Waiver Review';
+  paymentMethod?: string;
+  transactionId?: string;
+  paidAt?: string;
+  createdAt: string;
+  dueDate: string;
+}
+
+export interface ApcWaiverApplication {
+  id: string;
+  invoiceId: string;
+  manuscriptId: string;
+  country: string;
+  isResearch4Life: boolean;
+  institution: string;
+  requestedDiscountPercent: number;
+  justification: string;
+  status: 'Pending' | 'Approved' | 'Declined';
+  appliedAt: string;
 }

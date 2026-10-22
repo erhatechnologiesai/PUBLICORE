@@ -39,9 +39,15 @@ export default function ManuscriptScreeningPage() {
   }, [id]);
 
   const handleApproveScreening = async () => {
-    await manuscriptService.updateStatus(id, "Under Review");
+    await manuscriptService.screenManuscript(id, "pass");
     alert("AI Screening Approved by Editor! Proceeding to Reviewer Assignment.");
     router.push(`/dashboard/editor/assign-reviewers/${id}`);
+  };
+
+  const handleDeskReject = async () => {
+    await manuscriptService.screenManuscript(id, "reject");
+    alert("Editorial Rejection Issued: Scope mismatch or formatting defects.");
+    router.push("/dashboard/editor");
   };
 
   if (loading) {
@@ -103,10 +109,7 @@ export default function ManuscriptScreeningPage() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => {
-                alert("Editorial Rejection Issued: Scope mismatch or formatting defects.");
-                router.push("/dashboard/editor");
-              }}
+              onClick={handleDeskReject}
               className="text-rose-600 hover:bg-rose-50 border-rose-200"
             >
               Desk Reject

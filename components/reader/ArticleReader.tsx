@@ -37,7 +37,7 @@ export const ArticleReader: React.FC<ArticleReaderProps> = ({ article }) => {
   const [citationModalOpen, setCitationModalOpen] = useState<boolean>(false);
   const [pdfModalOpen, setPdfModalOpen] = useState<boolean>(false);
   const [zoomFigure, setZoomFigure] = useState<any | null>(null);
-  const [citationFormat, setCitationFormat] = useState<"BibTeX" | "RIS" | "APA" | "IEEE">("BibTeX");
+  const [citationFormat, setCitationFormat] = useState<"BibTeX" | "RIS" | "APA" | "Standard">("BibTeX");
   const [copied, setCopied] = useState<boolean>(false);
   const [bookmarked, setBookmarked] = useState<boolean>(false);
 
@@ -55,7 +55,7 @@ export const ArticleReader: React.FC<ArticleReaderProps> = ({ article }) => {
     switch (citationFormat) {
       case "APA":
         return `${article.authors[0].name} et al. (2026). ${article.title}. ${article.journalName}, ${article.volume}(${article.issue}). https://doi.org/${article.doi}`;
-      case "IEEE":
+      case "Standard":
         return `[1] ${article.authors.map((a) => a.name).join(", ")}, "${article.title}," ${article.journalName}, vol. ${article.volume}, no. ${article.issue}, 2026, doi: ${article.doi}.`;
       case "RIS":
         return `TY  - JOUR\nTI  - ${article.title}\nAU  - ${article.authors[0].name}\nJO  - ${article.journalName}\nVL  - ${article.volume}\nIS  - ${article.issue}\nPY  - 2026\nDO  - ${article.doi}\nER  -`;
@@ -514,7 +514,7 @@ export const ArticleReader: React.FC<ArticleReaderProps> = ({ article }) => {
       >
         <div className="space-y-4">
           <div className="flex gap-2">
-            {(["BibTeX", "APA", "IEEE", "RIS"] as const).map((fmt) => (
+            {(["BibTeX", "APA", "Standard", "RIS"] as const).map((fmt) => (
               <button
                 key={fmt}
                 onClick={() => setCitationFormat(fmt)}
