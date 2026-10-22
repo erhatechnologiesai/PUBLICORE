@@ -291,23 +291,21 @@ Archived by PUBLICORE Scholarly Infrastructure`;
                 </p>
 
                 {/* Action Buttons */}
-                <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <Link href="/submit">
-                    <Button variant="teal" size="lg" className="shadow-sm font-semibold">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                  <Link href="/submit" className="w-full sm:w-auto">
+                    <Button variant="teal" size="lg" className="w-full sm:w-auto shadow-sm font-semibold justify-center">
                       Submit Research
                       <ArrowRight className="w-4 h-4 ml-1.5" />
                     </Button>
                   </Link>
 
-                  <Link href="/ai/assistant">
-                    <Button variant="outline" size="lg" className="border-cyan-300 text-cyan-900 hover:bg-cyan-50 bg-white font-semibold">
-                      <Bot className="w-4 h-4 mr-1.5 text-cyan-700" />
-                      AI Research Assistant
-                    </Button>
-                  </Link>
-
-                  <Link href="/journals">
-                    <Button variant="ghost" size="lg" className="text-slate-600 hover:text-navy-900">
+                  <Link href="/journals" className="w-full sm:w-auto">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="w-full sm:w-auto border-cyan-300 text-cyan-900 hover:bg-cyan-50 bg-white font-semibold justify-center shadow-xs"
+                    >
+                      <BookOpen className="w-4 h-4 mr-1.5 text-cyan-700" />
                       Explore Journals
                     </Button>
                   </Link>
