@@ -231,8 +231,8 @@ function SearchContent() {
                       </div>
 
                       <Link href={`/articles/${article.slug}`}>
-                        <span className="text-xs font-semibold text-cyan-700 hover:text-cyan-800 flex items-center gap-0.5">
-                          Read Article â†’
+                        <span className="text-xs font-semibold text-cyan-700 hover:text-cyan-800 flex items-center gap-1">
+                          Read Article <ArrowRight className="w-3.5 h-3.5" />
                         </span>
                       </Link>
                     </div>

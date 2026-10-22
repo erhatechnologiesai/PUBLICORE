@@ -2057,7 +2057,7 @@ export default function SubmitResearchPage() {
                           type="button"
                           variant="outline"
                           size="sm"
-                          onClick={() => alert(`Verified ROR Schema deposit record: ${m.rorId}`)}
+                          onClick={() => window.open(m.rorId, "_blank")}
                           className="text-xs"
                         >
                           <ExternalLink className="w-3.5 h-3.5 mr-1" /> View ROR Record

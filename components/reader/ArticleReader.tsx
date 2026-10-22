@@ -584,12 +584,44 @@ export const ArticleReader: React.FC<ArticleReaderProps> = ({ article }) => {
               variant="teal"
               size="sm"
               onClick={() => {
-                alert("Simulated download: PDF compiled and retrieved.");
+                const pdfContent = `PUBLICORE OFFICIAL PUBLICATION (PDF ARCHIVE)
+=============================================================
+Title: ${article.title}
+Authors: ${article.authors.map((a) => `${a.name} (${a.institution})`).join("; ")}
+Journal: ${article.journalName} (Vol ${article.volume}, Issue ${article.issue})
+DOI: https://doi.org/${article.doi}
+License: CC-BY 4.0 Open Access Dissemination
+
+ABSTRACT:
+${article.abstract}
+
+KEYWORDS:
+${article.keywords.join(", ")}
+
+SECTIONS & SCIENTIFIC CONTENT:
+${article.sections.map((s) => `\n## ${s.heading}\n${s.content}`).join("\n\n")}
+
+REFERENCES:
+${article.references.map((r, i) => `[${i + 1}] ${r.title}. ${r.journal}, ${r.year}. DOI: ${r.doi}`).join("\n")}
+
+=============================================================
+Validated by PUBLICORE Production Engine`;
+
+                const blob = new Blob([pdfContent], { type: "text/plain;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = `PUBLICORE_${article.slug}.txt`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+
                 setPdfModalOpen(false);
               }}
             >
               <Download className="w-3.5 h-3.5 mr-1" />
-              Download PDF (2.4 MB)
+              Download Publication
             </Button>
           </div>
         </div>

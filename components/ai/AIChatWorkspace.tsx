@@ -56,6 +56,7 @@ I am your scholarly copilot trained across peer-reviewed publications, citation 
   const [inputPrompt, setInputPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [activeSources, setActiveSources] = useState<any[]>(messages[0].sources || []);
+  const [copiedDoi, setCopiedDoi] = useState<string | null>(null);
   const [mobileTab, setMobileTab] = useState<"chat" | "sources">("chat");
 
   // API Key Settings Modal
@@ -418,11 +419,12 @@ I am your scholarly copilot trained across peer-reviewed publications, citation 
                     <button
                       onClick={() => {
                         navigator.clipboard.writeText(source.doi);
-                        alert(`Copied DOI: ${source.doi}`);
+                        setCopiedDoi(source.doi);
+                        setTimeout(() => setCopiedDoi(null), 2000);
                       }}
-                      className="text-[10px] text-slate-400 hover:text-slate-700"
+                      className="text-[10px] text-slate-500 hover:text-cyan-800 font-medium transition-colors"
                     >
-                      Copy DOI
+                      {copiedDoi === source.doi ? "Copied ✓" : "Copy DOI"}
                     </button>
                   </div>
                 </div>

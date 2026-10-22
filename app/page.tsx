@@ -7,7 +7,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { Card, CardContent } from "@/components/ui/Card";
+import { Toast } from "@/components/ui/Toast";
 import { articleService, journalService, conferenceService, metricsService } from "@/services";
 import { Article, Journal, Conference } from "@/types";
 import {
@@ -40,18 +40,41 @@ import {
   Building2,
   Check,
   Upload,
+  Bookmark,
+  RefreshCw,
 } from "lucide-react";
 
 export default function HomePage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedYear, setSelectedYear] = useState("Any Year");
+  const [selectedArticleType, setSelectedArticleType] = useState("All");
+  const [openAccessOnly, setOpenAccessOnly] = useState(true);
+
   const [featuredArticles, setFeaturedArticles] = useState<Article[]>([]);
   const [journals, setJournals] = useState<Journal[]>([]);
   const [conferences, setConferences] = useState<Conference[]>([]);
   const [globalMetrics, setGlobalMetrics] = useState<any>(null);
 
+  // Dynamic feedback states
+  const [savedArticleIds, setSavedArticleIds] = useState<string[]>([]);
+  const [copiedDoi, setCopiedDoi] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  // Hero Pre-Screening interactive demo state
+  const [screeningStatus, setScreeningStatus] = useState<"ready" | "running" | "verified">("ready");
+  const [scopeMatch, setScopeMatch] = useState("98.4%");
+  const [methodRigor, setMethodRigor] = useState("95.1%");
+
   useEffect(() => {
+    try {
+      const saved = localStorage.getItem("publicore_saved_articles");
+      if (saved) setSavedArticleIds(JSON.parse(saved));
+    } catch {
+      // ignore
+    }
+
     articleService.getAll().then(setFeaturedArticles);
     journalService.getAll().then(setJournals);
     conferenceService.getAll().then(setConferences);
@@ -60,11 +83,85 @@ export default function HomePage() {
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+    const params = new URLSearchParams();
+    if (searchQuery.trim()) params.set("q", searchQuery.trim());
+    if (selectedCategory !== "All") params.set("subject", selectedCategory);
+    if (selectedYear !== "Any Year") params.set("year", selectedYear);
+    if (selectedArticleType !== "All") params.set("type", selectedArticleType);
+    if (openAccessOnly) params.set("oa", "true");
+
+    const qs = params.toString();
+    router.push(qs ? `/search?${qs}` : "/search");
+  };
+
+  const handleCategorySelect = (categoryName: string) => {
+    setSelectedCategory((prev) => (prev === categoryName ? "All" : categoryName));
+  };
+
+  const toggleBookmark = (art: Article) => {
+    const isSaved = savedArticleIds.includes(art.id);
+    let next: string[];
+    if (isSaved) {
+      next = savedArticleIds.filter((id) => id !== art.id);
+      setToastMessage(`Removed "${art.title.slice(0, 35)}..." from saved library.`);
     } else {
-      router.push("/search");
+      next = [...savedArticleIds, art.id];
+      setToastMessage(`Saved "${art.title.slice(0, 35)}..." to reading list!`);
     }
+    setSavedArticleIds(next);
+    try {
+      localStorage.setItem("publicore_saved_articles", JSON.stringify(next));
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleCopyCitation = (art: Article) => {
+    const citation = `${art.authors.map((a) => a.name).join(", ")}. (${art.publishedAt}). "${art.title}." ${art.journalName}, vol. ${art.volume || 14}, no. ${art.issue || 2}. https://doi.org/${art.doi}`;
+    navigator.clipboard.writeText(citation);
+    setCopiedDoi(art.doi);
+    setToastMessage(`Copied citation for DOI: ${art.doi}!`);
+    setTimeout(() => setCopiedDoi(null), 2500);
+  };
+
+  const handleDownloadPaper = (art: Article) => {
+    const content = `PUBLICORE OPEN ACCESS PUBLICATION
+=====================================================
+Title: ${art.title}
+Authors: ${art.authors.map((a) => `${a.name} (${a.institution})`).join("; ")}
+Journal: ${art.journalName} (Vol ${art.volume || 14}, Issue ${art.issue || 2})
+DOI: https://doi.org/${art.doi}
+License: Creative Commons Attribution 4.0 (CC-BY)
+
+ABSTRACT:
+${art.abstract}
+
+KEYWORDS:
+${art.keywords.join(", ")}
+
+=====================================================
+Archived by PUBLICORE Scholarly Infrastructure`;
+
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${art.slug}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    setToastMessage(`Downloaded publication file for ${art.title.slice(0, 35)}...`);
+  };
+
+  const handleRunScreeningDemo = () => {
+    setScreeningStatus("running");
+    setTimeout(() => {
+      setScopeMatch("99.8%");
+      setMethodRigor("98.9%");
+      setScreeningStatus("verified");
+      setToastMessage("AI Rigor screening complete: Statistical baselines & ethics COI verified!");
+    }, 1200);
   };
 
   const categories = [
@@ -148,6 +245,16 @@ export default function HomePage() {
     },
   ];
 
+  const filteredArticles = featuredArticles.filter((art) => {
+    if (selectedCategory === "All") return true;
+    return (
+      art.journalName.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+      art.title.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+      art.abstract.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+      art.keywords.some((k) => k.toLowerCase().includes(selectedCategory.toLowerCase()))
+    );
+  });
+
   return (
     <div className="min-h-screen bg-transparent flex flex-col font-sans selection:bg-[#177994]/20 selection:text-[#0B1A2C]">
       {/* Global Official Navigation Bar */}
@@ -215,13 +322,17 @@ export default function HomePage() {
                     {/* Header bar of sample research */}
                     <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                       <div className="flex items-center gap-2">
-                        <div className="w-2.5 h-2.5 rounded-full bg-cyan-600 animate-pulse" />
+                        <div className={`w-2.5 h-2.5 rounded-full ${screeningStatus === "running" ? "bg-amber-500 animate-ping" : "bg-cyan-600 animate-pulse"}`} />
                         <span className="text-[11px] font-bold text-navy-900 uppercase tracking-wider">
                           Manuscript Pre-Screening
                         </span>
                       </div>
-                      <span className="text-[11px] font-bold text-cyan-800 bg-cyan-50 border border-cyan-200 px-2 py-0.5 rounded-md">
-                        Verified • 96% Rigor
+                      <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md border transition-colors ${
+                        screeningStatus === "verified"
+                          ? "text-emerald-800 bg-emerald-50 border-emerald-200"
+                          : "text-cyan-800 bg-cyan-50 border-cyan-200"
+                      }`}>
+                        {screeningStatus === "verified" ? "Verified • 99% Rigor" : "Verified • 96% Rigor"}
                       </span>
                     </div>
 
@@ -245,34 +356,51 @@ export default function HomePage() {
 
                     {/* Telemetry Metrics */}
                     <div className="grid grid-cols-3 gap-2.5 text-center">
-                      <div className="p-2.5 rounded-xl bg-cyan-50/70 border border-cyan-200/60">
+                      <div className="p-2.5 rounded-xl bg-cyan-50/70 border border-cyan-200/60 transition-all">
                         <p className="text-[10px] font-semibold text-slate-500">Scope Match</p>
-                        <p className="text-base font-extrabold text-cyan-800">98.4%</p>
+                        <p className="text-base font-extrabold text-cyan-800">{scopeMatch}</p>
                       </div>
-                      <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                      <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 transition-all">
                         <p className="text-[10px] font-semibold text-slate-500">Method Rigor</p>
-                        <p className="text-base font-extrabold text-navy-950">95.1%</p>
+                        <p className="text-base font-extrabold text-navy-950">{methodRigor}</p>
                       </div>
-                      <div className="p-2.5 rounded-xl bg-cyan-50/70 border border-cyan-200/60">
+                      <div className="p-2.5 rounded-xl bg-cyan-50/70 border border-cyan-200/60 transition-all">
                         <p className="text-[10px] font-semibold text-slate-500">Reviewers</p>
                         <p className="text-base font-extrabold text-cyan-800">3 Matched</p>
                       </div>
                     </div>
 
-                    {/* Editorial Assistant Bar */}
-                    <div className="p-3.5 bg-slate-900 text-white rounded-xl flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
+                    {/* Interactive Screening Trigger & Editorial Assistant Bar */}
+                    <div className="p-3.5 bg-slate-900 text-white rounded-xl flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2.5 min-w-0">
                         <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
-                        <div>
-                          <p className="text-xs font-semibold">Editorial Screening Assistant</p>
-                          <p className="text-[10px] text-slate-400">Assists screening; humans decide</p>
+                        <div className="min-w-0">
+                          <p className="text-xs font-semibold truncate">Editorial Screening Assistant</p>
+                          <p className="text-[10px] text-slate-400 truncate">Assists screening; humans decide</p>
                         </div>
                       </div>
-                      <Link href="/articles/multimodal-latent-diffusion-pathology">
-                        <span className="text-[11px] font-semibold text-cyan-300 hover:text-white flex items-center gap-1 transition-colors">
-                          Read Paper <ChevronRight className="w-3 h-3" />
-                        </span>
-                      </Link>
+                      <button
+                        type="button"
+                        onClick={handleRunScreeningDemo}
+                        disabled={screeningStatus === "running"}
+                        className="text-[11px] font-semibold text-cyan-300 hover:text-white flex items-center gap-1 transition-colors shrink-0 bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded-lg border border-slate-700"
+                      >
+                        {screeningStatus === "running" ? (
+                          <>
+                            <RefreshCw className="w-3 h-3 animate-spin" />
+                            Analyzing...
+                          </>
+                        ) : screeningStatus === "verified" ? (
+                          <>
+                            <Check className="w-3 h-3 text-emerald-400" />
+                            Verified
+                          </>
+                        ) : (
+                          <>
+                            Run Screening <ChevronRight className="w-3 h-3" />
+                          </>
+                        )}
+                      </button>
                     </div>
 
                   </div>
@@ -322,33 +450,43 @@ export default function HomePage() {
                   </span>
                   <select 
                     value={selectedCategory}
-                    onChange={(e) => {
-                      setSelectedCategory(e.target.value);
-                      if (e.target.value !== "All") router.push(`/search?subject=${encodeURIComponent(e.target.value)}`);
-                    }}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
                     className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 text-xs text-slate-700"
                   >
                     <option value="All">All Subjects</option>
                     <option value="Artificial Intelligence">Artificial Intelligence</option>
                     <option value="Biomedical Engineering">Biomedical Engineering</option>
                     <option value="Computer Science">Computer Science</option>
-                    <option value="Medicine">Medicine</option>
-                    <option value="Sustainable Energy">Sustainable Energy</option>
+                    <option value="Medicine & Oncology">Medicine & Oncology</option>
+                    <option value="Sustainable Energy Systems">Sustainable Energy</option>
                   </select>
-                  <select className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 text-xs text-slate-700">
-                    <option>Any Year</option>
-                    <option>2026</option>
-                    <option>2025</option>
-                    <option>2024</option>
+                  <select
+                    value={selectedYear}
+                    onChange={(e) => setSelectedYear(e.target.value)}
+                    className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 text-xs text-slate-700"
+                  >
+                    <option value="Any Year">Any Year</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
                   </select>
-                  <select className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 text-xs text-slate-700">
-                    <option>All Article Types</option>
-                    <option>Research Article</option>
-                    <option>Review Paper</option>
-                    <option>Methodology</option>
+                  <select
+                    value={selectedArticleType}
+                    onChange={(e) => setSelectedArticleType(e.target.value)}
+                    className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 text-xs text-slate-700"
+                  >
+                    <option value="All">All Article Types</option>
+                    <option value="Research Article">Research Article</option>
+                    <option value="Review Paper">Review Paper</option>
+                    <option value="Methodology">Methodology</option>
                   </select>
                   <label className="flex items-center gap-1.5 cursor-pointer ml-1">
-                    <input type="checkbox" defaultChecked className="rounded text-cyan-600 focus:ring-cyan-500" />
+                    <input
+                      type="checkbox"
+                      checked={openAccessOnly}
+                      onChange={(e) => setOpenAccessOnly(e.target.checked)}
+                      className="rounded text-cyan-600 focus:ring-cyan-500"
+                    />
                     <span>Open Access Only</span>
                   </label>
                 </div>
@@ -362,20 +500,40 @@ export default function HomePage() {
               </div>
             </form>
 
-            {/* Discipline Pills */}
+            {/* Interactive Discipline Pills */}
             <div className="pt-5 flex flex-wrap items-center justify-center gap-2">
+              <button
+                type="button"
+                onClick={() => setSelectedCategory("All")}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  selectedCategory === "All"
+                    ? "bg-cyan-700 text-white shadow-sm"
+                    : "bg-slate-100 hover:bg-cyan-50 text-slate-700"
+                }`}
+              >
+                <span>All Disciplines</span>
+              </button>
               {categories.map((cat) => {
                 const Icon = cat.icon;
+                const isSelected = selectedCategory === cat.name;
+
                 return (
-                  <Link
+                  <button
                     key={cat.name}
-                    href={`/search?subject=${encodeURIComponent(cat.name)}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-cyan-50 hover:text-cyan-900 text-slate-700 text-xs font-medium transition-colors"
+                    type="button"
+                    onClick={() => handleCategorySelect(cat.name)}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                      isSelected
+                        ? "bg-cyan-700 text-white shadow-sm"
+                        : "bg-slate-100 hover:bg-cyan-50 hover:text-cyan-900 text-slate-700"
+                    }`}
                   >
                     <Icon className="w-3.5 h-3.5 opacity-70" />
                     <span>{cat.name}</span>
-                    <span className="text-[10px] text-slate-400">({cat.count})</span>
-                  </Link>
+                    <span className={`text-[10px] ${isSelected ? "text-cyan-100" : "text-slate-400"}`}>
+                      ({cat.count})
+                    </span>
+                  </button>
                 );
               })}
             </div>
@@ -442,17 +600,22 @@ export default function HomePage() {
         </section>
 
         {/* =========================================================
-            SECTION 3: FEATURED PEER-REVIEWED ARTICLES
+            SECTION 3: FEATURED PEER-REVIEWED ARTICLES (DYNAMIC)
         ========================================================= */}
         <section className="py-14 bg-white/50 backdrop-blur-xs border-y border-slate-200/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-slate-100 gap-2">
               <div>
                 <span className="text-xs font-bold text-cyan-700 uppercase tracking-widest">
                   Latest Scholarly Discoveries
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-950 tracking-tight mt-1">
                   Featured Peer-Reviewed Publications
+                  {selectedCategory !== "All" && (
+                    <span className="text-sm font-semibold text-cyan-800 block sm:inline sm:ml-2">
+                      ({selectedCategory})
+                    </span>
+                  )}
                 </h2>
               </div>
               <Link href="/articles" className="text-xs font-semibold text-cyan-700 hover:text-cyan-800 flex items-center gap-1">
@@ -461,52 +624,98 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {featuredArticles.slice(0, 4).map((art) => (
-                <div
-                  key={art.id}
-                  className="bg-[#F8FAFC] rounded-2xl border border-slate-200/80 p-6 hover:bg-white hover:shadow-lg transition-all flex flex-col justify-between"
-                >
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-[11px]">
-                      <span className="font-mono font-bold text-cyan-800">DOI: {art.doi}</span>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="teal" size="sm">
-                          Open Access
-                        </Badge>
-                        <span className="text-slate-400">{art.publishedAt}</span>
+              {filteredArticles.slice(0, 4).map((art) => {
+                const isSaved = savedArticleIds.includes(art.id);
+                const isCopied = copiedDoi === art.doi;
+
+                return (
+                  <div
+                    key={art.id}
+                    className="bg-[#F8FAFC] rounded-2xl border border-slate-200/80 p-6 hover:bg-white hover:shadow-lg transition-all flex flex-col justify-between"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="font-mono font-bold text-cyan-800">DOI: {art.doi}</span>
+                        <div className="flex items-center gap-2">
+                          <Badge variant="teal" size="sm">
+                            Open Access
+                          </Badge>
+                          <span className="text-slate-400">{art.publishedAt}</span>
+                        </div>
+                      </div>
+
+                      <Link href={`/articles/${art.slug}`}>
+                        <h3 className="text-base font-bold text-navy-950 hover:text-cyan-700 leading-snug">
+                          {art.title}
+                        </h3>
+                      </Link>
+
+                      <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                        {art.abstract}
+                      </p>
+
+                      <div className="text-xs text-slate-500 font-medium pt-1">
+                        {art.authors.map((a) => a.name).join(", ")}
                       </div>
                     </div>
 
-                    <Link href={`/articles/${art.slug}`}>
-                      <h3 className="text-base font-bold text-navy-950 hover:text-cyan-700 leading-snug">
-                        {art.title}
-                      </h3>
-                    </Link>
+                    <div className="pt-5 mt-5 border-t border-slate-200/60 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
+                      <div className="flex items-center gap-4">
+                        <span className="flex items-center gap-1" title="Views">
+                          <Eye className="w-3.5 h-3.5 text-slate-400" /> {art.metrics?.views ?? 0}
+                        </span>
+                        <span className="flex items-center gap-1" title="Citations">
+                          <Quote className="w-3.5 h-3.5 text-slate-400" /> {art.metrics?.citations ?? 0}
+                        </span>
+                        <span className="flex items-center gap-1" title="Downloads">
+                          <Download className="w-3.5 h-3.5 text-slate-400" /> {art.metrics?.downloads ?? 0}
+                        </span>
+                      </div>
 
-                    <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                      {art.abstract}
-                    </p>
+                      {/* Interactive Buttons */}
+                      <div className="flex items-center gap-1.5 ml-auto">
+                        <button
+                          type="button"
+                          onClick={() => handleCopyCitation(art)}
+                          title="Copy APA Citation"
+                          className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-cyan-800 transition-colors"
+                        >
+                          {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Quote className="w-3.5 h-3.5" />}
+                        </button>
 
-                    <div className="text-xs text-slate-500 font-medium pt-1">
-                      {art.authors.map((a) => a.name).join(", ")}
+                        <button
+                          type="button"
+                          onClick={() => handleDownloadPaper(art)}
+                          title="Download Manuscript File"
+                          className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-cyan-800 transition-colors"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => toggleBookmark(art)}
+                          title="Bookmark Article"
+                          className={`p-1.5 rounded-lg border transition-colors ${
+                            isSaved
+                              ? "bg-cyan-50 border-cyan-400 text-cyan-700"
+                              : "border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-cyan-800"
+                          }`}
+                        >
+                          <Bookmark className={`w-3.5 h-3.5 ${isSaved ? "fill-current" : ""}`} />
+                        </button>
+
+                        <Link
+                          href={`/articles/${art.slug}`}
+                          className="font-semibold text-cyan-700 hover:text-cyan-800 flex items-center gap-1 ml-1"
+                        >
+                          Read Paper <ArrowRight className="w-3 h-3" />
+                        </Link>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="pt-5 mt-5 border-t border-slate-200/60 flex items-center justify-between text-xs text-slate-500">
-                    <div className="flex items-center gap-4">
-                      <span className="flex items-center gap-1"><Eye className="w-3.5 h-3.5 text-slate-400" /> {art.metrics?.views ?? 0}</span>
-                      <span className="flex items-center gap-1"><Quote className="w-3.5 h-3.5 text-slate-400" /> {art.metrics?.citations ?? 0}</span>
-                      <span className="flex items-center gap-1"><Download className="w-3.5 h-3.5 text-slate-400" /> {art.metrics?.downloads ?? 0}</span>
-                    </div>
-                    <Link
-                      href={`/articles/${art.slug}`}
-                      className="font-semibold text-cyan-700 hover:text-cyan-800 flex items-center gap-1"
-                    >
-                      Read Paper <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -667,10 +876,10 @@ export default function HomePage() {
         </section>
 
         {/* =========================================================
-            SECTION 6: TRUST PILLARS
+            SECTION 6: TRUST PILLARS (RESPONSIVE)
         ========================================================= */}
         <section className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-left">
             <div className="p-4 rounded-xl bg-white border border-slate-200/70 shadow-subtle flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-cyan-50 text-cyan-700 flex items-center justify-center shrink-0">
                 <CheckCircle2 className="w-5 h-5" />
@@ -744,6 +953,16 @@ export default function HomePage() {
           </div>
         </section>
       </main>
+
+      {/* Floating dynamic action feedback toast */}
+      {toastMessage && (
+        <Toast
+          type="info"
+          title="PUBLICORE Discovery"
+          message={toastMessage}
+          onClose={() => setToastMessage(null)}
+        />
+      )}
 
       {/* Global Official Footer */}
       <Footer />
