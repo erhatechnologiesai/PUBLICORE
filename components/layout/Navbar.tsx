@@ -54,10 +54,62 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [portalDropdownOpen, setPortalDropdownOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const portalMenuRef = useRef<HTMLDivElement>(null);
+
+  const rolePortals: {
+    role: Role;
+    title: string;
+    description: string;
+    href: string;
+    icon: React.ComponentType<{ className?: string }>;
+    badge: string;
+  }[] = [
+    {
+      role: "author",
+      title: "Author Portal",
+      description: "Submit manuscripts, track peer review & revisions",
+      href: "/dashboard/author",
+      icon: BookOpen,
+      badge: "Author Desk",
+    },
+    {
+      role: "reviewer",
+      title: "Reviewer Portal",
+      description: "Double-blind peer reviews, rubrics & evaluations",
+      href: "/dashboard/reviewer",
+      icon: ShieldCheck,
+      badge: "Peer Review",
+    },
+    {
+      role: "editor",
+      title: "Editor Portal",
+      description: "Desk triage, reviewer matching & publication decisions",
+      href: "/dashboard/editor",
+      icon: FileCheck2,
+      badge: "Editorial Desk",
+    },
+    {
+      role: "production",
+      title: "Production Desk",
+      description: "ANSI/NISO JATS XML typesetting & Crossref DOI minting",
+      href: "/dashboard/production",
+      icon: Cpu,
+      badge: "JATS / XML",
+    },
+    {
+      role: "admin",
+      title: "Admin Portal",
+      description: "Consortium telemetry, open-access funds & security",
+      href: "/dashboard/admin",
+      icon: Layers,
+      badge: "Console",
+    },
+  ];
 
   useEffect(() => {
     const session = authService.getCurrentSession();
@@ -85,6 +137,7 @@ export const Navbar: React.FC = () => {
     setMobileMenuOpen(false);
     setActiveDropdown(null);
     setUserDropdownOpen(false);
+    setPortalDropdownOpen(false);
   }, [pathname]);
 
   // Click outside listener for dropdowns
@@ -96,6 +149,9 @@ export const Navbar: React.FC = () => {
       if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
         setUserDropdownOpen(false);
       }
+      if (portalMenuRef.current && !portalMenuRef.current.contains(event.target as Node)) {
+        setPortalDropdownOpen(false);
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -105,6 +161,8 @@ export const Navbar: React.FC = () => {
     const updated = await authService.switchRole(role);
     setCurrentUser(updated);
     setUserDropdownOpen(false);
+    setPortalDropdownOpen(false);
+    setMobileMenuOpen(false);
 
     // Direct user to appropriate dashboard
     if (role === "author") router.push("/dashboard/author");
@@ -295,8 +353,137 @@ export const Navbar: React.FC = () => {
             </Link>
           </nav>
 
-          {/* Right: Auth Buttons & Role Switcher */}
-          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          {/* Right: Portals, Auth Buttons & Role Switcher */}
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Quick 1-Click Author Portal Button (XL+ screens) */}
+            <button
+              type="button"
+              onClick={() => handleRoleSwitch("author")}
+              className={`hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-xl border transition-all shadow-2xs whitespace-nowrap cursor-pointer ${
+                currentUser?.role === "author"
+                  ? "bg-cyan-50 text-[#004e70] border-cyan-300 font-extrabold ring-1 ring-cyan-400/40"
+                  : "bg-white hover:bg-slate-50 text-slate-700 hover:text-[#004e70] border-slate-300/80"
+              }`}
+              title="Open Author Portal & Manuscript Submission"
+            >
+              <BookOpen className="w-3.5 h-3.5 text-cyan-600" />
+              <span>Author Portal</span>
+            </button>
+
+            {/* Dedicated Role Portals Dropdown (Author + 4 Portals: Reviewer, Editor, Production, Admin) */}
+            <div ref={portalMenuRef} className="relative">
+              <button
+                type="button"
+                onClick={() => {
+                  setPortalDropdownOpen(!portalDropdownOpen);
+                  setUserDropdownOpen(false);
+                }}
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs font-bold rounded-xl border transition-all shadow-2xs whitespace-nowrap cursor-pointer ${
+                  portalDropdownOpen
+                    ? "bg-[#0B1A2C] text-cyan-300 border-[#0B1A2C] shadow-sm"
+                    : "bg-white hover:bg-slate-50 text-slate-800 hover:text-navy-950 border-slate-300/90 hover:border-slate-400"
+                }`}
+                title="Explore 5 Academic Role Portals"
+                aria-expanded={portalDropdownOpen}
+              >
+                <Layers className={`w-3.5 h-3.5 transition-colors ${portalDropdownOpen ? "text-cyan-300" : "text-[#004e70]"}`} />
+                <span className="font-bold">Portals</span>
+                <span className="inline-flex px-1.5 py-0.2 text-[10px] font-extrabold rounded-full bg-cyan-100/80 text-[#004e70]">
+                  5
+                </span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    portalDropdownOpen ? "rotate-180 text-cyan-300" : "text-slate-400"
+                  }`}
+                />
+              </button>
+
+              {portalDropdownOpen && (
+                <div className="absolute right-0 sm:right-auto sm:left-0 mt-2.5 w-76 sm:w-84 bg-white/98 backdrop-blur-xl rounded-2xl border border-slate-200/90 p-3 shadow-2xl ring-1 ring-slate-900/10 z-50 animate-in fade-in-95 slide-in-from-top-2">
+                  <div className="px-2.5 pb-2.5 pt-1 border-b border-slate-100 flex items-center justify-between">
+                    <div>
+                      <p className="text-[11px] font-extrabold text-navy-950 uppercase tracking-wider flex items-center gap-1.5">
+                        <Layers className="w-3.5 h-3.5 text-[#004e70]" /> Role Workspaces (5)
+                      </p>
+                      <p className="text-[10px] text-slate-500">
+                        Direct access to double-blind publishing desks
+                      </p>
+                    </div>
+                    {currentUser?.role && (
+                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        {currentUser.role.toUpperCase()}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="py-2 space-y-1">
+                    {rolePortals.map((portal) => {
+                      const Icon = portal.icon;
+                      const isActive = currentUser?.role === portal.role;
+                      return (
+                        <button
+                          key={portal.role}
+                          type="button"
+                          onClick={() => handleRoleSwitch(portal.role)}
+                          className={`w-full text-left p-2 rounded-xl flex items-center justify-between gap-2.5 transition-all duration-150 group cursor-pointer ${
+                            isActive
+                              ? "bg-gradient-to-r from-cyan-50 to-white text-navy-950 font-bold border border-cyan-200/90 shadow-2xs"
+                              : "text-slate-700 hover:text-navy-950 hover:bg-slate-50 border border-transparent"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <div
+                              className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${
+                                isActive
+                                  ? "bg-[#004e70] text-white shadow-xs"
+                                  : "bg-slate-100 text-slate-600 group-hover:bg-cyan-50 group-hover:text-[#004e70]"
+                              }`}
+                            >
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-1.5">
+                                <p className="text-xs font-bold text-navy-950 truncate">
+                                  {portal.title}
+                                </p>
+                                <span className="text-[8.5px] font-semibold text-slate-400 bg-slate-100 px-1 py-0.2 rounded">
+                                  {portal.badge}
+                                </span>
+                              </div>
+                              <p className="text-[10px] text-slate-500 truncate">
+                                {portal.description}
+                              </p>
+                            </div>
+                          </div>
+
+                          {isActive ? (
+                            <span className="shrink-0 text-[8.5px] bg-emerald-600 text-white font-bold px-1.5 py-0.5 rounded-full flex items-center gap-1 shadow-2xs">
+                              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                              ACTIVE
+                            </span>
+                          ) : (
+                            <ChevronDown className="w-3.5 h-3.5 -rotate-90 text-slate-300 group-hover:text-cyan-600 transition-colors shrink-0" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="pt-2 border-t border-slate-100 px-2 flex items-center justify-between text-[10px] text-slate-500">
+                    <span>COPE & Double-blind standards</span>
+                    <Link
+                      href="/about"
+                      onClick={() => setPortalDropdownOpen(false)}
+                      className="text-[#004e70] hover:underline font-semibold"
+                    >
+                      Workflow Guide →
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Auth Buttons / User Profile */}
             {currentUser ? (
               <div className="flex items-center gap-1.5 sm:gap-2">
                 {/* User ID & Name Display Pill */}
@@ -306,7 +493,7 @@ export const Navbar: React.FC = () => {
                   title="View Account Profile & User ID"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                  <span className="truncate max-w-[130px] xl:max-w-[190px]">{currentUser.name} ({currentUser.id})</span>
+                  <span className="truncate max-w-[120px] xl:max-w-[170px]">{currentUser.name}</span>
                 </Link>
 
                 {/* Workspace Persona Dropdown */}
@@ -350,29 +537,21 @@ export const Navbar: React.FC = () => {
                         <div className="px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                           Switch Workspace Role
                         </div>
-                        {(
-                          [
-                            { r: "author", label: "Author Dashboard", icon: BookOpen },
-                            { r: "reviewer", label: "Reviewer Workspace", icon: ShieldCheck },
-                            { r: "editor", label: "Editorial Queue", icon: FileCheck2 },
-                            { r: "production", label: "Production & JATS", icon: Cpu },
-                            { r: "admin", label: "System Administration", icon: Layers },
-                          ] as const
-                        ).map((item) => (
+                        {rolePortals.map((item) => (
                           <button
-                            key={item.r}
-                            onClick={() => handleRoleSwitch(item.r)}
+                            key={item.role}
+                            onClick={() => handleRoleSwitch(item.role)}
                             className={`w-full text-left px-3 py-2 text-xs rounded-xl flex items-center justify-between transition-all duration-150 ${
-                              currentUser?.role === item.r
+                              currentUser?.role === item.role
                                 ? "bg-gradient-to-r from-cyan-50 to-white text-[#0E7490] font-bold shadow-xs border border-cyan-200/60"
                                 : "text-slate-700 hover:text-[#0E7490] hover:bg-white/80 hover:translate-x-0.5"
                             }`}
                           >
                             <span className="flex items-center gap-2.5">
                               <item.icon className="w-4 h-4 text-slate-400" />
-                              {item.label}
+                              {item.title}
                             </span>
-                            {currentUser?.role === item.r && (
+                            {currentUser?.role === item.role && (
                               <span className="text-[9px] bg-[#0E7490] text-white font-bold px-1.5 py-0.5 rounded-full">
                                 ACTIVE
                               </span>
@@ -396,10 +575,10 @@ export const Navbar: React.FC = () => {
               </div>
             ) : (
               /* Two Buttons: Create Account & Sign In */
-              <div className="flex items-center gap-2 sm:gap-2.5">
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 <Link
                   href="/login?mode=register"
-                  className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs font-bold text-slate-700 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-all shadow-2xs whitespace-nowrap"
+                  className="hidden sm:inline-flex items-center justify-center px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs font-bold text-slate-700 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-all shadow-2xs whitespace-nowrap"
                 >
                   Create Account
                 </Link>
@@ -610,46 +789,55 @@ export const Navbar: React.FC = () => {
                 })}
               </div>
 
-              {/* Workspace Direct Links */}
-              <div className="mt-6 pt-4 border-t border-slate-100 space-y-1">
-                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-2">
-                  Role Dashboards
-                </p>
-                <Link
-                  href="/dashboard/author"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-[#0891B2]"
-                >
-                  Author Workspace
-                </Link>
-                <Link
-                  href="/dashboard/reviewer"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-[#0891B2]"
-                >
-                  Reviewer Workspace
-                </Link>
-                <Link
-                  href="/dashboard/editor"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-[#0891B2]"
-                >
-                  Editorial Queue
-                </Link>
-                <Link
-                  href="/dashboard/production"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-[#0891B2]"
-                >
-                  Production & JATS
-                </Link>
-                <Link
-                  href="/dashboard/admin"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-[#0891B2]"
-                >
-                  Admin Telemetry
-                </Link>
+              {/* Role Portals (5) in Mobile Drawer */}
+              <div className="mt-5 pt-4 border-t border-slate-100 space-y-1.5">
+                <div className="flex items-center justify-between px-2 pb-1">
+                  <p className="text-[10.5px] font-extrabold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5 text-[#004e70]" /> Role Workspaces (5)
+                  </p>
+                  {currentUser?.role && (
+                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-50 text-[#004e70] border border-cyan-200">
+                      {currentUser.role.toUpperCase()}
+                    </span>
+                  )}
+                </div>
+                {rolePortals.map((portal) => {
+                  const Icon = portal.icon;
+                  const isActive = currentUser?.role === portal.role;
+                  return (
+                    <button
+                      key={portal.role}
+                      type="button"
+                      onClick={() => handleRoleSwitch(portal.role)}
+                      className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between gap-2.5 transition-all cursor-pointer ${
+                        isActive
+                          ? "bg-gradient-to-r from-cyan-50 to-white text-navy-950 font-bold border border-cyan-200 shadow-2xs"
+                          : "text-slate-700 hover:bg-slate-50 hover:text-navy-950 border border-transparent"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div
+                          className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${
+                            isActive ? "bg-[#004e70] text-white shadow-xs" : "bg-slate-100 text-slate-600"
+                          }`}
+                        >
+                          <Icon className="w-3.5 h-3.5" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-xs font-bold truncate">{portal.title}</p>
+                          <p className="text-[10px] text-slate-400 truncate">{portal.description}</p>
+                        </div>
+                      </div>
+                      {isActive ? (
+                        <span className="shrink-0 text-[8.5px] bg-emerald-600 text-white font-bold px-1.5 py-0.5 rounded-full shadow-2xs">
+                          ACTIVE
+                        </span>
+                      ) : (
+                        <ChevronDown className="w-3.5 h-3.5 -rotate-90 text-slate-300 shrink-0" />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
