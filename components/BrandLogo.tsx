@@ -88,11 +88,11 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
             PUBLI<span className={isLight ? "text-cyan-400" : "text-[#177994]"}>CORE</span>
           </span>
           <span
-            className={`text-[9px] tracking-widest uppercase font-semibold mt-0.5 ${
+            className={`text-[8px] sm:text-[9px] tracking-wider sm:tracking-widest uppercase font-semibold mt-0.5 whitespace-nowrap ${
               isLight ? "text-slate-400" : "text-slate-500"
             }`}
           >
-            Academic Research Ecosystem
+            <span className="hidden xs:inline">Academic </span>Research Ecosystem
           </span>
         </div>
       )}

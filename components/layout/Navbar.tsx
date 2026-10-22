@@ -235,20 +235,20 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-white/85 backdrop-blur-md border-b border-slate-200/60 shadow-[0_1px_3px_0_rgba(11,26,44,0.03)] transition-all">
+      <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_2px_12px_-3px_rgba(11,26,44,0.06)] pt-3 sm:pt-4 pb-3 sm:pb-3.5 transition-all">
 
         {/* Main Header Bar */}
-        <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-14 h-16 flex items-center justify-between">
-          {/* Left: Brand Logo (Positioned on the far left with increased prominent size) */}
+        <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-2.5 sm:gap-4 min-h-[50px]">
+          {/* Left: Brand Logo (Positioned on the far left with responsive scaling) */}
           <div className="flex items-center shrink-0">
             <BrandLogo size="md" />
           </div>
 
           {/* Center/Right: Signature Logo-Themed Responsive Navigation Pill */}
-          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-7 bg-gradient-to-r from-navy-950 via-[#0B1A2C] to-[#0891B2] text-white px-5 xl:px-7 py-2 xl:py-2.5 rounded-full shadow-lg shadow-navy-950/20 border border-cyan-400/25 text-[11px] xl:text-xs font-bold uppercase tracking-wider transition-all">
+          <nav className="hidden lg:flex items-center gap-2 xl:gap-4 2xl:gap-6 bg-gradient-to-r from-navy-950 via-[#0B1A2C] to-[#0891B2] text-white px-3.5 xl:px-6 py-1.5 xl:py-2 rounded-full shadow-lg shadow-navy-950/20 border border-cyan-400/25 text-[10.5px] xl:text-xs font-bold uppercase tracking-wider transition-all my-auto shrink-0">
             <Link
               href="/about"
-              className={`transition-colors duration-150 ${
+              className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
                 pathname === "/about" ? "text-cyan-300 font-extrabold" : "text-white/90 hover:text-cyan-200"
               }`}
             >
@@ -256,13 +256,13 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/#services"
-              className="text-white/90 hover:text-cyan-200 transition-colors duration-150"
+              className="px-1.5 py-0.5 rounded text-white/90 hover:text-cyan-200 transition-colors duration-150"
             >
               Services
             </Link>
             <Link
               href="/research"
-              className={`transition-colors duration-150 ${
+              className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
                 pathname.startsWith("/research") ? "text-cyan-300 font-extrabold" : "text-white/90 hover:text-cyan-200"
               }`}
             >
@@ -270,7 +270,7 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/publications"
-              className={`transition-colors duration-150 ${
+              className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
                 pathname.startsWith("/publications") ? "text-cyan-300 font-extrabold" : "text-white/90 hover:text-cyan-200"
               }`}
             >
@@ -278,7 +278,7 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/communities"
-              className={`transition-colors duration-150 ${
+              className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
                 pathname.startsWith("/communities") ? "text-cyan-300 font-extrabold" : "text-white/90 hover:text-cyan-200"
               }`}
             >
@@ -286,13 +286,13 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/#contact"
-              className="text-white/90 hover:text-cyan-200 transition-colors duration-150"
+              className="px-1.5 py-0.5 rounded text-white/90 hover:text-cyan-200 transition-colors duration-150"
             >
               Contact
             </Link>
             <Link
               href="/search"
-              className="w-7 h-7 rounded-full bg-white/20 hover:bg-white text-white hover:text-navy-950 flex items-center justify-center transition-all duration-200 -mr-1.5 shadow-xs group"
+              className="w-7 h-7 rounded-full bg-white/20 hover:bg-white text-white hover:text-navy-950 flex items-center justify-center transition-all duration-200 -mr-1 shadow-xs group"
               title="Search"
             >
               <Search className="w-3.5 h-3.5 transition-transform group-hover:scale-110" />
@@ -300,24 +300,24 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Right: Auth Buttons & Role Switcher */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {currentUser ? (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 {/* User ID & Name Display Pill */}
                 <Link
                   href="/login"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-navy-950 bg-cyan-50/80 border border-cyan-200/80 hover:bg-cyan-100/70 rounded-xl transition-all font-mono shadow-2xs"
+                  className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-xs font-bold text-navy-950 bg-cyan-50/80 border border-cyan-200/80 hover:bg-cyan-100/70 rounded-xl transition-all font-mono shadow-2xs"
                   title="View Account Profile & User ID"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                  <span className="truncate max-w-[190px]">{currentUser.name} ({currentUser.id})</span>
+                  <span className="truncate max-w-[130px] xl:max-w-[190px]">{currentUser.name} ({currentUser.id})</span>
                 </Link>
 
                 {/* Workspace Persona Dropdown */}
-                <div ref={userMenuRef} className="relative ml-1">
+                <div ref={userMenuRef} className="relative">
                   <button
                     onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                    className="group flex items-center gap-2 p-1 pr-2 rounded-full border border-slate-200/80 bg-white hover:bg-slate-50/90 shadow-2xs transition-all duration-200"
+                    className="group flex items-center gap-1.5 sm:gap-2 p-1 pr-2 rounded-full border border-slate-200/80 bg-white hover:bg-slate-50/90 shadow-2xs transition-all duration-200"
                     title="Switch Role or View Workspace"
                   >
                     <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-navy-950 via-navy-900 to-[#0E7490] text-cyan-200 flex items-center justify-center font-bold text-[11px] tracking-tight shadow-inner">
@@ -400,29 +400,38 @@ export const Navbar: React.FC = () => {
               </div>
             ) : (
               /* Two Buttons: Create Account & Sign In */
-              <div className="flex items-center gap-2 sm:gap-2.5">
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 <Link
                   href="/login?mode=register"
-                  className="inline-flex items-center justify-center px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-bold text-slate-700 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-all shadow-2xs"
+                  className="hidden xs:inline-flex items-center justify-center px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-[11px] sm:text-xs font-bold text-slate-700 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-all shadow-2xs whitespace-nowrap"
                 >
                   Create Account
                 </Link>
                 <Link
                   href="/login?mode=login"
-                  className="inline-flex items-center justify-center px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-xl transition-all shadow-xs"
+                  className="inline-flex items-center justify-center px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-[11px] sm:text-xs font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-xl transition-all shadow-xs whitespace-nowrap"
                 >
                   Sign In
                 </Link>
               </div>
             )}
 
+            {/* Mobile Search Button (< lg screens) */}
+            <Link
+              href="/search"
+              className="lg:hidden p-1.5 sm:p-2 text-slate-600 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
+              title="Search"
+            >
+              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
+            </Link>
+
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-slate-700 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-1.5 sm:p-2 text-slate-700 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
         </div>
@@ -507,7 +516,7 @@ export const Navbar: React.FC = () => {
                 <Link
                   href="/about"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-3 py-2.5 text-xs font-bold rounded-xl transition-colors ${
+                  className={`block px-3 py-2 text-xs font-bold rounded-xl transition-colors ${
                     pathname === "/about"
                       ? "bg-cyan-50 text-[#0891B2] font-extrabold"
                       : "text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50"
@@ -518,14 +527,47 @@ export const Navbar: React.FC = () => {
                 <Link
                   href="/#services"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 text-xs font-bold text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50 rounded-xl transition-colors"
+                  className="block px-3 py-2 text-xs font-bold text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50 rounded-xl transition-colors"
                 >
                   Services
                 </Link>
                 <Link
+                  href="/research"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-3 py-2 text-xs font-bold rounded-xl transition-colors ${
+                    pathname.startsWith("/research")
+                      ? "bg-cyan-50 text-[#0891B2] font-extrabold"
+                      : "text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50"
+                  }`}
+                >
+                  Research
+                </Link>
+                <Link
+                  href="/publications"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-3 py-2 text-xs font-bold rounded-xl transition-colors ${
+                    pathname.startsWith("/publications")
+                      ? "bg-cyan-50 text-[#0891B2] font-extrabold"
+                      : "text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50"
+                  }`}
+                >
+                  Publications
+                </Link>
+                <Link
+                  href="/communities"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-3 py-2 text-xs font-bold rounded-xl transition-colors ${
+                    pathname.startsWith("/communities")
+                      ? "bg-cyan-50 text-[#0891B2] font-extrabold"
+                      : "text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50"
+                  }`}
+                >
+                  Communities
+                </Link>
+                <Link
                   href="/#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 text-xs font-bold text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50 rounded-xl transition-colors"
+                  className="block px-3 py-2 text-xs font-bold text-navy-900 hover:text-[#0891B2] hover:bg-cyan-50/50 rounded-xl transition-colors"
                 >
                   Contact
                 </Link>
