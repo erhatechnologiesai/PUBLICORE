@@ -42,6 +42,7 @@ import {
   Upload,
   Bookmark,
   RefreshCw,
+  X,
 } from "lucide-react";
 
 export default function HomePage() {
@@ -165,14 +166,14 @@ Archived by PUBLICORE Scholarly Infrastructure`;
   };
 
   const categories = [
-    { name: "Computer Science", count: "38.2k", icon: Cpu },
-    { name: "Artificial Intelligence", count: "44.1k", icon: Bot },
-    { name: "Biomedical Engineering", count: "29.4k", icon: Layers },
-    { name: "Medicine & Oncology", count: "31.9k", icon: BookOpen },
-    { name: "Biotechnology", count: "18.3k", icon: FileText },
-    { name: "Data Science & Statistics", count: "22.7k", icon: Database },
-    { name: "Sustainable Energy Systems", count: "14.2k", icon: Globe2 },
-    { name: "Quantum Computing & Math", count: "11.1k", icon: BarChart3 },
+    { name: "Computer Science", icon: Cpu },
+    { name: "Artificial Intelligence", icon: Bot },
+    { name: "Biomedical Engineering", icon: Layers },
+    { name: "Medicine", icon: BookOpen },
+    { name: "Biotechnology", icon: FileText },
+    { name: "Data Science", icon: Database },
+    { name: "Sustainable Energy", icon: Globe2 },
+    { name: "Quantum Computing", icon: BarChart3 },
   ];
 
   const portals = [
@@ -410,106 +411,116 @@ Archived by PUBLICORE Scholarly Infrastructure`;
         </section>
 
         {/* =========================================================
-            SECTION 1: RESEARCH SEARCH
+            SECTION 1: CLEAN MINIMAL RESEARCH SEARCH
         ========================================================= */}
-        <section className="py-10 bg-white/60 backdrop-blur-xs border-b border-slate-200/60">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <section className="py-12 bg-white/70 backdrop-blur-md border-b border-slate-200/70">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            
+            {/* Minimal Clean Title - No Extra Text */}
             <div className="text-center mb-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-navy-900 tracking-tight">
-                Search Research, Authors, Topics & Publications
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-navy-950 tracking-tight">
+                Search Research
               </h2>
-              <p className="text-xs text-slate-500 mt-1">
-                Query over 148,000 peer-reviewed articles using standard keywords, semantic search, or AI reasoning
-              </p>
             </div>
 
-            <form onSubmit={handleSearchSubmit} className="space-y-3">
-              <div className="relative flex items-center">
-                <Search className="absolute left-4 w-5 h-5 text-slate-400 pointer-events-none" />
+            <form onSubmit={handleSearchSubmit} className="space-y-3.5">
+              {/* Premium Floating Search Capsule */}
+              <div className="relative flex items-center bg-white rounded-2xl border border-slate-200/90 shadow-[0_4px_24px_-4px_rgba(11,26,44,0.07)] hover:border-slate-300 focus-within:border-[#177994] focus-within:ring-2 focus-within:ring-[#177994]/15 transition-all p-1.5 sm:p-2">
+                <div className="pl-3 sm:pl-4 pr-2 text-[#177994] pointer-events-none">
+                  <Search className="w-5 h-5" />
+                </div>
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="e.g., 'Transformer models for histopathology' or 'Quantum dynamical decoupling'..."
-                  className="w-full pl-12 pr-32 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-navy-900 placeholder:text-slate-400 focus:outline-none focus:border-cyan-600 focus:bg-white focus:ring-1 focus:ring-cyan-600 shadow-sm"
+                  placeholder="Search papers, authors, topics, or DOIs..."
+                  className="w-full bg-transparent text-sm sm:text-base text-navy-950 placeholder:text-slate-400 focus:outline-none py-2 pr-2"
                 />
-                <div className="absolute right-2 flex items-center gap-1.5">
-                  <Button type="submit" variant="teal" size="sm" className="shadow-sm">
-                    Search
-                  </Button>
-                </div>
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg mr-1 transition-colors"
+                    title="Clear query"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+                <Button
+                  type="submit"
+                  variant="teal"
+                  size="sm"
+                  className="px-5 py-2.5 rounded-xl font-semibold shadow-sm shrink-0"
+                >
+                  Search
+                </Button>
               </div>
 
-              {/* Quick Filters */}
-              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs">
-                <div className="flex flex-wrap items-center gap-2 text-slate-600">
-                  <span className="font-semibold text-slate-400 flex items-center gap-1">
-                    <SlidersHorizontal className="w-3.5 h-3.5" /> Filters:
-                  </span>
-                  <select 
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 text-xs text-slate-700"
+              {/* Minimalist Controls Toolbar */}
+              <div className="flex flex-wrap items-center justify-between gap-2.5 pt-1 text-xs">
+                <div className="flex flex-wrap items-center gap-2">
+                  {/* Dynamic Open Access Toggle */}
+                  <button
+                    type="button"
+                    onClick={() => setOpenAccessOnly(!openAccessOnly)}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all ${
+                      openAccessOnly
+                        ? "bg-emerald-50 text-emerald-800 border-emerald-300 shadow-2xs"
+                        : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+                    }`}
                   >
-                    <option value="All">All Subjects</option>
-                    <option value="Artificial Intelligence">Artificial Intelligence</option>
-                    <option value="Biomedical Engineering">Biomedical Engineering</option>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Medicine & Oncology">Medicine & Oncology</option>
-                    <option value="Sustainable Energy Systems">Sustainable Energy</option>
-                  </select>
+                    <span className={`w-1.5 h-1.5 rounded-full ${openAccessOnly ? "bg-emerald-600 animate-pulse" : "bg-slate-400"}`} />
+                    Open Access
+                  </button>
+
+                  {/* Compact Year Filter */}
                   <select
                     value={selectedYear}
                     onChange={(e) => setSelectedYear(e.target.value)}
-                    className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 text-xs text-slate-700"
+                    className="bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:border-slate-300 focus:outline-none focus:border-[#177994] transition-colors cursor-pointer shadow-2xs"
                   >
-                    <option value="Any Year">Any Year</option>
+                    <option value="Any Year">All Years</option>
                     <option value="2026">2026</option>
                     <option value="2025">2025</option>
                     <option value="2024">2024</option>
                   </select>
+
+                  {/* Compact Type Filter */}
                   <select
                     value={selectedArticleType}
                     onChange={(e) => setSelectedArticleType(e.target.value)}
-                    className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 text-xs text-slate-700"
+                    className="bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:border-slate-300 focus:outline-none focus:border-[#177994] transition-colors cursor-pointer shadow-2xs"
                   >
-                    <option value="All">All Article Types</option>
-                    <option value="Research Article">Research Article</option>
-                    <option value="Review Paper">Review Paper</option>
+                    <option value="All">All Types</option>
+                    <option value="Research Article">Research</option>
+                    <option value="Review Paper">Review</option>
                     <option value="Methodology">Methodology</option>
                   </select>
-                  <label className="flex items-center gap-1.5 cursor-pointer ml-1">
-                    <input
-                      type="checkbox"
-                      checked={openAccessOnly}
-                      onChange={(e) => setOpenAccessOnly(e.target.checked)}
-                      className="rounded text-cyan-600 focus:ring-cyan-500"
-                    />
-                    <span>Open Access Only</span>
-                  </label>
                 </div>
 
+                {/* AI Semantic Mode Pill */}
                 <Link
                   href="/search?mode=ai"
-                  className="text-cyan-700 hover:text-cyan-800 font-semibold flex items-center gap-1 ml-auto"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-50/80 hover:bg-cyan-100 text-[#177994] font-semibold text-xs border border-cyan-200/70 transition-colors ml-auto shadow-2xs"
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-cyan-600" /> AI Semantic Search Mode →
+                  <Sparkles className="w-3.5 h-3.5 text-[#177994]" />
+                  <span>AI Semantic Mode</span>
                 </Link>
               </div>
             </form>
 
-            {/* Interactive Discipline Pills */}
-            <div className="pt-5 flex flex-wrap items-center justify-center gap-2">
+            {/* Clean Minimal Discipline Pills (No Extra Counts, Smooth Scroll on Mobile) */}
+            <div className="pt-6 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <button
                 type="button"
                 onClick={() => setSelectedCategory("All")}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
                   selectedCategory === "All"
-                    ? "bg-cyan-700 text-white shadow-sm"
-                    : "bg-slate-100 hover:bg-cyan-50 text-slate-700"
+                    ? "bg-[#0B1A2C] text-white shadow-sm"
+                    : "bg-white text-slate-700 border border-slate-200/90 hover:bg-slate-50 hover:border-slate-300 shadow-2xs"
                 }`}
               >
-                <span>All Disciplines</span>
+                All Disciplines
               </button>
               {categories.map((cat) => {
                 const Icon = cat.icon;
@@ -520,21 +531,19 @@ Archived by PUBLICORE Scholarly Infrastructure`;
                     key={cat.name}
                     type="button"
                     onClick={() => handleCategorySelect(cat.name)}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
                       isSelected
-                        ? "bg-cyan-700 text-white shadow-sm"
-                        : "bg-slate-100 hover:bg-cyan-50 hover:text-cyan-900 text-slate-700"
+                        ? "bg-[#177994] text-white shadow-sm"
+                        : "bg-white text-slate-700 border border-slate-200/90 hover:bg-slate-50 hover:border-slate-300 hover:text-navy-950 shadow-2xs"
                     }`}
                   >
-                    <Icon className="w-3.5 h-3.5 opacity-70" />
+                    <Icon className={`w-3.5 h-3.5 ${isSelected ? "text-white" : "text-[#177994]"}`} />
                     <span>{cat.name}</span>
-                    <span className={`text-[10px] ${isSelected ? "text-cyan-100" : "text-slate-400"}`}>
-                      ({cat.count})
-                    </span>
                   </button>
                 );
               })}
             </div>
+
           </div>
         </section>
 
