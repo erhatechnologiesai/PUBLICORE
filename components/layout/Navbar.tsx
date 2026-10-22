@@ -293,17 +293,17 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_2px_12px_-3px_rgba(11,26,44,0.06)] pt-3 sm:pt-4 pb-3 sm:pb-3.5 transition-all">
+      <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_1px_8px_-2px_rgba(11,26,44,0.06)] py-1.5 sm:py-2 transition-all">
 
-        {/* Main Header Bar */}
-        <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-2.5 sm:gap-4 min-h-[50px]">
-          {/* Left: Brand Logo (Positioned on the far left with responsive scaling) */}
+        {/* Main Header Bar - Compact Sleek Sizing with Dynamic Responsive Alignment */}
+        <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-2 sm:gap-3.5 min-h-[42px] sm:min-h-[46px]">
+          {/* Left: Brand Logo (Streamlined Compact Size matching exact toolbar proportions) */}
           <div className="flex items-center shrink-0">
-            <BrandLogo size="md" />
+            <BrandLogo size="sm" />
           </div>
 
           {/* Center/Right: Signature Logo-Themed Responsive Navigation Pill */}
-          <nav className="hidden lg:flex items-center gap-2.5 xl:gap-5 2xl:gap-7 bg-gradient-to-r from-navy-950 via-[#0B1A2C] to-[#0891B2] text-white px-4 xl:px-6 py-1.5 xl:py-2 rounded-full shadow-[0_2px_10px_-2px_rgba(8,145,178,0.22),0_1px_3px_0_rgba(11,26,44,0.08)] border border-cyan-400/30 text-[10.5px] xl:text-xs font-bold uppercase tracking-wider transition-all my-auto shrink-0 overflow-hidden">
+          <nav className="hidden lg:flex items-center gap-2 xl:gap-4.5 2xl:gap-6 bg-gradient-to-r from-navy-950 via-[#0B1A2C] to-[#0891B2] text-white px-3.5 xl:px-5 py-1 xl:py-1.5 rounded-full shadow-[0_2px_8px_-2px_rgba(8,145,178,0.22),0_1px_3px_0_rgba(11,26,44,0.08)] border border-cyan-400/30 text-[10.5px] xl:text-[11.5px] font-bold uppercase tracking-wider transition-all my-auto shrink-0 overflow-hidden">
             <Link
               href="/about"
               className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
@@ -346,10 +346,10 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/search"
-              className="w-7 h-7 rounded-full bg-white/20 hover:bg-white text-white hover:text-navy-950 flex items-center justify-center transition-all duration-200 shrink-0 group"
+              className="w-6 h-6 rounded-full bg-white/20 hover:bg-white text-white hover:text-navy-950 flex items-center justify-center transition-all duration-200 shrink-0 group ml-0.5"
               title="Search"
             >
-              <Search className="w-3.5 h-3.5 transition-transform group-hover:scale-110" />
+              <Search className="w-3 h-3 transition-transform group-hover:scale-110" />
             </Link>
           </nav>
 
@@ -363,7 +363,7 @@ export const Navbar: React.FC = () => {
                   setPortalDropdownOpen(!portalDropdownOpen);
                   setUserDropdownOpen(false);
                 }}
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs font-bold rounded-xl border transition-all shadow-2xs whitespace-nowrap cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs font-bold rounded-xl border transition-all shadow-2xs whitespace-nowrap cursor-pointer ${
                   portalDropdownOpen
                     ? "bg-[#0B1A2C] text-cyan-300 border-[#0B1A2C] shadow-sm"
                     : "bg-white hover:bg-slate-50 text-slate-800 hover:text-navy-950 border-slate-300/90 hover:border-slate-400"
@@ -474,7 +474,7 @@ export const Navbar: React.FC = () => {
                 {/* User ID & Name Display Pill */}
                 <Link
                   href="/login"
-                  className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-xs font-bold text-navy-950 bg-cyan-50/80 border border-cyan-200/80 hover:bg-cyan-100/70 rounded-xl transition-all font-mono shadow-2xs"
+                  className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 text-xs font-bold text-navy-950 bg-cyan-50/80 border border-cyan-200/80 hover:bg-cyan-100/70 rounded-xl transition-all font-mono shadow-2xs"
                   title="View Account Profile & User ID"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
@@ -485,10 +485,10 @@ export const Navbar: React.FC = () => {
                 <div ref={userMenuRef} className="relative">
                   <button
                     onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                    className="group flex items-center gap-1.5 sm:gap-2 p-1 pr-2 rounded-full border border-slate-200/80 bg-white hover:bg-slate-50/90 shadow-2xs transition-all duration-200"
+                    className="group flex items-center gap-1.5 sm:gap-2 p-0.5 pr-2 rounded-full border border-slate-200/80 bg-white hover:bg-slate-50/90 shadow-2xs transition-all duration-200"
                     title="Switch Role or View Workspace"
                   >
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-navy-950 via-navy-900 to-[#0E7490] text-cyan-200 flex items-center justify-center font-bold text-[11px] tracking-tight shadow-inner">
+                    <div className="w-6.5 h-6.5 rounded-full bg-gradient-to-tr from-navy-950 via-navy-900 to-[#0E7490] text-cyan-200 flex items-center justify-center font-bold text-[10.5px] tracking-tight shadow-inner">
                       {getInitials(currentUser?.name)}
                     </div>
                     <ChevronDown
@@ -563,13 +563,13 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <Link
                   href="/login?mode=register"
-                  className="hidden sm:inline-flex items-center justify-center px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs font-bold text-slate-700 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-all shadow-2xs whitespace-nowrap"
+                  className="hidden sm:inline-flex items-center justify-center px-3 py-1 sm:px-3.5 sm:py-1.5 text-xs font-bold text-slate-700 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-all shadow-2xs whitespace-nowrap"
                 >
                   Create Account
                 </Link>
                 <Link
                   href="/login?mode=login"
-                  className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-xl transition-all shadow-xs whitespace-nowrap"
+                  className="inline-flex items-center justify-center px-3 py-1 sm:px-4 sm:py-1.5 text-xs font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-xl transition-all shadow-xs whitespace-nowrap"
                 >
                   Sign In
                 </Link>
@@ -579,19 +579,19 @@ export const Navbar: React.FC = () => {
             {/* Mobile Search Button (< lg screens) */}
             <Link
               href="/search"
-              className="lg:hidden p-1.5 sm:p-2 text-slate-600 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-1 sm:p-1.5 text-slate-600 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
               title="Search"
             >
-              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Search className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
             </Link>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-1.5 sm:p-2 text-slate-700 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-1 sm:p-1.5 text-slate-700 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
