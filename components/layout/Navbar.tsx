@@ -293,20 +293,20 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_1px_8px_-2px_rgba(11,26,44,0.06)] py-1.5 sm:py-2 transition-all">
+      <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(11,26,44,0.07)] py-3 sm:py-3.5 md:py-4 transition-all">
 
-        {/* Main Header Bar - Compact Sleek Sizing with Dynamic Responsive Alignment */}
-        <div className="w-full max-w-[1536px] mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-2 sm:gap-3.5 min-h-[42px] sm:min-h-[46px]">
-          {/* Left: Brand Logo (Streamlined Compact Size matching exact toolbar proportions) */}
+        {/* Main Header Bar - Spacious, Big & Premium Scholarly Dimensions */}
+        <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-3 sm:gap-4 min-h-[52px] sm:min-h-[58px]">
+          {/* Left: Brand Logo (Prominent Enterprise Size) */}
           <div className="flex items-center shrink-0">
-            <BrandLogo size="sm" />
+            <BrandLogo size="md" />
           </div>
 
           {/* Center/Right: Signature Logo-Themed Responsive Navigation Pill */}
-          <nav className="hidden lg:flex items-center gap-2 xl:gap-4.5 2xl:gap-6 bg-gradient-to-r from-navy-950 via-[#0B1A2C] to-[#0891B2] text-white px-3.5 xl:px-5 py-1 xl:py-1.5 rounded-full shadow-[0_2px_8px_-2px_rgba(8,145,178,0.22),0_1px_3px_0_rgba(11,26,44,0.08)] border border-cyan-400/30 text-[10.5px] xl:text-[11.5px] font-bold uppercase tracking-wider transition-all my-auto shrink-0 overflow-hidden">
+          <nav className="hidden lg:flex items-center gap-2.5 xl:gap-5 2xl:gap-7 bg-gradient-to-r from-navy-950 via-[#0B1A2C] to-[#0891B2] text-white px-4.5 xl:px-6 py-2 xl:py-2.5 rounded-full shadow-[0_2px_12px_-2px_rgba(8,145,178,0.25),0_1px_4px_0_rgba(11,26,44,0.1)] border border-cyan-400/35 text-[11px] xl:text-[12.5px] font-bold uppercase tracking-wider transition-all my-auto shrink-0 overflow-hidden">
             <Link
               href="/about"
-              className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
+              className={`px-2 py-0.5 rounded transition-colors duration-150 ${
                 pathname === "/about" ? "text-cyan-300 font-extrabold" : "text-white/90 hover:text-cyan-200"
               }`}
             >
@@ -314,7 +314,7 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/research"
-              className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
+              className={`px-2 py-0.5 rounded transition-colors duration-150 ${
                 pathname.startsWith("/research") ? "text-cyan-300 font-extrabold" : "text-white/90 hover:text-cyan-200"
               }`}
             >
@@ -322,7 +322,7 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/publications"
-              className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
+              className={`px-2 py-0.5 rounded transition-colors duration-150 ${
                 pathname.startsWith("/publications") ? "text-cyan-300 font-extrabold" : "text-white/90 hover:text-cyan-200"
               }`}
             >
@@ -330,7 +330,7 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/communities"
-              className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
+              className={`px-2 py-0.5 rounded transition-colors duration-150 ${
                 pathname.startsWith("/communities") ? "text-cyan-300 font-extrabold" : "text-white/90 hover:text-cyan-200"
               }`}
             >
@@ -338,7 +338,7 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/contact"
-              className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
+              className={`px-2 py-0.5 rounded transition-colors duration-150 ${
                 pathname === "/contact" ? "text-cyan-300 font-extrabold" : "text-white/90 hover:text-cyan-200"
               }`}
             >
@@ -346,15 +346,15 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/search"
-              className="w-6 h-6 rounded-full bg-white/20 hover:bg-white text-white hover:text-navy-950 flex items-center justify-center transition-all duration-200 shrink-0 group ml-0.5"
+              className="w-7 h-7 rounded-full bg-white/20 hover:bg-white text-white hover:text-navy-950 flex items-center justify-center transition-all duration-200 shrink-0 group ml-1"
               title="Search"
             >
-              <Search className="w-3 h-3 transition-transform group-hover:scale-110" />
+              <Search className="w-3.5 h-3.5 transition-transform group-hover:scale-110" />
             </Link>
           </nav>
 
           {/* Right: Portals, Auth Buttons & Role Switcher */}
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             {/* Dedicated Role Portals Dropdown (Author + 4 Portals: Reviewer, Editor, Production, Admin) */}
             <div ref={portalMenuRef} className="relative">
               <button
@@ -363,17 +363,17 @@ export const Navbar: React.FC = () => {
                   setPortalDropdownOpen(!portalDropdownOpen);
                   setUserDropdownOpen(false);
                 }}
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs font-bold rounded-xl border transition-all shadow-2xs whitespace-nowrap cursor-pointer ${
+                className={`inline-flex items-center gap-2 px-3 py-2 sm:px-3.5 sm:py-2.5 text-xs sm:text-[13px] font-bold rounded-xl border transition-all shadow-xs whitespace-nowrap cursor-pointer ${
                   portalDropdownOpen
                     ? "bg-[#0B1A2C] text-cyan-300 border-[#0B1A2C] shadow-sm"
-                    : "bg-white hover:bg-slate-50 text-slate-800 hover:text-navy-950 border-slate-300/90 hover:border-slate-400"
+                    : "bg-white hover:bg-slate-50 text-slate-800 hover:text-navy-950 border-slate-300 hover:border-slate-400"
                 }`}
                 title="Explore 5 Academic Role Portals"
                 aria-expanded={portalDropdownOpen}
               >
-                <Layers className={`w-3.5 h-3.5 transition-colors ${portalDropdownOpen ? "text-cyan-300" : "text-[#004e70]"}`} />
+                <Layers className={`w-4 h-4 transition-colors ${portalDropdownOpen ? "text-cyan-300" : "text-[#004e70]"}`} />
                 <span className="font-bold">Portals</span>
-                <span className="inline-flex px-1.5 py-0.2 text-[10px] font-extrabold rounded-full bg-cyan-100/80 text-[#004e70]">
+                <span className="inline-flex px-1.5 py-0.5 text-[10.5px] font-extrabold rounded-full bg-cyan-100/90 text-[#004e70]">
                   5
                 </span>
                 <ChevronDown
@@ -470,14 +470,14 @@ export const Navbar: React.FC = () => {
 
             {/* Auth Buttons / User Profile */}
             {currentUser ? (
-              <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="flex items-center gap-2 sm:gap-2.5">
                 {/* User ID & Name Display Pill */}
                 <Link
                   href="/login"
-                  className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 text-xs font-bold text-navy-950 bg-cyan-50/80 border border-cyan-200/80 hover:bg-cyan-100/70 rounded-xl transition-all font-mono shadow-2xs"
+                  className="hidden md:inline-flex items-center gap-2 px-3 py-2 sm:px-3.5 sm:py-2.5 text-xs sm:text-[13px] font-bold text-navy-950 bg-cyan-50/80 border border-cyan-200/80 hover:bg-cyan-100/70 rounded-xl transition-all font-mono shadow-xs"
                   title="View Account Profile & User ID"
                 >
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0" />
                   <span className="truncate max-w-[120px] xl:max-w-[170px]">{currentUser.name}</span>
                 </Link>
 
@@ -485,10 +485,10 @@ export const Navbar: React.FC = () => {
                 <div ref={userMenuRef} className="relative">
                   <button
                     onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                    className="group flex items-center gap-1.5 sm:gap-2 p-0.5 pr-2 rounded-full border border-slate-200/80 bg-white hover:bg-slate-50/90 shadow-2xs transition-all duration-200"
+                    className="group flex items-center gap-2 p-1 pr-2.5 rounded-full border border-slate-200/80 bg-white hover:bg-slate-50/90 shadow-xs transition-all duration-200"
                     title="Switch Role or View Workspace"
                   >
-                    <div className="w-6.5 h-6.5 rounded-full bg-gradient-to-tr from-navy-950 via-navy-900 to-[#0E7490] text-cyan-200 flex items-center justify-center font-bold text-[10.5px] tracking-tight shadow-inner">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-navy-950 via-navy-900 to-[#0E7490] text-cyan-200 flex items-center justify-center font-bold text-xs tracking-tight shadow-inner">
                       {getInitials(currentUser?.name)}
                     </div>
                     <ChevronDown
@@ -497,7 +497,6 @@ export const Navbar: React.FC = () => {
                       }`}
                     />
                   </button>
-
                   {userDropdownOpen && (
                     <div className="absolute right-0 mt-2.5 w-72 bg-gradient-to-b from-white via-slate-50/95 to-slate-100/95 backdrop-blur-xl rounded-2xl border border-white/80 p-3 shadow-2xl ring-1 ring-slate-900/5 z-50 animate-in fade-in-95">
                       <div className="px-3 pb-3 border-b border-slate-200/60">
@@ -560,16 +559,16 @@ export const Navbar: React.FC = () => {
               </div>
             ) : (
               /* Two Buttons: Create Account & Sign In */
-              <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="flex items-center gap-2 sm:gap-2.5">
                 <Link
                   href="/login?mode=register"
-                  className="hidden sm:inline-flex items-center justify-center px-3 py-1 sm:px-3.5 sm:py-1.5 text-xs font-bold text-slate-700 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-all shadow-2xs whitespace-nowrap"
+                  className="hidden sm:inline-flex items-center justify-center px-3.5 py-2 sm:px-4.5 sm:py-2.5 text-xs sm:text-[13px] font-bold text-slate-700 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-all shadow-xs whitespace-nowrap"
                 >
                   Create Account
                 </Link>
                 <Link
                   href="/login?mode=login"
-                  className="inline-flex items-center justify-center px-3 py-1 sm:px-4 sm:py-1.5 text-xs font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-xl transition-all shadow-xs whitespace-nowrap"
+                  className="inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-[13px] font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-xl transition-all shadow-xs whitespace-nowrap"
                 >
                   Sign In
                 </Link>
@@ -579,19 +578,19 @@ export const Navbar: React.FC = () => {
             {/* Mobile Search Button (< lg screens) */}
             <Link
               href="/search"
-              className="lg:hidden p-1 sm:p-1.5 text-slate-600 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 text-slate-600 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
               title="Search"
             >
-              <Search className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+              <Search className="w-5 h-5" />
             </Link>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-1 sm:p-1.5 text-slate-700 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 text-slate-700 hover:text-navy-950 rounded-xl hover:bg-slate-100 transition-colors"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
