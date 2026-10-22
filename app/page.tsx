@@ -30,6 +30,7 @@ import {
   Database,
   ExternalLink,
   ChevronRight,
+  ChevronDown,
   SlidersHorizontal,
   Bot,
   MapPin,
@@ -456,16 +457,16 @@ Archived by PUBLICORE Scholarly Infrastructure`;
                 </Button>
               </div>
 
-              {/* Minimalist Controls Toolbar */}
+              {/* Minimalist Controls Toolbar with Unified Dropdowns */}
               <div className="flex flex-wrap items-center justify-between gap-2.5 pt-1 text-xs">
                 <div className="flex flex-wrap items-center gap-2">
                   {/* Dynamic Open Access Toggle */}
                   <button
                     type="button"
                     onClick={() => setOpenAccessOnly(!openAccessOnly)}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all ${
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs font-semibold transition-all shadow-2xs ${
                       openAccessOnly
-                        ? "bg-emerald-50 text-emerald-800 border-emerald-300 shadow-2xs"
+                        ? "bg-emerald-50 text-emerald-800 border-emerald-300"
                         : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
                     }`}
                   >
@@ -473,76 +474,64 @@ Archived by PUBLICORE Scholarly Infrastructure`;
                     Open Access
                   </button>
 
-                  {/* Compact Year Filter */}
-                  <select
-                    value={selectedYear}
-                    onChange={(e) => setSelectedYear(e.target.value)}
-                    className="bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:border-slate-300 focus:outline-none focus:border-[#177994] transition-colors cursor-pointer shadow-2xs"
-                  >
-                    <option value="Any Year">All Years</option>
-                    <option value="2026">2026</option>
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                  </select>
+                  {/* All Disciplines Dropdown (Converted from row of pills) */}
+                  <div className="relative inline-flex items-center">
+                    <select
+                      value={selectedCategory}
+                      onChange={(e) => setSelectedCategory(e.target.value)}
+                      className="appearance-none bg-white border border-slate-200/90 hover:border-slate-300 rounded-xl pl-3.5 pr-8 py-2 text-xs font-semibold text-navy-950 focus:outline-none focus:border-[#177994] focus:ring-1 focus:ring-[#177994]/20 transition-all cursor-pointer shadow-2xs"
+                    >
+                      <option value="All">All Disciplines</option>
+                      {categories.map((cat) => (
+                        <option key={cat.name} value={cat.name}>
+                          {cat.name}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="w-3.5 h-3.5 text-slate-500 pointer-events-none absolute right-2.5" />
+                  </div>
 
-                  {/* Compact Type Filter */}
-                  <select
-                    value={selectedArticleType}
-                    onChange={(e) => setSelectedArticleType(e.target.value)}
-                    className="bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:border-slate-300 focus:outline-none focus:border-[#177994] transition-colors cursor-pointer shadow-2xs"
-                  >
-                    <option value="All">All Types</option>
-                    <option value="Research Article">Research</option>
-                    <option value="Review Paper">Review</option>
-                    <option value="Methodology">Methodology</option>
-                  </select>
+                  {/* All Years Dropdown */}
+                  <div className="relative inline-flex items-center">
+                    <select
+                      value={selectedYear}
+                      onChange={(e) => setSelectedYear(e.target.value)}
+                      className="appearance-none bg-white border border-slate-200/90 hover:border-slate-300 rounded-xl pl-3.5 pr-8 py-2 text-xs font-semibold text-navy-950 focus:outline-none focus:border-[#177994] focus:ring-1 focus:ring-[#177994]/20 transition-all cursor-pointer shadow-2xs"
+                    >
+                      <option value="Any Year">All Years</option>
+                      <option value="2026">2026</option>
+                      <option value="2025">2025</option>
+                      <option value="2024">2024</option>
+                    </select>
+                    <ChevronDown className="w-3.5 h-3.5 text-slate-500 pointer-events-none absolute right-2.5" />
+                  </div>
+
+                  {/* All Types Dropdown */}
+                  <div className="relative inline-flex items-center">
+                    <select
+                      value={selectedArticleType}
+                      onChange={(e) => setSelectedArticleType(e.target.value)}
+                      className="appearance-none bg-white border border-slate-200/90 hover:border-slate-300 rounded-xl pl-3.5 pr-8 py-2 text-xs font-semibold text-navy-950 focus:outline-none focus:border-[#177994] focus:ring-1 focus:ring-[#177994]/20 transition-all cursor-pointer shadow-2xs"
+                    >
+                      <option value="All">All Types</option>
+                      <option value="Research Article">Research</option>
+                      <option value="Review Paper">Review</option>
+                      <option value="Methodology">Methodology</option>
+                    </select>
+                    <ChevronDown className="w-3.5 h-3.5 text-slate-500 pointer-events-none absolute right-2.5" />
+                  </div>
                 </div>
 
                 {/* AI Semantic Mode Pill */}
                 <Link
                   href="/search?mode=ai"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-50/80 hover:bg-cyan-100 text-[#177994] font-semibold text-xs border border-cyan-200/70 transition-colors ml-auto shadow-2xs"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cyan-50/80 hover:bg-cyan-100 text-[#177994] font-semibold text-xs border border-cyan-200/70 transition-colors ml-auto shadow-2xs"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-[#177994]" />
                   <span>AI Semantic Mode</span>
                 </Link>
               </div>
             </form>
-
-            {/* Clean Minimal Discipline Pills (No Extra Counts, Smooth Scroll on Mobile) */}
-            <div className="pt-6 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <button
-                type="button"
-                onClick={() => setSelectedCategory("All")}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
-                  selectedCategory === "All"
-                    ? "bg-[#0B1A2C] text-white shadow-sm"
-                    : "bg-white text-slate-700 border border-slate-200/90 hover:bg-slate-50 hover:border-slate-300 shadow-2xs"
-                }`}
-              >
-                All Disciplines
-              </button>
-              {categories.map((cat) => {
-                const Icon = cat.icon;
-                const isSelected = selectedCategory === cat.name;
-
-                return (
-                  <button
-                    key={cat.name}
-                    type="button"
-                    onClick={() => handleCategorySelect(cat.name)}
-                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
-                      isSelected
-                        ? "bg-[#177994] text-white shadow-sm"
-                        : "bg-white text-slate-700 border border-slate-200/90 hover:bg-slate-50 hover:border-slate-300 hover:text-navy-950 shadow-2xs"
-                    }`}
-                  >
-                    <Icon className={`w-3.5 h-3.5 ${isSelected ? "text-white" : "text-[#177994]"}`} />
-                    <span>{cat.name}</span>
-                  </button>
-                );
-              })}
-            </div>
 
           </div>
         </section>
