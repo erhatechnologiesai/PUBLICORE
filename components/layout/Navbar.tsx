@@ -303,7 +303,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Center/Right: Signature Logo-Themed Responsive Navigation Pill */}
-          <nav className="hidden lg:flex items-center gap-2.5 xl:gap-5 2xl:gap-7 bg-gradient-to-r from-navy-950 via-[#0B1A2C] to-[#0891B2] text-white px-4 xl:px-6 py-1.5 xl:py-2 rounded-full shadow-lg shadow-navy-950/20 border border-cyan-400/25 text-[10.5px] xl:text-xs font-bold uppercase tracking-wider transition-all my-auto shrink-0">
+          <nav className="hidden lg:flex items-center gap-2.5 xl:gap-5 2xl:gap-7 bg-gradient-to-r from-navy-950 via-[#0B1A2C] to-[#0891B2] text-white px-4 xl:px-6 py-1.5 xl:py-2 rounded-full shadow-[0_2px_10px_-2px_rgba(8,145,178,0.22),0_1px_3px_0_rgba(11,26,44,0.08)] border border-cyan-400/30 text-[10.5px] xl:text-xs font-bold uppercase tracking-wider transition-all my-auto shrink-0 overflow-hidden">
             <Link
               href="/about"
               className={`px-1.5 py-0.5 rounded transition-colors duration-150 ${
@@ -346,7 +346,7 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/search"
-              className="w-7 h-7 rounded-full bg-white/20 hover:bg-white text-white hover:text-navy-950 flex items-center justify-center transition-all duration-200 -mr-1 shadow-xs group"
+              className="w-7 h-7 rounded-full bg-white/20 hover:bg-white text-white hover:text-navy-950 flex items-center justify-center transition-all duration-200 shrink-0 group"
               title="Search"
             >
               <Search className="w-3.5 h-3.5 transition-transform group-hover:scale-110" />
