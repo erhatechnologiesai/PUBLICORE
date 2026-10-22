@@ -355,21 +355,6 @@ export const Navbar: React.FC = () => {
 
           {/* Right: Portals, Auth Buttons & Role Switcher */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {/* Quick 1-Click Author Portal Button (XL+ screens) */}
-            <button
-              type="button"
-              onClick={() => handleRoleSwitch("author")}
-              className={`hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-xl border transition-all shadow-2xs whitespace-nowrap cursor-pointer ${
-                currentUser?.role === "author"
-                  ? "bg-cyan-50 text-[#004e70] border-cyan-300 font-extrabold ring-1 ring-cyan-400/40"
-                  : "bg-white hover:bg-slate-50 text-slate-700 hover:text-[#004e70] border-slate-300/80"
-              }`}
-              title="Open Author Portal & Manuscript Submission"
-            >
-              <BookOpen className="w-3.5 h-3.5 text-cyan-600" />
-              <span>Author Portal</span>
-            </button>
-
             {/* Dedicated Role Portals Dropdown (Author + 4 Portals: Reviewer, Editor, Production, Admin) */}
             <div ref={portalMenuRef} className="relative">
               <button
