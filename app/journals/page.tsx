@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -49,7 +49,7 @@ export default function JournalsPage() {
         </div>
 
         {/* Filter bar */}
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-subtle mb-8 flex items-center justify-between gap-4">
+        <div className="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 shadow-subtle mb-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
           <div className="relative w-full max-w-md">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5" />
             <input
@@ -60,7 +60,7 @@ export default function JournalsPage() {
               className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
             />
           </div>
-          <span className="text-xs text-slate-400 font-mono">{filtered.length} Journals</span>
+          <span className="text-xs text-slate-500 font-mono text-right">{filtered.length} Journals</span>
         </div>
 
         {loading ? (

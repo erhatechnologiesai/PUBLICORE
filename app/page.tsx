@@ -250,7 +250,7 @@ Archived by PUBLICORE Scholarly Infrastructure`;
         {/* =========================================================
             HERO SECTION: FULL NETWORK BACKGROUND & CENTERED HEADLINE
         ========================================================= */}
-        <section className="relative overflow-hidden bg-[#07111E] border-b border-cyan-500/20 py-20 sm:py-24 md:py-32 lg:py-36">
+        <section className="relative overflow-hidden bg-[#07111E] border-b border-cyan-500/20 py-14 sm:py-20 md:py-28 lg:py-34">
           {/* High-Resolution Futuristic Digital Network Skyline Background Image */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[0.82] contrast-[1.10] scale-100 transition-transform duration-1000"

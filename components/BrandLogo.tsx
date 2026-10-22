@@ -25,17 +25,17 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   size = "md",
 }) => {
   const iconSizes = {
-    sm: "w-8 h-8",
-    md: "w-10 h-10",
-    lg: "w-11 h-11",
-    xl: "w-13 h-13",
+    sm: "w-7 h-7 sm:w-8 sm:h-8",
+    md: "w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10",
+    lg: "w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11",
+    xl: "w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13",
   };
 
   const textSizes = {
-    sm: "text-lg",
-    md: "text-xl",
-    lg: "text-2xl",
-    xl: "text-3xl",
+    sm: "text-base sm:text-lg",
+    md: "text-lg sm:text-xl",
+    lg: "text-xl sm:text-2xl",
+    xl: "text-2xl sm:text-3xl",
   };
 
   const isLight = variant === "light";
@@ -88,7 +88,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
             PUBLI<span className={isLight ? "text-cyan-400" : "text-[#177994]"}>CORE</span>
           </span>
           <span
-            className={`text-[8px] sm:text-[9px] tracking-wider sm:tracking-widest uppercase font-semibold mt-0.5 whitespace-nowrap ${
+            className={`hidden sm:block text-[8px] sm:text-[9px] tracking-wider sm:tracking-widest uppercase font-semibold mt-0.5 whitespace-nowrap ${
               isLight ? "text-slate-400" : "text-slate-500"
             }`}
           >

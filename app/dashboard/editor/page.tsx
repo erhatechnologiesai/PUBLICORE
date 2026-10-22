@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -72,7 +72,7 @@ export default function EditorDashboardPage() {
         </div>
 
         {/* Editorial Metrics Banner */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {[
             { label: "New Submissions", value: "4", note: "Require Initial Screening" },
             { label: "Under Active Review", value: "1", note: "2/3 reviews completed" },

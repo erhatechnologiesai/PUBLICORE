@@ -354,7 +354,7 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Right: Portals, Auth Buttons & Role Switcher */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* Dedicated Role Portals Dropdown (Author + 4 Portals: Reviewer, Editor, Production, Admin) */}
             <div ref={portalMenuRef} className="relative">
               <button
@@ -363,7 +363,7 @@ export const Navbar: React.FC = () => {
                   setPortalDropdownOpen(!portalDropdownOpen);
                   setUserDropdownOpen(false);
                 }}
-                className={`inline-flex items-center gap-2 px-4 py-2.5 sm:px-4.5 sm:py-3 text-xs sm:text-sm font-bold rounded-full border transition-all shadow-xs whitespace-nowrap cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 sm:px-4.5 sm:py-3 text-xs sm:text-sm font-bold rounded-full border transition-all shadow-xs whitespace-nowrap cursor-pointer ${
                   portalDropdownOpen
                     ? "bg-[#0B1A2C] text-cyan-300 border-[#0B1A2C] shadow-sm"
                     : "bg-white hover:bg-slate-50 text-slate-800 hover:text-navy-950 border-slate-300 hover:border-slate-400"
@@ -371,13 +371,13 @@ export const Navbar: React.FC = () => {
                 title="Explore 5 Academic Role Portals"
                 aria-expanded={portalDropdownOpen}
               >
-                <Layers className={`w-4 h-4 transition-colors ${portalDropdownOpen ? "text-cyan-300" : "text-[#004e70]"}`} />
-                <span className="font-bold">Portals</span>
-                <span className="inline-flex px-2 py-0.5 text-[11px] font-extrabold rounded-full bg-cyan-100 text-[#004e70]">
+                <Layers className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors ${portalDropdownOpen ? "text-cyan-300" : "text-[#004e70]"}`} />
+                <span className="hidden sm:inline font-bold">Portals</span>
+                <span className="inline-flex px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] font-extrabold rounded-full bg-cyan-100 text-[#004e70]">
                   5
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${
+                  className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 ${
                     portalDropdownOpen ? "rotate-180 text-cyan-300" : "text-slate-400"
                   }`}
                 />
@@ -559,7 +559,7 @@ export const Navbar: React.FC = () => {
               </div>
             ) : (
               /* Two Buttons: Create Account & Sign In with Large Capsule Design */
-              <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex items-center gap-1.5 sm:gap-3">
                 <Link
                   href="/login?mode=register"
                   className="hidden sm:inline-flex items-center justify-center px-4.5 py-2.5 sm:px-5.5 sm:py-3 text-xs sm:text-sm font-bold text-slate-800 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 rounded-full transition-all shadow-xs whitespace-nowrap"
@@ -568,7 +568,7 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link
                   href="/login?mode=login"
-                  className="inline-flex items-center justify-center px-5 py-2.5 sm:px-6.5 sm:py-3 text-xs sm:text-sm font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-full transition-all shadow-xs hover:shadow-md whitespace-nowrap"
+                  className="inline-flex items-center justify-center px-3.5 py-1.5 sm:px-6.5 sm:py-3 text-xs sm:text-sm font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-full transition-all shadow-xs hover:shadow-md whitespace-nowrap"
                 >
                   Sign In
                 </Link>
@@ -578,19 +578,19 @@ export const Navbar: React.FC = () => {
             {/* Mobile Search Button (< lg screens) */}
             <Link
               href="/search"
-              className="lg:hidden p-2.5 text-slate-600 hover:text-navy-950 rounded-full hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 text-slate-600 hover:text-navy-950 rounded-full hover:bg-slate-100 transition-colors"
               title="Search"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
             </Link>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2.5 text-slate-700 hover:text-navy-950 rounded-full hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 text-slate-700 hover:text-navy-950 rounded-full hover:bg-slate-100 transition-colors"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
         </div>

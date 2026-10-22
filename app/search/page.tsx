@@ -97,7 +97,7 @@ function SearchContent() {
 
             {/* Mode Tabs */}
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1 text-xs">
-              <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg">
+              <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg overflow-x-auto max-w-full">
                 {[
                   { id: "all", label: "Unified Discovery" },
                   { id: "semantic", label: "Semantic Search" },
@@ -108,7 +108,7 @@ function SearchContent() {
                     key={tab.id}
                     type="button"
                     onClick={() => setSearchMode(tab.id as any)}
-                    className={`px-3 py-1 rounded-md font-semibold transition-colors flex items-center gap-1 ${
+                    className={`px-3 py-1.5 rounded-md font-semibold transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 ${
                       searchMode === tab.id
                         ? "bg-white text-navy-950 shadow-sm"
                         : "text-slate-600 hover:text-navy-950"

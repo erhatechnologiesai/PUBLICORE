@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -48,7 +48,7 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Global Platform KPIs */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {[
             { label: "Registered Scholars", value: metrics?.activeResearchers?.toLocaleString() || "42,350", icon: Users },
             { label: "Active Journals", value: metrics?.peerReviewedJournals || "42", icon: BookOpen },

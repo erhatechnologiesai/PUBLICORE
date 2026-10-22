@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -39,7 +39,7 @@ export default function ReviewerDashboardPage() {
         </div>
 
         {/* 4 Cards: Pending Invitations, Active Reviews, Completed Reviews, Upcoming Deadlines */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {[
             { label: "Pending Invitations", value: "1", icon: Clock, note: "Response needed in 48h", highlight: true },
             { label: "Active Reviews", value: "2", icon: FileText, note: "1 due next week" },
