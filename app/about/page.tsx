@@ -1,23 +1,10 @@
-﻿"use client";
+"use client";
 
 import React from "react";
-import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
-import { BrandLogo } from "@/components/BrandLogo";
-import {
-  Sparkles,
-  ShieldCheck,
-  Compass,
-  Cpu,
-  BookOpen,
-  ArrowRight,
-  CheckCircle2,
-  Lock,
-} from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -36,22 +23,52 @@ export default function AboutPage() {
         </div>
 
         {/* The 6 Pillars Diagram Matrix */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {[
-            { title: "Academic Publishing", desc: "Flagship journals spanning foundational computation, biomedicine, physics, and materials.", icon: BookOpen },
-            { title: "Digital Research Library", desc: "Semantic HTML-first reader with vector figures, LaTeX math, and instant citations.", icon: Compass },
-            { title: "AI Research Assistant", desc: "Query papers, extract methodologies, cross-examine baselines, and surface contradictions.", icon: Sparkles },
-            { title: "AI Editorial Workflow", desc: "Intake screening, reference verification, and reviewer expertise matching.", icon: Cpu },
-            { title: "Discovery Engine", desc: "Semantic search across 148,000+ papers linking multi-modal knowledge entities.", icon: Compass },
-            { title: "Research Analytics", desc: "Altmetrics, field citation ratios, and emerging research gap identification.", icon: ShieldCheck },
+            {
+              title: "Academic Publishing",
+              desc: "Flagship journals spanning foundational computation, biomedicine, physics, and materials.",
+            },
+            {
+              title: "Digital Research Library",
+              desc: "Semantic HTML-first reader with vector figures, LaTeX math, and instant citations.",
+            },
+            {
+              title: "AI Research Assistant",
+              desc: "Query papers, extract methodologies, cross-examine baselines, and surface contradictions.",
+            },
+            {
+              title: "AI Editorial Workflow",
+              desc: "Intake screening, reference verification, and reviewer expertise matching.",
+            },
+            {
+              title: "Discovery Engine",
+              desc: "Semantic search across 148,000+ papers linking multi-modal knowledge entities.",
+            },
+            {
+              title: "Research Analytics",
+              desc: "Altmetrics, field citation ratios, and emerging research gap identification.",
+            },
           ].map((item, idx) => (
-            <Card key={idx} className="p-6 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center text-cyan-700">
-                <item.icon className="w-5 h-5" />
+            <div
+              key={idx}
+              className="group relative bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-7 space-y-3 shadow-[0_2px_12px_-4px_rgba(15,30,60,0.06)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.14)] hover:border-cyan-500/40 hover:-translate-y-1.5 transition-all duration-300 ease-out overflow-hidden"
+            >
+              {/* Premium Top Gradient Accent Bar on Hover */}
+              <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-cyan-600 via-[#004e70] to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              {/* Subtle Ambient Sheen on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-b from-cyan-50/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+              <div className="relative z-10 space-y-2.5">
+                <h3 className="text-base sm:text-lg font-bold text-navy-950 group-hover:text-[#004e70] transition-colors duration-200 tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-200">
+                  {item.desc}
+                </p>
               </div>
-              <h3 className="text-base font-bold text-navy-950">{item.title}</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
-            </Card>
+            </div>
           ))}
         </div>
 
