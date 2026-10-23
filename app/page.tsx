@@ -290,7 +290,7 @@ Archived by PUBLICORE Scholarly Infrastructure`;
                   size="lg"
                   className="w-full sm:w-auto shadow-2xl shadow-cyan-950/60 font-bold justify-center bg-gradient-to-r from-cyan-600 via-[#177994] to-cyan-700 hover:from-cyan-500 hover:to-teal-600 text-white border border-cyan-400/30 px-7 sm:px-8 py-3.5 text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
-                  Submit Research
+                  Submit Manuscript
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
