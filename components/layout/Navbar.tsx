@@ -384,24 +384,19 @@ export const Navbar: React.FC = () => {
               </button>
 
               {portalDropdownOpen && (
-                <div className="absolute right-0 sm:right-auto sm:left-0 mt-3 w-80 sm:w-92 bg-[#07111E]/92 backdrop-blur-2xl rounded-2xl border border-cyan-400/35 p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.75),0_0_25px_rgba(8,145,178,0.25)] ring-1 ring-white/10 z-50 animate-in fade-in-95 slide-in-from-top-2 text-left">
-                  <div className="px-2.5 pb-3 pt-1 border-b border-white/10 flex items-center justify-between">
-                    <div>
-                      <p className="text-[11.5px] font-black text-white uppercase tracking-wider flex items-center gap-1.5">
-                        <Layers className="w-4 h-4 text-cyan-400" /> Role Workspaces (5)
-                      </p>
-                      <p className="text-[10.5px] text-slate-300 mt-0.5">
-                        Direct access to double-blind publishing desks
-                      </p>
-                    </div>
+                <div className="absolute right-0 sm:right-auto sm:left-0 mt-3 w-64 sm:w-72 bg-[#060D17] sm:bg-[#060D17]/98 backdrop-blur-3xl rounded-2xl border border-cyan-400/40 p-2 shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(8,145,178,0.3)] ring-1 ring-white/15 z-50 animate-in fade-in-95 slide-in-from-top-2 text-left">
+                  <div className="px-3 py-2 border-b border-white/10 flex items-center justify-between">
+                    <p className="text-xs font-black text-white uppercase tracking-wider flex items-center gap-2">
+                      <Layers className="w-4 h-4 text-cyan-400" /> Portals
+                    </p>
                     {currentUser?.role && (
-                      <span className="text-[9.5px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-400/40 shadow-xs">
+                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-400/50 shadow-xs">
                         {currentUser.role.toUpperCase()}
                       </span>
                     )}
                   </div>
 
-                  <div className="py-2.5 space-y-1.5">
+                  <div className="py-1.5 space-y-1">
                     {rolePortals.map((portal) => {
                       const Icon = portal.icon;
                       const isActive = currentUser?.role === portal.role;
@@ -410,43 +405,29 @@ export const Navbar: React.FC = () => {
                           key={portal.role}
                           type="button"
                           onClick={() => handleRoleSwitch(portal.role)}
-                          className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between gap-2.5 transition-all duration-150 group cursor-pointer ${
+                          className={`w-full text-left px-3 py-2.5 rounded-xl flex items-center justify-between gap-3 transition-all duration-150 group cursor-pointer ${
                             isActive
-                              ? "bg-gradient-to-r from-cyan-950/90 via-[#0B1A2C] to-[#07111E] text-white font-bold border border-cyan-400/60 shadow-md ring-1 ring-cyan-400/20"
-                              : "text-white hover:bg-white/10 border border-transparent hover:border-cyan-400/25"
+                              ? "bg-gradient-to-r from-cyan-950 via-[#0B1A2C] to-[#07111E] text-white font-bold border border-cyan-400/60 shadow-md ring-1 ring-cyan-400/30"
+                              : "text-white hover:bg-white/10 border border-transparent hover:border-cyan-400/30"
                           }`}
                         >
                           <div className="flex items-center gap-3 min-w-0">
                             <div
-                              className={`w-8.5 h-8.5 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${
+                              className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${
                                 isActive
-                                  ? "bg-gradient-to-tr from-cyan-600 to-teal-400 text-white shadow-sm"
+                                  ? "bg-gradient-to-tr from-cyan-500 to-teal-400 text-white shadow-sm"
                                   : "bg-white/10 text-cyan-300 group-hover:bg-cyan-500 group-hover:text-white"
                               }`}
                             >
                               <Icon className="w-4 h-4" />
                             </div>
-                            <div className="min-w-0">
-                              <div className="flex items-center gap-2">
-                                <p className="text-xs font-bold text-white group-hover:text-cyan-200 transition-colors truncate">
-                                  {portal.title}
-                                </p>
-                                <span className={`text-[8.5px] font-semibold px-1.5 py-0.5 rounded ${
-                                  isActive
-                                    ? "bg-cyan-900/60 text-cyan-200 border border-cyan-400/30"
-                                    : "bg-white/10 text-slate-300 border border-white/10"
-                                }`}>
-                                  {portal.badge}
-                                </span>
-                              </div>
-                              <p className="text-[10.5px] text-slate-300 group-hover:text-slate-200 transition-colors truncate mt-0.5">
-                                {portal.description}
-                              </p>
-                            </div>
+                            <span className="text-sm font-bold text-white group-hover:text-cyan-200 transition-colors truncate">
+                              {portal.title}
+                            </span>
                           </div>
 
                           {isActive ? (
-                            <span className="shrink-0 text-[8.5px] bg-emerald-500 text-white font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                            <span className="shrink-0 text-[9px] bg-emerald-500 text-white font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
                               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                               ACTIVE
                             </span>
@@ -456,17 +437,6 @@ export const Navbar: React.FC = () => {
                         </button>
                       );
                     })}
-                  </div>
-
-                  <div className="pt-2.5 border-t border-white/10 px-2.5 flex items-center justify-between text-[10.5px] text-slate-300">
-                    <span>COPE & Double-blind standards</span>
-                    <Link
-                      href="/about"
-                      onClick={() => setPortalDropdownOpen(false)}
-                      className="text-cyan-300 hover:text-cyan-200 hover:underline font-semibold flex items-center gap-1"
-                    >
-                      Workflow Guide →
-                    </Link>
                   </div>
                 </div>
               )}
@@ -813,7 +783,6 @@ export const Navbar: React.FC = () => {
                         </div>
                         <div className="min-w-0">
                           <p className="text-xs font-bold truncate">{portal.title}</p>
-                          <p className="text-[10px] text-slate-400 truncate">{portal.description}</p>
                         </div>
                       </div>
                       {isActive ? (
