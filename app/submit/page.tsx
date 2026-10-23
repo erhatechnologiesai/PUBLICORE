@@ -2459,53 +2459,43 @@ export default function SubmitResearchPage() {
             )}
 
             {/* Bottom Step Navigation Bar */}
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200">
+            <div className="mt-8 flex items-center justify-between gap-3 pt-5 border-t border-slate-200">
               <Button
                 type="button"
                 variant="outline"
-                size="sm"
                 onClick={handleBack}
                 disabled={currentStep === 1 || isSubmitting}
-                className="text-xs"
+                className="h-10 sm:h-11 px-4 sm:px-5 text-xs sm:text-sm font-semibold rounded-xl border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-all duration-200 active:scale-[0.98] disabled:opacity-40"
               >
-                <ArrowLeft className="w-3.5 h-3.5 mr-1" /> Back
+                <ArrowLeft className="w-4 h-4 mr-1.5" /> Back
               </Button>
 
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-slate-500 hidden sm:inline">
-                  Step {currentStep} of {PROGRESS_STEPS.length}
-                </span>
-
-                {currentStep < 11 ? (
-                  <Button
-                    type="button"
-                    size="sm"
-                    onClick={handleNext}
-                    className="bg-[#004e70] hover:bg-[#003c57] text-white text-xs px-5 shadow-2xs"
-                  >
-                    <span>Save & Continue to {PROGRESS_STEPS[currentStep]?.label}</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                  </Button>
-                ) : (
-                  <Button
-                    type="button"
-                    size="sm"
-                    onClick={handleSubmitManuscript}
-                    disabled={isSubmitting}
-                    className="bg-emerald-700 hover:bg-emerald-800 text-white text-xs px-6 font-bold shadow-md"
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center gap-2">
-                        <RefreshCw className="w-3.5 h-3.5 animate-spin" /> Submitting Manuscript...
-                      </span>
-                    ) : (
-                      <span className="flex items-center gap-2">
-                        <Send className="w-3.5 h-3.5" /> Submit Manuscript
-                      </span>
-                    )}
-                  </Button>
-                )}
-              </div>
+              {currentStep < 11 ? (
+                <Button
+                  type="button"
+                  onClick={handleNext}
+                  className="bg-[#004e70] hover:bg-[#003c57] text-white text-xs sm:text-sm font-semibold h-10 sm:h-11 px-6 sm:px-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#004e70]/30"
+                >
+                  <span>Save and Continue</span>
+                </Button>
+              ) : (
+                <Button
+                  type="button"
+                  onClick={handleSubmitManuscript}
+                  disabled={isSubmitting}
+                  className="bg-emerald-700 hover:bg-emerald-800 text-white text-xs sm:text-sm font-bold h-10 sm:h-11 px-6 sm:px-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-emerald-700/30"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <RefreshCw className="w-4 h-4 animate-spin" /> Submitting Manuscript...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      <Send className="w-4 h-4" /> Submit Manuscript
+                    </span>
+                  )}
+                </Button>
+              )}
             </div>
           </div>
         </div>
