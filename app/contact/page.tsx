@@ -642,34 +642,50 @@ export default function ContactPage() {
           {/* ================= RIGHT COLUMN: DEPARTMENT DIRECTORY ================= */}
           <div className="lg:col-span-5 space-y-6">
             {/* Headquarters Card */}
-            <Card className="p-6 sm:p-7 bg-gradient-to-br from-white via-[#f8fbfe] to-[#edf7fa] border border-cyan-100/80 shadow-[0_8px_30px_-6px_rgba(0,78,112,0.08),0_2px_8px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.14)] hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-4">
-              <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-50 to-cyan-100/80 text-[#004e70] flex items-center justify-center font-bold shadow-2xs border border-cyan-200/60">
-                  <Building2 className="w-5 h-5" />
+            <Card className="p-6 sm:p-7 bg-gradient-to-br from-white via-[#f8fbfe] to-[#edf7fa] border border-cyan-100/80 shadow-[0_8px_30px_-6px_rgba(0,78,112,0.08),0_2px_8px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.14)] hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-5">
+              <div className="flex items-center gap-4 pb-4 border-b border-cyan-100/80">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-100 to-cyan-50 text-[#004e70] flex items-center justify-center font-bold shadow-2xs border border-cyan-200/80 shrink-0">
+                  <Building2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-navy-950">Global Secretariat</h3>
+                  <h3 className="text-lg sm:text-xl font-extrabold text-navy-950 tracking-tight">
+                    Global Secretariat
+                  </h3>
                 </div>
               </div>
 
-              <div className="space-y-3 text-xs text-slate-600">
-                <p className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
-                  <span>
+              <div className="space-y-3.5 text-xs text-slate-700">
+                <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white/85 border border-slate-200/70 hover:border-cyan-400 hover:shadow-xs transition-all duration-200">
+                  <div className="w-8 h-8 rounded-xl bg-cyan-50/90 text-cyan-800 flex items-center justify-center shrink-0 mt-0.5">
+                    <MapPin className="w-4 h-4 text-cyan-700" />
+                  </div>
+                  <div className="leading-relaxed font-medium">
                     124 Research Nexus Way, Cambridge Innovation Quad<br />
                     Cambridge CB2 1TN, United Kingdom
-                  </span>
-                </p>
-                <p className="flex items-center gap-2.5">
-                  <Mail className="w-4 h-4 text-cyan-700 shrink-0" />
-                  <a href="mailto:secretariat@publicore.org" className="hover:text-cyan-800 hover:underline font-medium">
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white/85 border border-slate-200/70 hover:border-cyan-400 hover:shadow-xs transition-all duration-200">
+                  <div className="w-8 h-8 rounded-xl bg-cyan-50/90 text-cyan-800 flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4 text-cyan-700" />
+                  </div>
+                  <a
+                    href="mailto:secretariat@publicore.org"
+                    className="font-semibold text-[#004e70] hover:text-cyan-800 hover:underline transition-colors"
+                  >
                     secretariat@publicore.org
                   </a>
-                </p>
-                <p className="flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-cyan-700 shrink-0" />
-                  <span>+44 (0) 1223 884920 (Mon - Fri, 08:00 - 18:00 GMT)</span>
-                </p>
+                </div>
+
+                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white/85 border border-slate-200/70 hover:border-cyan-400 hover:shadow-xs transition-all duration-200">
+                  <div className="w-8 h-8 rounded-xl bg-cyan-50/90 text-cyan-800 flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4 text-cyan-700" />
+                  </div>
+                  <div className="font-medium">
+                    <span>+44 (0) 1223 884920</span>
+                    <span className="text-slate-400 ml-1.5">(Mon - Fri, 08:00 - 18:00 GMT)</span>
+                  </div>
+                </div>
               </div>
             </Card>
 
