@@ -769,15 +769,7 @@ export default function SubmitResearchPage() {
         {/* Top Header */}
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-800 bg-cyan-100/70 px-2.5 py-0.5 rounded-full">
-                Research Exchange Submission Portal
-              </span>
-              <span className="text-xs font-semibold text-slate-500 hidden sm:inline">
-                &bull; Scholarly Intake Standard
-              </span>
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-navy-950 tracking-tight mt-1">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-navy-950 tracking-tight">
               Submit Scholarly Manuscript
             </h1>
           </div>
@@ -953,7 +945,7 @@ export default function SubmitResearchPage() {
                 {/* Article Type Selector */}
                 <div className="space-y-2.5">
                   <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                    Manuscript Article Type <span className="text-red-500">*</span>
+                    Manuscript Article Type
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                     {[
@@ -1000,7 +992,7 @@ export default function SubmitResearchPage() {
                 {/* Journal Target Track */}
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                    Target Journal Series <span className="text-red-500">*</span>
+                    Target Journal Series
                   </label>
                   <select
                     value={selectedJournal}
@@ -1045,14 +1037,9 @@ export default function SubmitResearchPage() {
             {currentStep === 2 && (
               <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs p-6 sm:p-8 space-y-8">
                 <div>
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <h2 className="text-xl sm:text-2xl font-extrabold text-navy-950">
-                      Step 2: Upload Manuscript & Files
-                    </h2>
-                    <span className="text-[10px] font-bold text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded">
-                      * Main Document & Supplementary Files Compulsory
-                    </span>
-                  </div>
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-navy-950">
+                    Step 2: Upload Manuscript & Files
+                  </h2>
                   <p className="text-xs sm:text-sm text-slate-500 mt-1">
                     Upload your manuscript documents, configure file designations, and verify checksum scan authenticity.
                   </p>
@@ -1091,7 +1078,7 @@ export default function SubmitResearchPage() {
                 {/* Binary Uploader Component */}
                 <div className="space-y-3">
                   <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                    Upload Primary Document <span className="text-red-500">*</span>
+                    Upload Primary Document
                   </span>
                   <ManuscriptFileUploader
                     onUploadComplete={handleFileUpload}
@@ -1116,10 +1103,6 @@ export default function SubmitResearchPage() {
                         Assign designations and arrange sequence order for peer review
                       </p>
                     </div>
-
-                    <span className="text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded text-[10px] font-bold flex items-center gap-1 border border-emerald-200 w-fit">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Clean Scan (0 Threats)
-                    </span>
                   </div>
 
                   {/* Quick Action Input */}
@@ -1227,7 +1210,7 @@ export default function SubmitResearchPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="text-xs font-bold text-navy-950 uppercase tracking-wider">
-                        Compulsory Supplementary Files ({supplementaryFiles.length})
+                        Supplementary Files ({supplementaryFiles.length})
                       </h4>
                       <p className="text-[11px] text-slate-500">
                         At least 1 supporting dataset or document required for reproducibility
@@ -1342,7 +1325,7 @@ export default function SubmitResearchPage() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                      Full Manuscript Title <span className="text-red-500">*</span>
+                      Full Manuscript Title
                     </label>
                     <div className="flex items-center gap-2">
                       <button
@@ -1395,10 +1378,6 @@ export default function SubmitResearchPage() {
                         Characters: <strong className="text-navy-950">{title.length}</strong>
                       </span>
                     </div>
-
-                    <span className="text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full font-bold text-[11px] border border-emerald-200 flex items-center gap-1">
-                      <Sparkles className="w-3 h-3 text-emerald-600" /> SEO Clarity Score: 96/100
-                    </span>
                   </div>
 
                   {stepErrors.title && (
@@ -1426,7 +1405,7 @@ export default function SubmitResearchPage() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                      Abstract Text <span className="text-red-500">*</span>
+                      Abstract Text
                     </label>
                     <span className="text-xs font-mono font-bold text-slate-500">
                       Word Count: {abstract.trim() ? abstract.trim().split(/\s+/).length : 0} / 250 words
@@ -1477,7 +1456,7 @@ export default function SubmitResearchPage() {
                 {/* Keywords Chips */}
                 <div className="space-y-2 pt-2">
                   <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                    Keywords & Index Terms <span className="text-red-500">*</span>
+                    Keywords & Index Terms
                   </label>
 
                   <div className="flex flex-wrap items-center gap-1.5 p-3 rounded-xl border border-slate-200 bg-slate-50/70 min-h-[50px]">
@@ -1637,7 +1616,7 @@ export default function SubmitResearchPage() {
                     <form onSubmit={handleAddAuthor} className="space-y-3 text-xs">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                          <label className="text-[11px] font-bold text-slate-700 block mb-1">First Name *</label>
+                          <label className="text-[11px] font-bold text-slate-700 block mb-1">First Name</label>
                           <input
                             type="text"
                             value={newAuthorFirst}
@@ -1648,7 +1627,7 @@ export default function SubmitResearchPage() {
                           />
                         </div>
                         <div>
-                          <label className="text-[11px] font-bold text-slate-700 block mb-1">Last Name *</label>
+                          <label className="text-[11px] font-bold text-slate-700 block mb-1">Last Name</label>
                           <input
                             type="text"
                             value={newAuthorLast}
@@ -1661,7 +1640,7 @@ export default function SubmitResearchPage() {
                       </div>
 
                       <div>
-                        <label className="text-[11px] font-bold text-slate-700 block mb-1">Institutional Email *</label>
+                        <label className="text-[11px] font-bold text-slate-700 block mb-1">Institutional Email</label>
                         <input
                           type="email"
                           value={newAuthorEmail}
@@ -1796,7 +1775,7 @@ export default function SubmitResearchPage() {
                     <form onSubmit={handleAddAffiliation} className="space-y-3 text-xs">
                       <div>
                         <label className="text-[11px] font-bold text-slate-700 block mb-1">
-                          Institution / University Name *
+                          Institution / University Name
                         </label>
                         <input
                           type="text"
@@ -1822,7 +1801,7 @@ export default function SubmitResearchPage() {
                           />
                         </div>
                         <div>
-                          <label className="text-[11px] font-bold text-slate-700 block mb-1">City *</label>
+                          <label className="text-[11px] font-bold text-slate-700 block mb-1">City</label>
                           <input
                             type="text"
                             value={newAffCity}
@@ -1846,7 +1825,7 @@ export default function SubmitResearchPage() {
                           />
                         </div>
                         <div>
-                          <label className="text-[11px] font-bold text-slate-700 block mb-1">Country *</label>
+                          <label className="text-[11px] font-bold text-slate-700 block mb-1">Country</label>
                           <input
                             type="text"
                             value={newAffCountry}
@@ -2217,17 +2196,14 @@ export default function SubmitResearchPage() {
                   <div className="flex items-center justify-between pb-1">
                     <span className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
                       <DollarSign className="w-4 h-4 text-cyan-700" />
-                      Research Funding & Grant Information <span className="text-red-500">*</span>
-                    </span>
-                    <span className="text-[10px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-200">
-                      * Compulsory
+                      Research Funding & Grant Information
                     </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                     <div>
                       <label className="text-[11px] font-bold text-slate-700 block mb-1">
-                        Funding Agency / Grant Body *
+                        Funding Agency / Grant Body
                       </label>
                       <input
                         type="text"
@@ -2239,7 +2215,7 @@ export default function SubmitResearchPage() {
                     </div>
                     <div>
                       <label className="text-[11px] font-bold text-slate-700 block mb-1">
-                        Grant / Award ID *
+                        Grant / Award ID
                       </label>
                       <input
                         type="text"
@@ -2253,7 +2229,7 @@ export default function SubmitResearchPage() {
 
                   <div>
                     <label className="text-[11px] font-bold text-slate-700 block mb-1">
-                      Funding & Competing Interest Statement *
+                      Funding & Competing Interest Statement
                     </label>
                     <textarea
                       rows={2}
@@ -2270,10 +2246,7 @@ export default function SubmitResearchPage() {
                   <div className="flex items-center justify-between pb-1">
                     <span className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
                       <Database className="w-4 h-4 text-cyan-700" />
-                      Data Availability & Public Repository Link <span className="text-red-500">*</span>
-                    </span>
-                    <span className="text-[10px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-200">
-                      * Compulsory (Live Validated)
+                      Data Availability & Public Repository Link
                     </span>
                   </div>
 
@@ -2317,7 +2290,7 @@ export default function SubmitResearchPage() {
                 <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                      Cover Letter & Editorial Statement <span className="text-red-500">*</span>
+                      Cover Letter & Editorial Statement
                     </span>
                     <span className="text-xs font-mono text-slate-500">
                       {rebuttalLetter.trim().length} chars (min 20)
