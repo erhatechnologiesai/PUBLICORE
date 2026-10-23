@@ -253,7 +253,7 @@ export default function ContactPage() {
 
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full text-left">
         {/* Header Hero */}
-        <div className="mb-8 sm:mb-10 text-left">
+        <div className="mb-10 sm:mb-12 text-center">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-950 tracking-tight">
             Contact Us
           </h1>
@@ -264,7 +264,7 @@ export default function ContactPage() {
           {/* ================= LEFT COLUMN: DEPARTMENT DIRECTORY ================= */}
           <div className="lg:col-span-5 space-y-6">
             {/* Headquarters Card */}
-            <Card className="p-6 bg-white border-slate-200 shadow-xs rounded-2xl space-y-4">
+            <Card className="p-6 sm:p-7 bg-white border border-slate-200/80 shadow-[0_2px_12px_-4px_rgba(15,30,60,0.06)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.12)] hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-4">
               <div className="flex items-center gap-2.5 pb-3 border-b border-slate-100">
                 <div className="w-9 h-9 rounded-xl bg-cyan-50 text-[#004e70] flex items-center justify-center font-bold">
                   <Building2 className="w-5 h-5" />
@@ -297,13 +297,13 @@ export default function ContactPage() {
             </Card>
 
             {/* Department Direct Routing Cards */}
-            <Card className="p-6 bg-white border-slate-200 shadow-xs rounded-2xl space-y-4">
+            <Card className="p-6 sm:p-7 bg-white border border-slate-200/80 shadow-[0_2px_12px_-4px_rgba(15,30,60,0.06)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.12)] hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-4">
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Direct Department Desks
               </h3>
 
               <div className="space-y-3 text-xs">
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-cyan-300 transition-colors">
+                <div className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200/70 hover:bg-white hover:border-cyan-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-navy-950">Editorial &amp; Review Operations</span>
                     <Badge variant="teal" size="sm">24h SLA</Badge>
@@ -312,7 +312,7 @@ export default function ContactPage() {
                   <p className="font-mono text-[11px] text-[#004e70] font-semibold mt-1">editorial.desk@publicore.org</p>
                 </div>
 
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-cyan-300 transition-colors">
+                <div className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200/70 hover:bg-white hover:border-cyan-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-navy-950">Production, JATS &amp; Crossref DOI</span>
                     <Badge variant="outline" size="sm">Technical</Badge>
@@ -321,7 +321,7 @@ export default function ContactPage() {
                   <p className="font-mono text-[11px] text-[#004e70] font-semibold mt-1">production@publicore.org</p>
                 </div>
 
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-cyan-300 transition-colors">
+                <div className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200/70 hover:bg-white hover:border-cyan-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-navy-950">Billing, Stripe APC &amp; Waivers</span>
                     <Badge variant="amber" size="sm">Finance</Badge>
@@ -333,18 +333,18 @@ export default function ContactPage() {
             </Card>
 
             {/* Quick Accordion FAQs */}
-            <Card className="p-6 bg-white border-slate-200 shadow-xs rounded-2xl space-y-3">
+            <Card className="p-6 sm:p-7 bg-white border border-slate-200/80 shadow-[0_2px_12px_-4px_rgba(15,30,60,0.06)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.12)] hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-3">
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Frequently Asked Inquiries
               </h3>
 
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {faqs.map((faq, i) => (
-                  <div key={i} className="border border-slate-200/70 rounded-xl overflow-hidden">
+                  <div key={i} className="border border-slate-200/80 rounded-2xl overflow-hidden hover:border-cyan-400/60 transition-all duration-200">
                     <button
                       type="button"
                       onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                      className="w-full text-left p-3 text-xs font-bold text-navy-950 flex items-center justify-between gap-2 hover:bg-slate-50 transition-colors"
+                      className="w-full text-left p-3.5 text-xs font-bold text-navy-950 flex items-center justify-between gap-2 hover:bg-slate-50 transition-colors"
                     >
                       <span>{faq.q}</span>
                       <ChevronDown
@@ -354,7 +354,7 @@ export default function ContactPage() {
                       />
                     </button>
                     {activeFaq === i && (
-                      <div className="p-3 pt-0 text-[11px] text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
+                      <div className="p-3.5 pt-0 text-[11px] text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
                         {faq.a}
                       </div>
                     )}
@@ -366,7 +366,7 @@ export default function ContactPage() {
 
           {/* ================= RIGHT COLUMN: DYNAMIC CONTACT FORM ================= */}
           <div className="lg:col-span-7">
-            <Card className="p-6 sm:p-8 bg-white border-slate-200 shadow-md rounded-2xl space-y-6">
+            <Card className="p-6 sm:p-8 bg-white border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,30,60,0.08)] hover:shadow-[0_16px_40px_-8px_rgba(0,78,112,0.12)] hover:border-cyan-500/30 transition-all duration-300 ease-out rounded-3xl space-y-6">
               {/* Dynamic View 1: Submission Result Display */}
               {submissionResult ? (
                 <div className="space-y-6 py-2 animate-fadeIn text-left">
