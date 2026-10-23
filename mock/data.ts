@@ -934,6 +934,74 @@ export const MOCK_CONFERENCES: Conference[] = [
     ],
     callForPapersUrl: "/conferences/qcomp-2026/cfp",
   },
+  {
+    id: "conf-003",
+    slug: "biomedcon-2027",
+    title: "World Congress on Biomedical Engineering & Translational Nanomedicine",
+    acronym: "BioMedCon 2027",
+    year: 2027,
+    dateRange: "January 18–22, 2027",
+    location: "Boston Convention & Exhibition Center, USA",
+    isVirtual: false,
+    status: "Upcoming",
+    description:
+      "International forum bringing together bioengineers, clinical oncologists, and computational drug discovery specialists developing targeted nanomedicine.",
+    topics: [
+      "Nanomedicine Formulation",
+      "CRISPR Therapeutics Delivery",
+      "Synthetic Biology Platforms",
+      "Bioimpedance Spectroscopy",
+    ],
+    importantDates: {
+      submissionDeadline: "October 15, 2026",
+      notificationDate: "November 20, 2026",
+      cameraReady: "December 10, 2026",
+      conferenceDates: "January 18–22, 2027",
+    },
+    keynoteSpeakers: [
+      {
+        name: "Dr. Jin-Woo Park",
+        affiliation: "KAIST",
+        topic: "Nanoscale Targeted Drug Delivery",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      },
+    ],
+    callForPapersUrl: "/conferences/biomedcon-2027/cfp",
+  },
+  {
+    id: "conf-004",
+    slug: "icse-2027",
+    title: "International Symposium on Sustainable Energy & Photovoltaic Materials",
+    acronym: "ICSE 2027",
+    year: 2027,
+    dateRange: "February 08–12, 2027",
+    location: "Marina Bay Sands Expo, Singapore & Hybrid",
+    isVirtual: false,
+    status: "Upcoming",
+    description:
+      "Global convergence on next-generation perovskite photovoltaics, solid-state electrolyte batteries, and scalable grid decarbonization.",
+    topics: [
+      "Perovskite Solar Cells",
+      "Solid-State Electrolytes",
+      "Green Hydrogen Catalysis",
+      "Grid Integration",
+    ],
+    importantDates: {
+      submissionDeadline: "November 01, 2026",
+      notificationDate: "December 15, 2026",
+      cameraReady: "January 10, 2027",
+      conferenceDates: "February 08–12, 2027",
+    },
+    keynoteSpeakers: [
+      {
+        name: "Prof. Marcus Vance",
+        affiliation: "Oxford Energy Institute",
+        topic: "Sub-Zero Electrolyte Conductivity",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      },
+    ],
+    callForPapersUrl: "/conferences/icse-2027/cfp",
+  },
 ];
 
 export const MOCK_COMMUNITIES: Community[] = [

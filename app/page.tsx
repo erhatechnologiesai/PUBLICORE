@@ -732,111 +732,191 @@ Archived by PUBLICORE Scholarly Infrastructure`;
         </section>
 
         {/* =========================================================
-            SECTION 4: ACADEMIC JOURNALS & UPCOMING CONFERENCES
+            SECTION 4: ACADEMIC JOURNALS & UPCOMING CONFERENCES (ALIGNED & RESPONSIVE)
         ========================================================= */}
-        <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            
-            {/* Featured Academic Journals */}
-            <div className="space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200/80">
-                <div>
-                  <span className="text-xs font-bold text-cyan-700 uppercase tracking-widest">
-                    Periodicals
-                  </span>
-                  <h3 className="text-xl font-bold text-navy-900 tracking-tight mt-0.5">
-                    Featured Academic Journals
-                  </h3>
-                </div>
-                <Link href="/journals" className="text-xs font-semibold text-cyan-700 hover:text-cyan-800 flex items-center gap-1">
-                  All Journals <ChevronRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
+        <section className="relative py-16 sm:py-20 bg-gradient-to-b from-white via-slate-50/50 to-white border-b border-slate-200/70 text-left overflow-hidden">
+          {/* Subtle Ambient Decorative Accents */}
+          <div className="absolute top-10 left-10 w-96 h-96 bg-cyan-100/25 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-100/20 rounded-full blur-3xl pointer-events-none" />
 
-              <div className="space-y-3">
-                {journals.slice(0, 4).map((journal) => (
-                  <div
-                    key={journal.id}
-                    className="bg-white p-4.5 rounded-xl border border-slate-200/70 hover:border-slate-300 transition-all flex items-center justify-between gap-4"
-                  >
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="navy" size="sm">
-                          {journal.shortTitle || "OPEN ACCESS"}
-                        </Badge>
-                        <span className="text-[11px] text-slate-500 font-medium">
-                          {journal.subject}
-                        </span>
-                      </div>
-                      <Link href={`/journals/${journal.slug}`}>
-                        <h4 className="text-sm font-bold text-navy-900 hover:text-cyan-700 mt-1 leading-snug">
-                          {journal.title}
-                        </h4>
-                      </Link>
-                      <p className="text-[11px] text-slate-500 mt-0.5">
-                        Impact Factor: <strong className="text-navy-900">{journal.metrics.impactFactor}</strong> • CiteScore: {journal.metrics.citescore}
-                      </p>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+              
+              {/* Featured Academic Journals */}
+              <div className="flex flex-col justify-between space-y-6">
+                {/* Header */}
+                <div className="flex items-center justify-between pb-3.5 border-b border-slate-200/80">
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider text-cyan-800 bg-cyan-50 border border-cyan-200/70">
+                      <BookOpen className="w-3 h-3 text-cyan-600" />
+                      Periodicals
                     </div>
-                    <Link href={`/journals/${journal.slug}`}>
-                      <Button variant="ghost" size="sm">
-                        Explore
-                      </Button>
-                    </Link>
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-navy-950 tracking-tight">
+                      Featured Academic Journals
+                    </h3>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Upcoming Academic Conferences */}
-            <div className="space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200/80">
-                <div>
-                  <span className="text-xs font-bold text-cyan-700 uppercase tracking-widest">
-                    Proceedings & Symposia
-                  </span>
-                  <h3 className="text-xl font-bold text-navy-900 tracking-tight mt-0.5">
-                    Upcoming Conferences
-                  </h3>
-                </div>
-                <Link href="/conferences" className="text-xs font-semibold text-cyan-700 hover:text-cyan-800 flex items-center gap-1">
-                  Full Schedule <ChevronRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-
-              <div className="space-y-3">
-                {conferences.slice(0, 3).map((conf) => (
-                  <div
-                    key={conf.id}
-                    className="bg-white p-4.5 rounded-xl border border-slate-200/70 hover:border-slate-300 transition-all flex items-center justify-between gap-4"
+                  <Link
+                    href="/journals"
+                    className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-cyan-700 hover:text-cyan-800 bg-white hover:bg-cyan-50/80 border border-slate-200/90 hover:border-cyan-300 px-3.5 py-1.5 rounded-xl transition-all duration-200 shadow-2xs group"
                   >
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="navy" size="sm">
-                          {conf.acronym}
-                        </Badge>
-                        <span className="text-[11px] text-slate-500 font-medium flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5 text-cyan-700" /> {conf.dateRange}
-                        </span>
-                      </div>
-                      <Link href={`/conferences/${conf.slug}`}>
-                        <h4 className="text-sm font-bold text-navy-900 hover:text-cyan-700 mt-1 leading-snug">
-                          {conf.title}
-                        </h4>
-                      </Link>
-                      <p className="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5 text-slate-400" /> {conf.location}
-                      </p>
-                    </div>
-                    <Link href={`/conferences/${conf.slug}`}>
-                      <Button variant="outline" size="sm">
-                        CFP Details
-                      </Button>
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
+                    <span>All Journals</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-cyan-600 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+                </div>
 
+                {/* 4 Journal Cards */}
+                <div className="space-y-4">
+                  {journals.slice(0, 4).map((journal) => (
+                    <article
+                      key={journal.id}
+                      className="group relative bg-gradient-to-br from-white via-[#fcfefe] to-[#f4f8fb] p-5 rounded-2xl border border-slate-200/90 hover:border-cyan-400/80 shadow-xs hover:shadow-xl hover:shadow-cyan-950/[0.07] transition-all duration-300 ease-out hover:-translate-y-1 flex flex-col justify-between gap-3 min-h-[148px]"
+                    >
+                      {/* Top Animated Multicolor Accent Glow Line on Hover */}
+                      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-400 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                      <div className="space-y-2">
+                        {/* Meta: Badge + Subject */}
+                        <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+                          <div className="flex items-center gap-2">
+                            <span className="px-2.5 py-0.5 rounded-md text-xs font-mono font-bold text-cyan-950 bg-cyan-50/90 border border-cyan-200/80 shadow-2xs">
+                              {journal.shortTitle || "OA"}
+                            </span>
+                            <span className="text-xs text-slate-500 font-medium truncate max-w-[240px] sm:max-w-[320px]">
+                              {journal.subject}
+                            </span>
+                          </div>
+                          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/80 shadow-2xs">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                            Q1 Tier
+                          </span>
+                        </div>
+
+                        {/* Title */}
+                        <Link href={`/journals/${journal.slug}`} className="block group/title">
+                          <h4 className="text-base font-bold text-navy-950 group-hover/title:text-cyan-700 transition-colors leading-snug tracking-tight">
+                            {journal.title}
+                          </h4>
+                        </Link>
+
+                        {/* Metrics Pills */}
+                        <div className="flex flex-wrap items-center gap-2 text-xs pt-0.5">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-emerald-50/90 border border-emerald-200/70 text-emerald-800 font-bold text-[11px]">
+                            <Sparkles className="w-3 h-3 text-emerald-600" />
+                            IF: {journal.metrics.impactFactor}
+                          </span>
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-cyan-50/90 border border-cyan-200/70 text-cyan-900 font-semibold text-[11px]">
+                            <TrendingUp className="w-3 h-3 text-cyan-600" />
+                            CiteScore: {journal.metrics.citescore}
+                          </span>
+                          <span className="text-[11px] font-medium text-slate-400 hidden sm:inline">
+                            • Peer-Reviewed Open Access
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Footer Actions */}
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <span className="text-[11px] font-medium text-slate-400">
+                          Scopus & Crossref Indexed
+                        </span>
+                        <Link
+                          href={`/journals/${journal.slug}`}
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white hover:bg-cyan-50/90 text-cyan-800 hover:text-cyan-900 border border-slate-200/90 hover:border-cyan-300 text-xs font-bold transition-all duration-200 shadow-2xs group/btn active:scale-95"
+                        >
+                          <span>Explore</span>
+                          <ArrowRight className="w-3.5 h-3.5 text-cyan-600 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                        </Link>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              {/* Upcoming Academic Conferences */}
+              <div className="flex flex-col justify-between space-y-6">
+                {/* Header */}
+                <div className="flex items-center justify-between pb-3.5 border-b border-slate-200/80">
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider text-cyan-800 bg-cyan-50 border border-cyan-200/70">
+                      <Calendar className="w-3 h-3 text-cyan-600" />
+                      Proceedings & Symposia
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-navy-950 tracking-tight">
+                      Upcoming Conferences
+                    </h3>
+                  </div>
+                  <Link
+                    href="/conferences"
+                    className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-cyan-700 hover:text-cyan-800 bg-white hover:bg-cyan-50/80 border border-slate-200/90 hover:border-cyan-300 px-3.5 py-1.5 rounded-xl transition-all duration-200 shadow-2xs group"
+                  >
+                    <span>Full Schedule</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-cyan-600 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+                </div>
+
+                {/* 4 Conference Cards */}
+                <div className="space-y-4">
+                  {conferences.slice(0, 4).map((conf) => (
+                    <article
+                      key={conf.id}
+                      className="group relative bg-gradient-to-br from-white via-[#fcfefe] to-[#f4f8fb] p-5 rounded-2xl border border-slate-200/90 hover:border-cyan-400/80 shadow-xs hover:shadow-xl hover:shadow-cyan-950/[0.07] transition-all duration-300 ease-out hover:-translate-y-1 flex flex-col justify-between gap-3 min-h-[148px]"
+                    >
+                      {/* Top Animated Multicolor Accent Glow Line on Hover */}
+                      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-400 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                      <div className="space-y-2">
+                        {/* Meta: Badge + Date */}
+                        <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+                          <div className="flex items-center gap-2">
+                            <span className="px-2.5 py-0.5 rounded-md text-xs font-mono font-bold text-cyan-950 bg-cyan-50/90 border border-cyan-200/80 shadow-2xs">
+                              {conf.acronym}
+                            </span>
+                            <span className="text-xs text-slate-500 font-medium flex items-center gap-1">
+                              <Calendar className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                              {conf.dateRange}
+                            </span>
+                          </div>
+                          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200/80 shadow-2xs">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                            CFP Active
+                          </span>
+                        </div>
+
+                        {/* Title */}
+                        <Link href={`/conferences/${conf.slug}`} className="block group/title">
+                          <h4 className="text-base font-bold text-navy-950 group-hover/title:text-cyan-700 transition-colors leading-snug tracking-tight">
+                            {conf.title}
+                          </h4>
+                        </Link>
+
+                        {/* Location */}
+                        <div className="flex flex-wrap items-center gap-2 text-xs pt-0.5">
+                          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 truncate max-w-[280px] sm:max-w-[360px]">
+                            <MapPin className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+                            {conf.location}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Footer Actions */}
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <span className="text-[11px] font-medium text-slate-400">
+                          Proceedings published with DOI
+                        </span>
+                        <Link
+                          href={`/conferences/${conf.slug}`}
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-700 to-cyan-800 hover:from-cyan-800 hover:to-cyan-900 text-white text-xs font-bold transition-all duration-200 shadow-2xs group/btn active:scale-95"
+                        >
+                          <span>CFP Details</span>
+                          <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                        </Link>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+            </div>
           </div>
         </section>
 
