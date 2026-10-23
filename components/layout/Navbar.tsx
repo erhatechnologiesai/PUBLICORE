@@ -371,8 +371,7 @@ export const Navbar: React.FC = () => {
                 title="Explore 5 Academic Role Portals"
                 aria-expanded={portalDropdownOpen}
               >
-                <Layers className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors ${portalDropdownOpen ? "text-cyan-300" : "text-[#004e70]"}`} />
-                <span className="hidden sm:inline font-bold">Portals</span>
+                <span className="font-bold">Portals</span>
                 <span className="inline-flex px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] font-extrabold rounded-full bg-cyan-100 text-[#004e70]">
                   5
                 </span>
@@ -738,8 +737,8 @@ export const Navbar: React.FC = () => {
               {/* Role Portals (5) in Mobile Drawer */}
               <div className="mt-5 pt-4 border-t border-slate-100 space-y-1.5">
                 <div className="flex items-center justify-between px-2 pb-1">
-                  <p className="text-[10.5px] font-extrabold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
-                    <Layers className="w-3.5 h-3.5 text-[#004e70]" /> Role Workspaces (5)
+                  <p className="text-[10.5px] font-extrabold text-slate-500 uppercase tracking-wider">
+                    Role Workspaces (5)
                   </p>
                   {currentUser?.role && (
                     <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-50 text-[#004e70] border border-cyan-200">
