@@ -841,7 +841,7 @@ export default function SubmitResearchPage() {
                         ? "bg-[#004e70] text-white font-bold"
                         : isCompleted
                         ? "text-[#004e70] hover:bg-cyan-50 cursor-pointer font-semibold"
-                        : "text-slate-400"
+                        : "text-slate-950 font-semibold"
                     }`}
                   >
                     <div className="flex items-center gap-2">
@@ -850,7 +850,7 @@ export default function SubmitResearchPage() {
                       ) : isActive ? (
                         <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       ) : (
-                        <Lock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                        <Lock className="w-3.5 h-3.5 text-slate-800 shrink-0" />
                       )}
                       <span>{step.label}</span>
                     </div>
@@ -895,7 +895,7 @@ export default function SubmitResearchPage() {
                         type="button"
                         key={step.id}
                         onClick={() => jumpToStep(step.id)}
-                        className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-[#004e70] hover:bg-cyan-50/70 hover:underline flex items-center transition-colors group"
+                        className="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-[#004e70] hover:bg-cyan-50/70 hover:underline flex items-center transition-colors group"
                       >
                         <Check className="w-4 h-4 text-emerald-600 font-bold mr-2.5 shrink-0" />
                         <span className="truncate">{step.label}</span>
@@ -906,16 +906,16 @@ export default function SubmitResearchPage() {
                   return (
                     <div
                       key={step.id}
-                      className="w-full text-left px-3 py-2 rounded-lg text-sm font-normal text-slate-500 flex items-center opacity-70 select-none cursor-not-allowed"
+                      className="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-950 flex items-center select-none cursor-not-allowed"
                     >
-                      <Lock className="w-3.5 h-3.5 text-slate-400 mr-2.5 shrink-0" />
+                      <Lock className="w-3.5 h-3.5 text-slate-800 mr-2.5 shrink-0" />
                       <span className="truncate">{step.label}</span>
                     </div>
                   );
                 })}
               </nav>
 
-              <div className="pt-3 border-t border-slate-100 text-[11px] text-slate-400">
+              <div className="pt-3 border-t border-slate-100 text-[11px] text-slate-600 font-medium">
                 Completed steps remain editable at any time by clicking their link.
               </div>
             </div>
