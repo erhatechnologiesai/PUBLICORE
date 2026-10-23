@@ -384,10 +384,10 @@ export const Navbar: React.FC = () => {
               </button>
 
               {portalDropdownOpen && (
-                <div className="absolute right-0 sm:right-auto sm:left-0 mt-3 w-64 sm:w-72 bg-[#060D17] sm:bg-[#060D17]/98 backdrop-blur-3xl rounded-2xl border border-cyan-400/40 p-2 shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(8,145,178,0.3)] ring-1 ring-white/15 z-50 animate-in fade-in-95 slide-in-from-top-2 text-left">
+                <div className="absolute right-0 sm:right-auto sm:left-0 mt-3 w-56 sm:w-64 bg-[#060D17] sm:bg-[#060D17]/98 backdrop-blur-3xl rounded-2xl border border-cyan-400/40 p-2 shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(8,145,178,0.3)] ring-1 ring-white/15 z-50 animate-in fade-in-95 slide-in-from-top-2 text-left">
                   <div className="px-3 py-2 border-b border-white/10 flex items-center justify-between">
-                    <p className="text-xs font-black text-white uppercase tracking-wider flex items-center gap-2">
-                      <Layers className="w-4 h-4 text-cyan-400" /> Portals
+                    <p className="text-xs font-black text-white uppercase tracking-wider">
+                      Portals
                     </p>
                     {currentUser?.role && (
                       <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-400/50 shadow-xs">
@@ -398,33 +398,21 @@ export const Navbar: React.FC = () => {
 
                   <div className="py-1.5 space-y-1">
                     {rolePortals.map((portal) => {
-                      const Icon = portal.icon;
                       const isActive = currentUser?.role === portal.role;
                       return (
                         <button
                           key={portal.role}
                           type="button"
                           onClick={() => handleRoleSwitch(portal.role)}
-                          className={`w-full text-left px-3 py-2.5 rounded-xl flex items-center justify-between gap-3 transition-all duration-150 group cursor-pointer ${
+                          className={`w-full text-left px-3.5 py-2.5 rounded-xl flex items-center justify-between gap-3 transition-all duration-150 group cursor-pointer ${
                             isActive
                               ? "bg-gradient-to-r from-cyan-950 via-[#0B1A2C] to-[#07111E] text-white font-bold border border-cyan-400/60 shadow-md ring-1 ring-cyan-400/30"
-                              : "text-white hover:bg-white/10 border border-transparent hover:border-cyan-400/30"
+                              : "text-white hover:bg-white/10 hover:text-cyan-200 border border-transparent hover:border-cyan-400/30"
                           }`}
                         >
-                          <div className="flex items-center gap-3 min-w-0">
-                            <div
-                              className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${
-                                isActive
-                                  ? "bg-gradient-to-tr from-cyan-500 to-teal-400 text-white shadow-sm"
-                                  : "bg-white/10 text-cyan-300 group-hover:bg-cyan-500 group-hover:text-white"
-                              }`}
-                            >
-                              <Icon className="w-4 h-4" />
-                            </div>
-                            <span className="text-sm font-bold text-white group-hover:text-cyan-200 transition-colors truncate">
-                              {portal.title}
-                            </span>
-                          </div>
+                          <span className="text-sm font-bold text-white group-hover:text-cyan-200 transition-colors truncate">
+                            {portal.title}
+                          </span>
 
                           {isActive ? (
                             <span className="shrink-0 text-[9px] bg-emerald-500 text-white font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
@@ -760,31 +748,19 @@ export const Navbar: React.FC = () => {
                   )}
                 </div>
                 {rolePortals.map((portal) => {
-                  const Icon = portal.icon;
                   const isActive = currentUser?.role === portal.role;
                   return (
                     <button
                       key={portal.role}
                       type="button"
                       onClick={() => handleRoleSwitch(portal.role)}
-                      className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between gap-2.5 transition-all cursor-pointer ${
+                      className={`w-full text-left px-3 py-2.5 rounded-xl flex items-center justify-between gap-2.5 transition-all cursor-pointer ${
                         isActive
                           ? "bg-gradient-to-r from-cyan-50 to-white text-navy-950 font-bold border border-cyan-200 shadow-2xs"
                           : "text-slate-700 hover:bg-slate-50 hover:text-navy-950 border border-transparent"
                       }`}
                     >
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <div
-                          className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${
-                            isActive ? "bg-[#004e70] text-white shadow-xs" : "bg-slate-100 text-slate-600"
-                          }`}
-                        >
-                          <Icon className="w-3.5 h-3.5" />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-xs font-bold truncate">{portal.title}</p>
-                        </div>
-                      </div>
+                      <span className="text-xs font-bold truncate">{portal.title}</span>
                       {isActive ? (
                         <span className="shrink-0 text-[8.5px] bg-emerald-600 text-white font-bold px-1.5 py-0.5 rounded-full shadow-2xs">
                           ACTIVE
