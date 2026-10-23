@@ -259,114 +259,11 @@ export default function ContactPage() {
           </h1>
         </div>
 
-        {/* Main Grid: Info Cards (Left) + Dynamic Form (Right) */}
+        {/* Main Grid: Contact Form (Left) + Directory Info (Right) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* ================= LEFT COLUMN: DEPARTMENT DIRECTORY ================= */}
-          <div className="lg:col-span-5 space-y-6">
-            {/* Headquarters Card */}
-            <Card className="p-6 sm:p-7 bg-white border border-slate-200/80 shadow-[0_2px_12px_-4px_rgba(15,30,60,0.06)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.12)] hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-4">
-              <div className="flex items-center gap-2.5 pb-3 border-b border-slate-100">
-                <div className="w-9 h-9 rounded-xl bg-cyan-50 text-[#004e70] flex items-center justify-center font-bold">
-                  <Building2 className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-navy-950">Global Secretariat</h3>
-                  <p className="text-[11px] text-slate-500">PUBLICORE Academic Research Consortium</p>
-                </div>
-              </div>
-
-              <div className="space-y-3 text-xs text-slate-600">
-                <p className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
-                  <span>
-                    124 Research Nexus Way, Cambridge Innovation Quad<br />
-                    Cambridge CB2 1TN, United Kingdom
-                  </span>
-                </p>
-                <p className="flex items-center gap-2.5">
-                  <Mail className="w-4 h-4 text-cyan-700 shrink-0" />
-                  <a href="mailto:secretariat@publicore.org" className="hover:text-cyan-800 hover:underline font-medium">
-                    secretariat@publicore.org
-                  </a>
-                </p>
-                <p className="flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-cyan-700 shrink-0" />
-                  <span>+44 (0) 1223 884920 (Mon - Fri, 08:00 - 18:00 GMT)</span>
-                </p>
-              </div>
-            </Card>
-
-            {/* Department Direct Routing Cards */}
-            <Card className="p-6 sm:p-7 bg-white border border-slate-200/80 shadow-[0_2px_12px_-4px_rgba(15,30,60,0.06)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.12)] hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                Direct Department Desks
-              </h3>
-
-              <div className="space-y-3 text-xs">
-                <div className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200/70 hover:bg-white hover:border-cyan-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-navy-950">Editorial &amp; Review Operations</span>
-                    <Badge variant="teal" size="sm">24h SLA</Badge>
-                  </div>
-                  <p className="text-[11px] text-slate-500 mt-1">Review status inquiries, reviewer queries, decisions</p>
-                  <p className="font-mono text-[11px] text-[#004e70] font-semibold mt-1">editorial.desk@publicore.org</p>
-                </div>
-
-                <div className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200/70 hover:bg-white hover:border-cyan-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-navy-950">Production, JATS &amp; Crossref DOI</span>
-                    <Badge variant="outline" size="sm">Technical</Badge>
-                  </div>
-                  <p className="text-[11px] text-slate-500 mt-1">Galley proofs, DOI batch indexing, XML corrections</p>
-                  <p className="font-mono text-[11px] text-[#004e70] font-semibold mt-1">production@publicore.org</p>
-                </div>
-
-                <div className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200/70 hover:bg-white hover:border-cyan-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-navy-950">Billing, Stripe APC &amp; Waivers</span>
-                    <Badge variant="amber" size="sm">Finance</Badge>
-                  </div>
-                  <p className="text-[11px] text-slate-500 mt-1">Invoices, Research4Life waiver applications, receipts</p>
-                  <p className="font-mono text-[11px] text-[#004e70] font-semibold mt-1">apc.finance@publicore.org</p>
-                </div>
-              </div>
-            </Card>
-
-            {/* Quick Accordion FAQs */}
-            <Card className="p-6 sm:p-7 bg-white border border-slate-200/80 shadow-[0_2px_12px_-4px_rgba(15,30,60,0.06)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.12)] hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-3">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                Frequently Asked Inquiries
-              </h3>
-
-              <div className="space-y-2.5">
-                {faqs.map((faq, i) => (
-                  <div key={i} className="border border-slate-200/80 rounded-2xl overflow-hidden hover:border-cyan-400/60 transition-all duration-200">
-                    <button
-                      type="button"
-                      onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                      className="w-full text-left p-3.5 text-xs font-bold text-navy-950 flex items-center justify-between gap-2 hover:bg-slate-50 transition-colors"
-                    >
-                      <span>{faq.q}</span>
-                      <ChevronDown
-                        className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${
-                          activeFaq === i ? "rotate-180 text-cyan-700" : ""
-                        }`}
-                      />
-                    </button>
-                    {activeFaq === i && (
-                      <div className="p-3.5 pt-0 text-[11px] text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
-                        {faq.a}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </Card>
-          </div>
-
-          {/* ================= RIGHT COLUMN: DYNAMIC CONTACT FORM ================= */}
+          {/* ================= LEFT COLUMN: DYNAMIC CONTACT FORM ================= */}
           <div className="lg:col-span-7">
-            <Card className="p-6 sm:p-8 bg-white border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,30,60,0.08)] hover:shadow-[0_16px_40px_-8px_rgba(0,78,112,0.12)] hover:border-cyan-500/30 transition-all duration-300 ease-out rounded-3xl space-y-6">
+            <Card className="p-6 sm:p-8 bg-gradient-to-br from-white via-[#f8fbfe] to-[#edf7fa] border border-cyan-100/80 shadow-[0_12px_40px_-8px_rgba(0,78,112,0.1),0_2px_8px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_48px_-8px_rgba(0,78,112,0.16)] hover:border-cyan-400/50 transition-all duration-300 ease-out rounded-3xl space-y-6">
               {/* Dynamic View 1: Submission Result Display */}
               {submissionResult ? (
                 <div className="space-y-6 py-2 animate-fadeIn text-left">
@@ -419,7 +316,7 @@ export default function ContactPage() {
                   </div>
 
                   {/* Inquiry Metadata Summary Table */}
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5 text-xs">
+                  <div className="p-4 rounded-xl bg-white/90 border border-slate-200 space-y-2.5 text-xs">
                     <h4 className="font-bold text-navy-950 uppercase tracking-wider text-[11px]">
                       Ticket Details &amp; Response SLA
                     </h4>
@@ -490,15 +387,10 @@ export default function ContactPage() {
               ) : (
                 /* Dynamic View 2: Interactive Form */
                 <form onSubmit={handleSubmit} className="space-y-5 text-left">
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                    <div>
-                      <h3 className="text-base font-extrabold text-navy-950">
-                        Send an Editorial / Secretariat Inquiry
-                      </h3>
-                      <p className="text-xs text-slate-500 mt-0.5">
-                        Fill in your details below to generate an official tracking ticket.
-                      </p>
-                    </div>
+                  <div className="pb-3 border-b border-slate-100">
+                    <h3 className="text-lg sm:text-xl font-bold text-navy-950 tracking-tight">
+                      Send an Editorial / Secretariat Inquiry
+                    </h3>
                   </div>
 
                   {/* Error Notification */}
@@ -515,12 +407,12 @@ export default function ContactPage() {
                   {/* Field 1: Category Dropdown */}
                   <div className="space-y-1.5">
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                      Inquiry Category &amp; Target Desk <span className="text-red-500">*</span>
+                      Inquiry Category &amp; Target Desk
                     </label>
                     <select
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
-                      className="w-full rounded-xl border border-slate-300 p-2.5 text-xs text-navy-950 font-medium bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70]"
+                      className="w-full rounded-xl border border-slate-300 p-3 text-xs text-navy-950 font-medium bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70] transition-colors"
                     >
                       {INQUIRY_CATEGORIES.map((cat) => (
                         <option key={cat.id} value={cat.name}>
@@ -528,18 +420,13 @@ export default function ContactPage() {
                         </option>
                       ))}
                     </select>
-                    {selectedCategoryObj && (
-                      <p className="text-[11px] text-slate-500 italic mt-1">
-                        {selectedCategoryObj.desc}
-                      </p>
-                    )}
                   </div>
 
                   {/* Field 2 & 3: Name & Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                        Full Name &amp; Title <span className="text-red-500">*</span>
+                        Full Name &amp; Title
                       </label>
                       <input
                         type="text"
@@ -547,13 +434,13 @@ export default function ContactPage() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
-                        className="w-full rounded-xl border border-slate-300 p-2.5 text-xs text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70]"
+                        className="w-full rounded-xl border border-slate-300 p-3 text-xs text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70] transition-colors"
                       />
                     </div>
 
                     <div className="space-y-1.5">
                       <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                        Institutional Email <span className="text-red-500">*</span>
+                        Institutional Email
                       </label>
                       <input
                         type="email"
@@ -561,7 +448,7 @@ export default function ContactPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full rounded-xl border border-slate-300 p-2.5 text-xs text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70]"
+                        className="w-full rounded-xl border border-slate-300 p-3 text-xs text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70] transition-colors"
                       />
                     </div>
                   </div>
@@ -577,23 +464,22 @@ export default function ContactPage() {
                         placeholder="e.g. University of Cambridge"
                         value={institution}
                         onChange={(e) => setInstitution(e.target.value)}
-                        className="w-full rounded-xl border border-slate-300 p-2.5 text-xs text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70]"
+                        className="w-full rounded-xl border border-slate-300 p-3 text-xs text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70] transition-colors"
                       />
                     </div>
 
-                    {/* Conditional Field: Manuscript ID (Only shown if applicable category) */}
+                    {/* Conditional Field: Manuscript ID */}
                     {selectedCategoryObj?.hasManuscriptId ? (
                       <div className="space-y-1.5 animate-fadeIn">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center justify-between">
-                          <span>Manuscript ID (Optional)</span>
-                          <span className="text-[10px] text-cyan-800 font-normal">Tracking</span>
+                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                          Manuscript ID (Optional)
                         </label>
                         <input
                           type="text"
                           placeholder="e.g. PUB-MS-2026-8912"
                           value={manuscriptId}
                           onChange={(e) => setManuscriptId(e.target.value)}
-                          className="w-full rounded-xl border border-slate-300 p-2.5 text-xs font-mono text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70]"
+                          className="w-full rounded-xl border border-slate-300 p-3 text-xs font-mono text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70] transition-colors"
                         />
                       </div>
                     ) : (
@@ -601,13 +487,13 @@ export default function ContactPage() {
                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
                           Inquiry Priority
                         </label>
-                        <div className="grid grid-cols-3 gap-1.5">
+                        <div className="grid grid-cols-3 gap-2">
                           {(["Normal", "High", "Urgent"] as const).map((p) => (
                             <button
                               key={p}
                               type="button"
                               onClick={() => setPriority(p)}
-                              className={`py-2 px-2 rounded-xl text-[11px] font-bold border transition-all text-center ${
+                              className={`py-2.5 px-2 rounded-xl text-xs font-bold border transition-all text-center ${
                                 priority === p
                                   ? "bg-[#004e70] text-white border-[#004e70] shadow-xs"
                                   : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
@@ -633,16 +519,13 @@ export default function ContactPage() {
                             key={p}
                             type="button"
                             onClick={() => setPriority(p)}
-                            className={`py-2 px-2.5 rounded-xl text-xs font-bold border transition-all text-center flex items-center justify-center gap-1.5 ${
+                            className={`py-2.5 px-3 rounded-xl text-xs font-bold border transition-all text-center flex items-center justify-center ${
                               priority === p
                                 ? "bg-[#004e70] text-white border-[#004e70] shadow-xs"
                                 : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
                             }`}
                           >
                             <span>{p}</span>
-                            <span className="text-[10px] opacity-75 hidden sm:inline">
-                              {p === "Urgent" ? "(< 4h)" : p === "High" ? "(12h)" : "(24h)"}
-                            </span>
                           </button>
                         ))}
                       </div>
@@ -652,7 +535,7 @@ export default function ContactPage() {
                   {/* Field 6: Subject Line */}
                   <div className="space-y-1.5">
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                      Inquiry Subject <span className="text-red-500">*</span>
+                      Inquiry Subject
                     </label>
                     <input
                       type="text"
@@ -660,28 +543,23 @@ export default function ContactPage() {
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
                       required
-                      className="w-full rounded-xl border border-slate-300 p-2.5 text-xs text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70]"
+                      className="w-full rounded-xl border border-slate-300 p-3 text-xs text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70] transition-colors"
                     />
                   </div>
 
                   {/* Field 7: Detailed Message */}
                   <div className="space-y-1.5">
-                    <div className="flex items-center justify-between">
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                        Detailed Message <span className="text-red-500">*</span>
-                      </label>
-                      <span className="text-[10px] text-slate-400 font-mono">
-                        {message.length} / 2500 chars
-                      </span>
-                    </div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                      Detailed Message
+                    </label>
                     <textarea
                       rows={5}
-                      placeholder="Please provide full details of your query, including specific journal titles, manuscript references, or error descriptions..."
+                      placeholder="Please provide full details of your query..."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       required
                       maxLength={2500}
-                      className="w-full rounded-xl border border-slate-300 p-3 text-xs text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70] leading-relaxed resize-y"
+                      className="w-full rounded-xl border border-slate-300 p-3 text-xs text-navy-950 bg-white focus:outline-none focus:ring-2 focus:ring-[#004e70]/20 focus:border-[#004e70] leading-relaxed resize-y transition-colors"
                     />
                   </div>
 
@@ -709,7 +587,7 @@ export default function ContactPage() {
                         </button>
                       </div>
                     ) : (
-                      <label className="border-2 border-dashed border-slate-300 hover:border-[#004e70] rounded-xl p-3.5 flex items-center justify-center gap-2 text-xs text-slate-600 hover:text-[#004e70] bg-slate-50/50 hover:bg-slate-50 transition-all cursor-pointer">
+                      <label className="border-2 border-dashed border-slate-300 hover:border-[#004e70] rounded-xl p-3.5 flex items-center justify-center gap-2 text-xs text-slate-600 hover:text-[#004e70] bg-white/70 hover:bg-white transition-all cursor-pointer">
                         <UploadCloud className="w-4 h-4 text-slate-400" />
                         <span>Attach PDF, screenshot, or errata document (Max 10MB)</span>
                         <input
@@ -723,7 +601,7 @@ export default function ContactPage() {
                   </div>
 
                   {/* Field 9: Human Verification Checkbox */}
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3">
+                  <div className="p-3.5 rounded-xl bg-white/80 border border-slate-200 flex items-center gap-3">
                     <input
                       type="checkbox"
                       id="humanVerification"
@@ -742,7 +620,7 @@ export default function ContactPage() {
                     variant="primary"
                     size="md"
                     disabled={isSubmitting}
-                    className="w-full bg-[#004e70] hover:bg-[#003c57] text-white font-bold shadow-xs py-3 rounded-xl transition-all"
+                    className="w-full bg-[#004e70] hover:bg-[#003c57] text-white font-bold shadow-xs py-3.5 rounded-xl transition-all active:scale-[0.99]"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center gap-2">
@@ -758,6 +636,102 @@ export default function ContactPage() {
                   </Button>
                 </form>
               )}
+            </Card>
+          </div>
+
+          {/* ================= RIGHT COLUMN: DEPARTMENT DIRECTORY ================= */}
+          <div className="lg:col-span-5 space-y-6">
+            {/* Headquarters Card */}
+            <Card className="p-6 sm:p-7 bg-gradient-to-br from-white via-[#f8fbfe] to-[#edf7fa] border border-cyan-100/80 shadow-[0_8px_30px_-6px_rgba(0,78,112,0.08),0_2px_8px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.14)] hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-4">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-50 to-cyan-100/80 text-[#004e70] flex items-center justify-center font-bold shadow-2xs border border-cyan-200/60">
+                  <Building2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-navy-950">Global Secretariat</h3>
+                </div>
+              </div>
+
+              <div className="space-y-3 text-xs text-slate-600">
+                <p className="flex items-start gap-2.5">
+                  <MapPin className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
+                  <span>
+                    124 Research Nexus Way, Cambridge Innovation Quad<br />
+                    Cambridge CB2 1TN, United Kingdom
+                  </span>
+                </p>
+                <p className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-cyan-700 shrink-0" />
+                  <a href="mailto:secretariat@publicore.org" className="hover:text-cyan-800 hover:underline font-medium">
+                    secretariat@publicore.org
+                  </a>
+                </p>
+                <p className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-cyan-700 shrink-0" />
+                  <span>+44 (0) 1223 884920 (Mon - Fri, 08:00 - 18:00 GMT)</span>
+                </p>
+              </div>
+            </Card>
+
+            {/* Department Direct Routing Cards */}
+            <Card className="p-6 sm:p-7 bg-gradient-to-br from-white via-[#f8fbfe] to-[#edf7fa] border border-cyan-100/80 shadow-[0_8px_30px_-6px_rgba(0,78,112,0.08),0_2px_8px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.14)] hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-4">
+              <h3 className="text-base font-bold text-navy-950">
+                Direct Department Desks
+              </h3>
+
+              <div className="space-y-3 text-xs">
+                <div className="p-3.5 rounded-2xl bg-white/90 border border-slate-200/80 hover:border-cyan-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <span className="font-bold text-navy-950">Editorial &amp; Review Operations</span>
+                    <span className="font-mono text-[11px] text-[#004e70] font-semibold">editorial.desk@publicore.org</span>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-white/90 border border-slate-200/80 hover:border-cyan-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <span className="font-bold text-navy-950">Production, JATS &amp; Crossref DOI</span>
+                    <span className="font-mono text-[11px] text-[#004e70] font-semibold">production@publicore.org</span>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-white/90 border border-slate-200/80 hover:border-cyan-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <span className="font-bold text-navy-950">Billing, Stripe APC &amp; Waivers</span>
+                    <span className="font-mono text-[11px] text-[#004e70] font-semibold">apc.finance@publicore.org</span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Quick Accordion FAQs */}
+            <Card className="p-6 sm:p-7 bg-gradient-to-br from-white via-[#f8fbfe] to-[#edf7fa] border border-cyan-100/80 shadow-[0_8px_30px_-6px_rgba(0,78,112,0.08),0_2px_8px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-8px_rgba(0,78,112,0.14)] hover:border-cyan-400/50 hover:-translate-y-1 transition-all duration-300 ease-out rounded-3xl space-y-3.5">
+              <h3 className="text-base font-bold text-navy-950">
+                Frequently Asked Questions
+              </h3>
+
+              <div className="space-y-2.5">
+                {faqs.map((faq, i) => (
+                  <div key={i} className="border border-slate-200/80 bg-white/90 rounded-2xl overflow-hidden hover:border-cyan-400/60 transition-all duration-200">
+                    <button
+                      type="button"
+                      onClick={() => setActiveFaq(activeFaq === i ? null : i)}
+                      className="w-full text-left p-3.5 text-xs font-bold text-navy-950 flex items-center justify-between gap-2 hover:bg-slate-50 transition-colors"
+                    >
+                      <span>{faq.q}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${
+                          activeFaq === i ? "rotate-180 text-cyan-700" : ""
+                        }`}
+                      />
+                    </button>
+                    {activeFaq === i && (
+                      <div className="p-3.5 pt-0 text-[11px] text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
+                        {faq.a}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </Card>
           </div>
         </div>
