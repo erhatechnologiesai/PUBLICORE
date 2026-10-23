@@ -354,7 +354,7 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Right: Portals, Auth Buttons & Role Switcher */}
-          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* Dedicated Role Portals Dropdown (Author + 4 Portals: Reviewer, Editor, Production, Admin) */}
             <div ref={portalMenuRef} className="relative">
               <button
@@ -363,7 +363,7 @@ export const Navbar: React.FC = () => {
                   setPortalDropdownOpen(!portalDropdownOpen);
                   setUserDropdownOpen(false);
                 }}
-                className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 sm:px-4.5 sm:py-3 text-xs sm:text-sm font-bold rounded-full border transition-all shadow-xs whitespace-nowrap cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 sm:gap-2 h-8.5 sm:h-11 px-2.5 sm:px-4 text-xs sm:text-sm font-bold rounded-full border transition-all shadow-xs whitespace-nowrap cursor-pointer ${
                   portalDropdownOpen
                     ? "bg-[#0B1A2C] text-cyan-300 border-[#0B1A2C] shadow-sm"
                     : "bg-white hover:bg-slate-50 text-slate-800 hover:text-navy-950 border-slate-300 hover:border-slate-400"
@@ -519,17 +519,20 @@ export const Navbar: React.FC = () => {
                 </div>
               </div>
             ) : (
-              /* Two Buttons: Create Account & Sign In with Large Capsule Design */
-              <div className="flex items-center gap-1.5 sm:gap-3">
+              /* Two Buttons: Create Account & Sign In with Identical Capsule Design, Perfect Alignment, Dynamic & Responsive */
+              <div className="flex items-center gap-1.5 sm:gap-2.5">
                 <Link
                   href="/login?mode=register"
-                  className="hidden sm:inline-flex items-center justify-center px-4.5 py-2.5 sm:px-5.5 sm:py-3 text-xs sm:text-sm font-bold text-slate-800 hover:text-[#004e70] bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 rounded-full transition-all shadow-xs whitespace-nowrap"
+                  className="inline-flex items-center justify-center h-8.5 sm:h-11 px-2.5 xs:px-3 sm:px-5.5 text-[11px] xs:text-xs sm:text-sm font-bold text-white bg-[#004e70] hover:bg-[#003c57] active:bg-[#003046] border border-[#004e70] hover:border-[#003c57] rounded-full transition-all duration-150 shadow-xs hover:shadow-md active:scale-95 whitespace-nowrap"
+                  title="Create a free PUBLICORE Researcher Account"
                 >
-                  Create Account
+                  <span className="hidden xs:inline">Create Account</span>
+                  <span className="xs:hidden">Register</span>
                 </Link>
                 <Link
                   href="/login?mode=login"
-                  className="inline-flex items-center justify-center px-3.5 py-1.5 sm:px-6.5 sm:py-3 text-xs sm:text-sm font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-full transition-all shadow-xs hover:shadow-md whitespace-nowrap"
+                  className="inline-flex items-center justify-center h-8.5 sm:h-11 px-3 xs:px-3.5 sm:px-5.5 text-[11px] xs:text-xs sm:text-sm font-bold text-white bg-[#004e70] hover:bg-[#003c57] active:bg-[#003046] border border-[#004e70] hover:border-[#003c57] rounded-full transition-all duration-150 shadow-xs hover:shadow-md active:scale-95 whitespace-nowrap"
+                  title="Sign In to your Account"
                 >
                   Sign In
                 </Link>
@@ -604,14 +607,14 @@ export const Navbar: React.FC = () => {
                     <Link
                       href="/login?mode=register"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="w-full text-center py-2 text-xs font-bold text-slate-800 border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors"
+                      className="w-full text-center py-2.5 text-xs font-bold text-white bg-[#004e70] hover:bg-[#003c57] border border-[#004e70] rounded-full transition-colors shadow-xs"
                     >
                       Create Account
                     </Link>
                     <Link
                       href="/login?mode=login"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="w-full text-center py-2 text-xs font-bold text-white bg-[#004e70] hover:bg-[#003c57] rounded-xl transition-colors"
+                      className="w-full text-center py-2.5 text-xs font-bold text-white bg-[#004e70] hover:bg-[#003c57] border border-[#004e70] rounded-full transition-colors shadow-xs"
                     >
                       Sign In
                     </Link>
