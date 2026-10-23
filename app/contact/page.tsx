@@ -13,8 +13,6 @@ import {
   Phone,
   Send,
   CheckCircle2,
-  Clock,
-  ShieldCheck,
   FileText,
   Building2,
   HelpCircle,
@@ -28,7 +26,6 @@ import {
   Sparkles,
   RefreshCw,
   Globe2,
-  LifeBuoy,
   MessageSquare,
   UploadCloud,
 } from "lucide-react";
@@ -257,33 +254,9 @@ export default function ContactPage() {
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full text-left">
         {/* Header Hero */}
         <div className="mb-8 sm:mb-10 text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100/70 border border-cyan-200 text-[#004e70] text-xs font-bold tracking-wide uppercase mb-3">
-            <LifeBuoy className="w-3.5 h-3.5" />
-            <span>Support &amp; Editorial Secretariat</span>
-          </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-navy-950 tracking-tight">
-            Contact PUBLICORE
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-950 tracking-tight">
+            Contact Us
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1.5 max-w-3xl leading-relaxed">
-            Direct communication channels for corresponding authors, peer reviewers, and university librarians.
-            Every inquiry is assigned a permanent tracking ticket backed by COPE ethical oversight.
-          </p>
-
-          {/* Quick SLA Status Banner */}
-          <div className="mt-4 flex flex-wrap items-center gap-3 sm:gap-6 text-[11px] sm:text-xs font-medium text-slate-500 bg-white p-3 rounded-xl border border-slate-200/80 shadow-2xs">
-            <span className="flex items-center gap-1.5 text-emerald-700 font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              Secretariat Desks Online
-            </span>
-            <span className="flex items-center gap-1.5 text-slate-600">
-              <Clock className="w-3.5 h-3.5 text-cyan-700" />
-              Average Response SLA: &lt; 12 Hours
-            </span>
-            <span className="flex items-center gap-1.5 text-slate-600">
-              <ShieldCheck className="w-3.5 h-3.5 text-cyan-700" />
-              100% Confidential Peer Review Channels
-            </span>
-          </div>
         </div>
 
         {/* Main Grid: Info Cards (Left) + Dynamic Form (Right) */}
