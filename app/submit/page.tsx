@@ -1548,11 +1548,6 @@ export default function SubmitResearchPage() {
                             <h4 className="text-sm font-bold text-navy-950">
                               {auth.firstName} {auth.lastName}
                             </h4>
-                            {auth.isCorresponding && (
-                              <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
-                                Corresponding Author
-                              </span>
-                            )}
                           </div>
                           <p className="text-xs text-slate-500 font-mono mt-0.5">{auth.email}</p>
                         </div>
@@ -1718,10 +1713,6 @@ export default function SubmitResearchPage() {
                             </p>
                           </div>
                         </div>
-
-                        <span className="text-[10px] font-mono text-cyan-800 bg-cyan-50 border border-cyan-200 px-2 py-0.5 rounded">
-                          Affiliation #{i + 1}
-                        </span>
                       </div>
 
                       {/* Author Linker Checkboxes */}
@@ -2001,16 +1992,6 @@ export default function SubmitResearchPage() {
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-cyan-50/70 border border-cyan-200 flex items-start gap-2.5 text-xs text-cyan-950">
-                  <Sparkles className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-bold">Automated ROR Identity Resolution Active</span>
-                    <p className="text-[11px] text-cyan-900 mt-0.5">
-                      Your author affiliations have been matched against the international ROR database to ensure Crossref deposit compatibility.
-                    </p>
-                  </div>
-                </div>
-
                 {/* Matched Organizations Cards */}
                 <div className="space-y-3">
                   {matchedOrgs.map((m, i) => (
@@ -2115,20 +2096,6 @@ export default function SubmitResearchPage() {
                     </div>
                   </div>
                 </div>
-
-                {/* Institutional Subsidy Banner */}
-                {openAccessModel === "gold" && (
-                  <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/70 text-emerald-950 text-xs flex items-start gap-3">
-                    <Award className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-bold text-sm">Institutional Transformative Agreement Applied</span>
-                      <p className="text-[11px] text-emerald-900 mt-0.5">
-                        Because of your verified affiliation with <strong>University of Cambridge</strong>, 100% of the $1,250 APC is subsidized by the National Consortium Agreement.
-                        <strong> Your Net Publishing Balance: $0.00</strong>
-                      </p>
-                    </div>
-                  </div>
-                )}
 
                 {/* Creative Commons Licensing Agreement */}
                 <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3 text-xs">
